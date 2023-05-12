@@ -1,0 +1,176 @@
+@font-face {
+    font-family: TripSans;
+    src: url(../font/TripSans-Regular.ttf);
+ }
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: TripSans;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+.start {
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+/* FONT START */
+.bold {
+    font-weight: 600;
+}
+
+.veryLarge {
+    font-size: 32px;
+}
+
+.large {
+    font-size: 23.5px;
+}
+
+.medium {
+    font-size: 16px;
+}
+
+.small {
+    font-size: 12px;
+}
+/* FONT END */
+
+section {
+    width: 1232px;
+}
+
+.headerSection {
+    background-color: white;
+}
+
+header {
+    height: 112px;
+    width: 100%;
+    padding: 10px 0 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.topHeader {
+    height: 32px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.topRightHeader {
+    display: flex;
+}
+
+.midHeader {
+    height: 24px;
+    width: 100%;
+}
+
+.midHeader a {
+    display: flex;
+    flex-direction: row;
+}
+
+.bottomHeader {
+    height: 26px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.bottomHeader a:hover {
+    text-decoration: underline;
+}
+
+.UctUV {
+    fill: #00aa6c;
+}
+
+.contentSection {
+    width: 100%;
+    height: max-content;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+}
+
+.contentContainer {
+    width: 1256px;
+    padding: 12px 12px 0 12px;
+}
+
+.contentContainer div {
+    padding-bottom: 20px;
+}
+
+.image a{
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+}
+
+.image a img {
+    margin: 2px;
+    transition: .2s ease;
+    filter: brightness(1);
+}
+
+.image a img:hover {
+    filter: brightness(0.7);
+}
+
+.detail {
+    height: 350px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.detailContainer {
+    height: 321.825px;
+    width: 345.062px;
+    border: 1px solid  #E0E0E0;
+    padding: 24px 24px 24px 24px;
+    background-color: white;
+    line-height: 2;
+}
+
+.detailContainer b {
+    font-size: small;
+}
+
+.rating {
+    display: flex;
+    font-size: 30px;
+    line-height: 2;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    width: 100%;
+}

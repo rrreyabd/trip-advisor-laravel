@@ -1,0 +1,94 @@
+@font-face {
+    font-family: TripSans;
+    src: url(../font/TripSans-Regular.ttf);
+ }
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: TripSans;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: rgba(255, 255, 255, .4); */
+    background-image: url(../img/section4/bg-img.jpeg);
+    position: relative;
+}
+
+.email {
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width: 380px;
+    height: 502.2px;
+    border-radius: 20px;
+    padding: 60px;
+    line-height: 1.3;
+}
+
+.transparent {
+    opacity: 0;
+    z-index: -3;
+}
+
+.selesai {
+    position: absolute;
+    z-index: -1;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width: 350px;
+    height: 300px;
+    border-radius: 20px;
+    padding: 60px;
+    line-height: 1.3;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+input {
+    height: 35px;
+    padding: 5px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    font-size: large;
+    font-weight: bold;
+    color: white;
+    background-color: black;
+    border-radius: 46px;
+    width: 80%;
+    height: 60px;
+    margin-top: 30px;
+}
+
+footer p,
+.email p {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: small;
+}
+
+.footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    font-size: 13px;
+}
+
+.selesai {
+    line-height: 2;
+}

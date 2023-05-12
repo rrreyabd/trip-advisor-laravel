@@ -1,0 +1,161 @@
+@font-face {
+    font-family: TripSans;
+    src: url(../font/TripSans-Regular.ttf);
+ }
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: TripSans;
+}
+
+/* FONT START */
+.bold {
+    font-weight: 600;
+}
+
+.veryLarge {
+    font-size: 32px;
+}
+
+.large {
+    font-size: 23.5px;
+}
+
+.medium {
+    font-size: 16px;
+}
+
+.small {
+    font-size: 12px;
+}
+/* FONT END */
+
+.center {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+nav {
+    height: 102px;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+}
+
+.topNav {
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding-top: 5px;
+    height: 60px;
+    width: 1136px
+}
+
+.bottomNav {
+    height: 62px;
+    display: flex;
+    width: 1136px;
+    align-items: end;
+    text-align: start;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+}
+
+li {
+    margin: 10px;
+}
+
+.navLogo {
+    display: flex;
+    flex-direction: row;
+}
+
+form {
+    position: relative;
+}
+
+input {
+    padding: 20px 30px 20px 45px;
+    border-radius: 21px;
+    height: 38px;
+    width: 332.8px;
+    margin-left: 20px;
+    border: 1px solid #a5a2a2;
+}
+
+.fa-search {
+    font-size: 20px;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    margin-left: 5px;
+    position: absolute;
+    top: 16;
+    left: 30;
+}
+
+input[type=text] {
+    color: #000;
+    font-size: 15px;
+}
+
+.navBody {
+    width: 920px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.ulas,
+.trip {
+    height: 40px;
+    width: 75.225px;
+}
+
+.pemberitahuan {
+    width: 155.4px;
+    height: 40px;
+}
+
+.masuk {
+    background-color: #000;
+    border-radius: 20px;
+    padding: 4px;
+    height: 34px;
+    width: 71px;
+    margin-left: 6px;
+    color: #fff;
+}
+
+.ulas,
+.trip,
+.pemberitahuan{
+    background-color: #fff;
+    transition: ease .2s;
+    border-radius: 20px;
+}
+
+.ulas:hover,
+.trip:hover,
+.pemberitahuan:hover {
+    background-color: #f0efef;
+}
+
+.masuk:hover {
+    background-color: #323232;
+}
