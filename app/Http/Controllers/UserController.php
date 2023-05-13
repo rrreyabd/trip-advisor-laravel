@@ -12,6 +12,10 @@ class UserController extends Controller
         return view('index');
     }
 
+    // hotel
+    public function hotel() {
+        return view('hotel.hotel');
+    }
 
     // forum
     public function forum()
@@ -27,10 +31,36 @@ class UserController extends Controller
         return view('forum.forum_detail');
     }
 
+    // restoran
+    public function restoran()
+    {
+        return view('restoran.restoran');
+    }
+    public function restoran_detail()
+    {
+        return view('restoran.restoran_detail');
+    }
+
+    // destinasi
+    public function destinasi()
+    {
+        return view('destinasi.destinasi');
+    }
+
+    public function destinasi_detail()
+    {
+        return view('destinasi.destinasi_detail');
+    }
 
     // Topbar
     public function ulas()
     {
         return view('ulas.ulas');
     }
+
+    // Navbar
+    // public function navbar()
+    // {
+    //     return view('layout.navbar');
+    // }
 }

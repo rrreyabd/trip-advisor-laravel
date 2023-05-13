@@ -18,13 +18,15 @@ use App\Http\Controllers\UserController;
 Route::get('/', [UserController::class, 'index'])->name('index');
 
 // Hotel
-Route::get('/hotel', [UserController::class, 'index'])->name('hotel');
+Route::get('/hotel', [UserController::class, 'hotel'])->name('hotel');
 
 // Restoran
-Route::get('/restoran', [UserController::class, 'index'])->name('restoran');
+Route::get('/restoran', [UserController::class, 'restoran'])->name('restoran');
+Route::get('/restoran-detail', [UserController::class, 'restoran_detail']);
 
 // Destinasi
-Route::get('/destinasi', [UserController::class, 'index'])->name('destinasi');
+Route::get('/destinasi', [UserController::class, 'destinasi'])->name('destinasi');
+Route::get('/destinasi_detail', [UserController::class, 'destinasi_detail'])->name('destinasi_detail');
 
 // Forum
 Route::get('/forum', [UserController::class, 'forum'])->name('forum');
@@ -33,5 +35,11 @@ Route::get('/forum-detail', [UserController::class, 'forum_detail'])->name('foru
 
 // Topbar index
 Route::get('/ulas', [UserController::class, 'ulas'])->name('ulas');
-Route::get('/trip', [UserController::class, 'index'])->name('trip');
-Route::get('/masuk', [UserController::class, 'index'])->name('masuk');
+Route::get('/trip', [UserController::class, 'trip'])->name('trip');
+Route::get('/masuk', [UserController::class, 'masuk'])->name('masuk');
+
+// Layout
+// Route::get('/navbar', [UserController::class, 'navbar'])->name('navbar');
+
+// Ulasan
+Route::get('/tulis-ulasan', [UserController::class, 'tulis_ulasan'])->name('tulis_ulasan');

@@ -1,0 +1,237 @@
+@font-face {
+  font-family: TripSans;
+  src: url(../font/TripSans-Regular.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: TripSans;
+}
+
+.container {
+  border: 1px;
+}
+
+/* AD START */
+.ad {
+  object-fit: cover;
+  background-color: rgb(240, 255, 253);
+}
+/* AD END  */
+
+/* navbar Button */
+.navIcon a:link {
+  text-decoration: none;
+}
+.navIcon a:hover {
+  background-color: #c6c6c6 !important;
+  border-radius: 1px;
+}
+
+/* LINK DI SECTION KATEGORI */
+.no-underline:link {
+  text-decoration: none !important;
+}
+.no-underline:hover {
+  text-decoration: underline;
+  color: #434343 !important;
+}
+
+@media screen and (min-width: 992px) {
+  .col-md-auto {
+    width: auto;
+  }
+}
+
+/* CAROUSEL RESPONSIVE */
+@media (max-width: 767px) {
+  #myCarousel .carousel-inner {
+    display: flex;
+    flex-direction: column;
+  }
+  #myCarousel .carousel-inner .carousel-item {
+    display: block;
+    width: 100%;
+  }
+  #myCarousel .carousel-inner .carousel-item .list-unstyled {
+    display: block;
+  }
+  #myCarousel .carousel-inner .carousel-item .list-unstyled li {
+    display: block;
+    width: 100%;
+    margin-right: 0 !important;
+  }
+  #myCarousel .carousel-control-prev,
+  #myCarousel .carousel-control-next {
+    display: none;
+  }
+  #myCarousel .carousel-inner .carousel-item li {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 767px) {
+}
+
+/* CAROUSEL IMAGE */
+.img-card {
+  height: 400px;
+  width: 600px;
+  overflow: hidden /* To prevent image from overflowing */ !important;
+}
+
+.img-card .img {
+  height: 300 !important; /* Make image fill container height */
+  width: 300 !important; /* Make image fill container width */
+  object-fit: cover /* Zoom image to fill container without distortion */ !important;
+}
+
+/* CAROUSEL PREV NEXT ICONS */
+.carousel-control-prev .ccp,
+.carousel-control-next .ccn {
+  color: white !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 45px;
+}
+
+.carousel-control-prev:hover .ccp,
+.carousel-control-next:hover .ccn {
+  color: white !important;
+}
+
+/* OBJEK WISATA TERPOPULER */
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-text {
+  flex-grow: 1;
+}
+
+.card {
+  position: relative;
+}
+
+.inline-flex {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+}
+/* 
+---------------------------------
+      CSS FOR DETAIL_ATRAKSI.HTML 
+---------------------------------*/
+/* ROW FOR BREADCRUMBS */
+.bcrumb:link {
+  text-decoration: none;
+}
+.bcrumb:hover {
+  text-decoration: underline;
+  color: #434343 !important;
+}
+
+/* Hiding except second last breadcrumb */
+@media (max-width: 786px) {
+  .hidebcrumb li:not(:nth-last-child(2)) {
+    display: none !important;
+  }
+}
+/* hiding button at full screen */
+@media (min-width: 786px) {
+  .hidebutton button {
+    display: none !important;
+  }
+}
+
+/* ROW FOR MAIN TITLE */
+.bmain a:hover,
+.bmain i {
+  background-color: black !important;
+  color: white !important;
+}
+
+/* hiding button at full screen */
+@media (max-width: 786px) {
+  .bmain a {
+    display: none !important;
+  }
+}
+
+/* using css line 31 untuk link di bawah main title */
+.adj-link:link,
+.adj-link:visited {
+  text-decoration: none;
+  color: black !important;
+}
+.adj-link:hover {
+  text-decoration: underline;
+  color: #434343 !important;
+}
+
+/* TEXT OVERFLOW PADA CARD */
+.card-to {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+/* using css line 91 to adjust carousel prev next buttons */
+/* hiding comments */
+@media (max-width: 786px) {
+  .hidecard {
+    display: none !important;
+  }
+}
+
+/* adjusting button inside the bottom left carousel (lihat semua button) */
+.posbutton {
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  margin: 10px;
+  z-index: 1;
+}
+
+/* adjusting media screen for comments with small media screen */
+@media (min-width: 786px) {
+  .small-ms-comment {
+    display: none !important;
+  }
+}
+
+@media (min-width: 786px) {
+  .img-area img {
+    object-fit: cover;
+    height: 300 !important;
+    width: 300 !important;
+  }
+}
+
+/* CSS FOR ULASAN.HTML */
+@media (max-width: 767.5px) {
+  .hidefilter {
+    display: none;
+  }
+}
+
+/* card-to is on line 183*/
+.card-to.full {
+  -webkit-line-clamp: 1000;
+}
+
+/* END FOR CSS ULASAN.HTML */

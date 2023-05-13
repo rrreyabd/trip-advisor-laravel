@@ -1,11 +1,16 @@
 @font-face {
     font-family: TripSans;
     src: url(../font/TripSans-Regular.ttf);
- }
+}
 
- ::-webkit-scrollbar {
+@font-face {
+    font-family: TripSansBold;
+    src: url(../font/TripSans-Bold.ttf);
+}
+
+::-webkit-scrollbar {
     display: none;
-  }
+}
 
 * {
     margin: 0;
@@ -40,9 +45,18 @@ body {
     align-items: center;
 }
 
+.green {
+    color: #00AA6C;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
 /* FONT START */
 .bold {
-    font-weight: 600;
+    font-family: TripSansBold;
 }
 
 .veryLarge {
@@ -62,191 +76,83 @@ body {
 }
 /* FONT END */
 
-
-.searchDiv form {
-    position: relative;
-}
-
-iframe {
-    width: 100%;
-}
-
-input {
-    width: 1180px;
-    height: 36px;
-    padding: 12px 40px 12px 62px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-    border: none;
-    border-radius: 30px;
-    position: relative;
-}
-
-input[type=text] {
-    color: #000;
-    font-size: 15px;
-}
-
-input::placeholder {
-    font-size: large;
-    padding-left: 20px;
-}
-
-.fa-magnifying-glass {
-    font-size: 20px;
-}
-
-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 0;
-    padding: 0;
-    width: 60px;
-    height: 56px;
-}
-
-/* SECOND SECTION START */
-
-.secondSection {
-    width: 1280px;
-    height: 200.4px;
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
-fieldset {
-    width: 393.062px;
-    height: 151.8px;
-    margin: 20px;
-    margin-bottom: 60px;
-    border: 1px solid #bbbbbb;
-    line-height: 1.4;
-    padding: 10px;
-}
-
-fieldset .title {
-    color: #00aa6c;
-}
-
-
-/* SECOND SECTION END */
-
-                                        /* FOOTER START */
-footer {
-    margin-top: 70px;
-    height: 567px;
-    width: 1519.2px;
-    background-color:  #FAF1ED;
+.r {
     display: flex;
-    text-align: left;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
 }
 
-.topFooter {
-    height: 246px;
-    width: 1136px;
-    display: flex;
-    margin-top: 30px;
-}
-
-.topFooter a {
-    font-weight: 700;
-    font-size: 14px;
-    display: flex;
-    text-align: left;
-
-}
-
-.topFooter ul {
-    list-style-type: none;;
-}
-
-.tentang,
-.bisnis,
-.telusuri {
-    line-height: 25px;
-    height: 246px;
-    width: 176px;
-    margin-right: 30px;
-}
-
-.bottomFooter {
-    height: 211px;
-    width: 1136px;
-    padding-top: 50px;
-    display: flex;
-}
-
-.topLeftBottomFooter {
-    display: flex;
-    width: 752px;
-}
-
-.copyright {
-    margin-left: 10px;
-}
-
-.copyright p{
-    font-size: small;
-}
-
-.copyright a{
-    text-decoration: underline;
-    transition: .2s ease;
-    color: #000;
-    font-weight: 600;
-    margin-right: 10px;
-    line-height: 1.2;
-}
-
-.copyright a:hover {
-    color: #454343;
-}
-
-.bottomLeftBottomFooter {
+.rA {
+    height: 40px;
+    width: 1232px;
     margin-top: 10px;
-    width: 752px;
-    line-height: 1.2;
 }
 
-.rightBottomFooter {
-    margin-left: 30px;
-}
-
-.rightBottomFooter select{
-    font-size: 16px;
-    font-weight: 700;
-    width: 190px;
-    height: 35.2px;
-    padding: 7px 14px 5px 14px;
-    border-radius: 12px;
-    border: 2px #E0E0E0 solid;
-}
-
-.currency {
+.rB {
+    background-color: #f2f2f2;
+    height: max-content;
+    width: 100%;
     display: flex;
-    flex-direction: row;
+    justify-content: center;
 }
 
-.socialMedia {
-    width: 392px;
+.rBa {
+    width: 314px;
+    height: 1000px;
+}
+
+.rBaA {
+    height: max-content;
+    width: 314px;
+    padding: 12px 12px 12px 12px;
+}
+
+.rBaAa {
+    background-color: white;
+    height: 800px;
+    width: 248.4px;
+    border: 1px solid  #E0E0E0;
+    margin: 10px 0 0 0;
+    padding: 20px 20px 20px 20px;
+}
+
+.rBb {
+    height: max-content;
+    width: 942px;
+    padding: 12px 12px 12px 12px;
+    display: flex;
+    justify-content: center;
+}
+
+.rBbA {
+    margin-top: 6px;
+    height: max-content;
+    min-width: 918px;
+    padding: 5px 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.restoranCard {
     height: 48px;
-    display: flex;
-    justify-content: flex-end;
+    width: 192.312px;
+    padding: 8px 14px 14px 14px;
+    background-color: white;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.socialMedia a {
-    margin: 13px;
+.restoranImg{
+    height: 130px;
+    width: 220.312px;
+    overflow: hidden;
+}
+.restoranImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
 }
 
-a {
-    color: #000;
+.loopingRestoran {
+    margin-right: 10px;
+    margin-bottom: 15px;
 }
-
-                                        /* FOOTER END */
-                                        
