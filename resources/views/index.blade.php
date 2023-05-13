@@ -338,9 +338,9 @@
             <div class="winnerLink center">
                 <img class="ofrmB" src="https://static.tacdn.com/img2/travelers_choice/TC_logomark_solid_cream.svg" width="120px" height="75px" alt="">
                 <h1 class="bold veryLarge">Terbaik dari Travellers' Choice</h1>
-                <a class="center" href="">
+                {{-- <a class="center" href="">
                     <p class="bold">Lihat pemenangnya</p>
-                </a>
+                </a> --}}
             </div>
             
             <div class="winnerImage">

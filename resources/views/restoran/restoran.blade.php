@@ -32,18 +32,18 @@
             <div class="rBbA">
                 @for ($i = 0; $i < 20; $i++)
                 <div class="loopingRestoran">
+                    <a href="restoran-detail">
+                        <div class="restoranImg">
+                            <img src="./img/restoranFood/milo-brownies-memiliki.jpg" alt="">
+                        </div>
                         
-                    <div class="restoranImg">
-                        <img src="./img/restoranFood/milo-brownies-memiliki.jpg" alt="">
-                    </div>
-                    
-                    <div class="restoranCard">
-                        <p class="bold">TheBites Brownies</p>
-                        <b class="bold green">4.5</b>
-                        <br> 
-                        <b class="small">20 Ulasan</b>
-                    </div>
-                    
+                        <div class="restoranCard">
+                            <p class="bold">TheBites Brownies</p>
+                            <b class="bold green">4.5</b>
+                            <br> 
+                            <b class="small">20 Ulasan</b>
+                        </div>
+                    </a>
                 </div>
                 @endfor
             </div>

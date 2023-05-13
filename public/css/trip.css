@@ -1,0 +1,256 @@
+@font-face {
+    font-family: TripSans;
+    src: url(../font/TripSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: TripSansBold;
+    src: url(../font/TripSans-Bold.ttf);
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: TripSans;
+}
+
+.bold {
+    font-family: TripSansBold;
+}
+
+.tsection {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.theader {
+    display: flex;
+    justify-content: center;
+    height: 32px;
+    width: 100%;
+    padding: 20px 0 20px 0;
+    align-items: center;
+}
+
+.tbody {
+    height: fit-content;
+    width: 100%;
+}
+
+.tbodyButton {
+    height: max-content;
+    width: 1280px;
+    margin: 20px 128px 0 128px;
+    padding: 0 24px 0 24px;
+    max-width: 1280px;
+}
+
+.tbodyButton a:active {
+    border: 1px solid #000;
+    background-color: #000;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+}
+
+.tbodyButton a {
+    border: 1px solid #000;
+    background-color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: black;
+    text-decoration: none;
+}
+
+.tbodyTrip {
+    height: max-content;
+    width: 1280px;
+    margin: 30px 117px 0 117px;
+    padding: 0 24px 0 24px;
+    max-width: 1280px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tbodyTrip button {
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.tbodyAdd {
+    height: 250px;
+    width: 394.663px;
+    border: 1px solid #e0e0e0;
+    margin: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tbodyBorder {
+    height: 250px;
+    width: 394.663px;
+    border: 1px solid #e0e0e0;
+    margin: 12px;
+    position: relative;
+}
+
+.tbodyBorderImg {
+    overflow: hidden;
+    height: 60%;
+    width: 100%;
+}
+
+.tbodyBorderImg img {
+    top: 0;
+    left: 0;
+}
+
+.tbodyBorderDetail * {
+    margin-left: 10px;
+}
+
+.tbodyBorderDetail span {
+    margin-left: 0;
+}
+
+.profilePhoto {
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    object-fit: cover;
+    top: 125px;
+    left: 12px;
+    position: absolute;
+}
+
+/* modal */
+/* .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modalTop {
+    height: 16px;
+    width: 406px;
+    background-color: #333;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 48px;
+    border: 1px solid #888;
+    width: 404px;
+    height: 357.6px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+} */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 0 48px 48px;
+    border: 1px solid #888;
+    width: 404px;
+}
+
+.modal-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0;
+}
+
+.love-icon {
+    font-size: 24px;
+    margin-right: 8px;
+}
+
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-content-inner {
+    margin-top: 24px;
+}
+
+.modal-content-inner button{
+    background-color: #000;
+    color: white;
+    font-family: TripSansBold;
+    font-size: 15px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-top: 10px;
+    
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+}
+
+.radio-group {
+    margin-top: 16px;
+    font-family: TripSansBold;
+}
+
+input[type="radio"] {
+    margin-right: 8px;
+}

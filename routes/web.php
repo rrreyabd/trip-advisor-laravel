@@ -33,13 +33,19 @@ Route::get('/forum', [UserController::class, 'forum'])->name('forum');
 Route::get('/forum-search', [UserController::class, 'forum_search'])->name('forum_search');
 Route::get('/forum-detail', [UserController::class, 'forum_detail'])->name('forum_detail');
 
-// Topbar index
+// Ulas
 Route::get('/ulas', [UserController::class, 'ulas'])->name('ulas');
+
+// Trip
 Route::get('/trip', [UserController::class, 'trip'])->name('trip');
+Route::get('/detail-trip', [UserController::class, 'detail_trip'])->name('detail_trip');
+
+// Masuk
 Route::get('/masuk', [UserController::class, 'masuk'])->name('masuk');
 
 // Layout
 // Route::get('/navbar', [UserController::class, 'navbar'])->name('navbar');
 
 // Ulasan
+Route::get('/ulasan', [UserController::class, 'ulasan'])->name('ulasan');
 Route::get('/tulis-ulasan', [UserController::class, 'tulis_ulasan'])->name('tulis_ulasan');

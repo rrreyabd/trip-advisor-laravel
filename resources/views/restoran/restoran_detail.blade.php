@@ -121,19 +121,21 @@
             <div class="detail">
                 <div class="detailContainer">
                     <div class="ulasan">
-                        <h2>Penilaian dan ulasan</h2>
+                        <a href="ulasan">
+                            <h2>Penilaian dan ulasan</h2>
 
-                        <div class="rating">
-                            <h3>4.0</h3>
-                            <svg class="UctUV d H0" viewBox="0 0 128 24" width="102" height="39" aria-label="4,0 dari 5 lingkaran">
-                                <path d="M 12 0C5.388 0 0 5.388 0 12s5.388 12 12 12 12-5.38 12-12c0-6.612-5.38-12-12-12z" transform=""></path>
-                                <path d="M 12 0C5.388 0 0 5.388 0 12s5.388 12 12 12 12-5.38 12-12c0-6.612-5.38-12-12-12z" transform="translate(26 0)"></path>
-                                <path d="M 12 0C5.388 0 0 5.388 0 12s5.388 12 12 12 12-5.38 12-12c0-6.612-5.38-12-12-12z" transform="translate(52 0)"></path>
-                                <path d="M 12 0C5.388 0 0 5.388 0 12s5.388 12 12 12 12-5.38 12-12c0-6.612-5.38-12-12-12z" transform="translate(78 0)"></path>
-                                <path d="M 12 0C5.388 0 0 5.388 0 12s5.388 12 12 12 12-5.38 12-12c0-6.612-5.38-12-12-12zm0 2a9.983 9.983 0 019.995 10 10 10 0 01-10 10A10 10 0 012 12 10 10 0 0112 2z" transform="translate(104 0)"></path>
-                            </svg>
-                            <h3>270 Ulasan</h3>
-                        </div>
+                            <div class="rating">
+                                <h3>4.0</h3>
+                                <svg class="UctUV d H0" viewBox="0 0 128 24" width="102" height="39" aria-label="4,0 dari 5 lingkaran">
+                                    <path d="M 12 0C5.388 0 0 5.388 0 12s5.388 12 12 12 12-5.38 12-12c0-6.612-5.38-12-12-12z" transform=""></path>
+                                    <path d="M 12 0C5.388 0 0 5.388 0 12s5.388 12 12 12 12-5.38 12-12c0-6.612-5.38-12-12-12z" transform="translate(26 0)"></path>
+                                    <path d="M 12 0C5.388 0 0 5.388 0 12s5.388 12 12 12 12-5.38 12-12c0-6.612-5.38-12-12-12z" transform="translate(52 0)"></path>
+                                    <path d="M 12 0C5.388 0 0 5.388 0 12s5.388 12 12 12 12-5.38 12-12c0-6.612-5.38-12-12-12z" transform="translate(78 0)"></path>
+                                    <path d="M 12 0C5.388 0 0 5.388 0 12s5.388 12 12 12 12-5.38 12-12c0-6.612-5.38-12-12-12zm0 2a9.983 9.983 0 019.995 10 10 10 0 01-10 10A10 10 0 012 12 10 10 0 0112 2z" transform="translate(104 0)"></path>
+                                </svg>
+                                <h3>270 Ulasan</h3>
+                            </div>
+                        </a>
                     </div>
                 </div>
 

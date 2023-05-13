@@ -13,6 +13,7 @@
     <script src="https://kit.fontawesome.com/1fc4ea1c6a.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
     <section class="hero">
         <div class="title">
             <h1 class="bold">Tulis ulasan, bantu wisatawan lain menikmati trip yang lebih menyenangkan</h1>

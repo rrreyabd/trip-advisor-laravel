@@ -27,14 +27,14 @@
                     <div class="loopingRestoran">
                 
                         <div class="restoranImg">
-                            <img src="./img/restoranFood/milo-brownies-memiliki.jpg" alt="">
+                            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/26/ed/9e/19/lobby.jpg?w=1200&h=-1&s=1" alt="">
                         </div>
                         
                         <div class="restoranCard">
-                            <p class="bold">TheBites Brownies</p>
-                            <b class="bold green">4.5</b>
+                            <p class="bold">JW Marriott Hotel Medan</p>
+                            <b class="bold green">5.0 dari 5.0</b>
                             <br> 
-                            <b class="small">20 Ulasan</b>
+                            <b class="small">634 Ulasan</b>
                         </div>
                         
                     </div>

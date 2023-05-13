@@ -1,0 +1,45 @@
+@font-face {
+    font-family: TripSans;
+    src: url(../font/TripSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: TripSansBold;
+    src: url(../font/TripSans-Bold.ttf);
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: TripSans;
+}
+
+.bold {
+    font-family: TripSansBold;
+}
+
+.dtsection {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dtheader {
+    display: flex;
+    justify-content: center;
+    height: 32px;
+    width: 100%;
+    padding: 20px 0 20px 0;
+    align-items: center;
+}

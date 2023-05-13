@@ -6,18 +6,18 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    // index
+    // Index
     public function index()
     {
         return view('index');
     }
 
-    // hotel
+    // Hotel
     public function hotel() {
         return view('hotel.hotel');
     }
 
-    // forum
+    // Forum
     public function forum()
     {
         return view('forum.forum');
@@ -31,7 +31,7 @@ class UserController extends Controller
         return view('forum.forum_detail');
     }
 
-    // restoran
+    // Restoran
     public function restoran()
     {
         return view('restoran.restoran');
@@ -41,7 +41,7 @@ class UserController extends Controller
         return view('restoran.restoran_detail');
     }
 
-    // destinasi
+    // Destinasi
     public function destinasi()
     {
         return view('destinasi.destinasi');
@@ -56,6 +56,26 @@ class UserController extends Controller
     public function ulas()
     {
         return view('ulas.ulas');
+    }
+
+    // Ulasan
+    public function ulasan()
+    {
+        return view('layout.ulasan');
+    }
+    public function tulis_ulasan()
+    {
+        return view('ulas.tulis_ulasan');
+    }
+
+    // Trip
+    public function trip()
+    {
+        return view('trip.trip');
+    }
+    public function detail_trip()
+    {
+        return view('trip.detail_trip');
     }
 
     // Navbar

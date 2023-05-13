@@ -68,24 +68,13 @@
             <div class="col-md-11" >
                 <h1 class="fw-bold">Objek Wisata di Medan</h1>
             </div>
-            {{-- <div class="col-md  align-self-center">
-                <a class="btn btn-md rounded-pill bg-black p-2 text-white bi bi-geo-alt" href="" alt=""> Peta</a>
-            </div> --}}
         </div>
     </div>
     <!-- AWAL KATEGORI -->
     <div class="container mt-4">
-        <div class="row justify-content-between ">
-            <div class="col-6 ">
-                <h4><a class="text-black no-underline"  href="">Situs Suci & Agama</a></h4>
-            </div>
-            <div class="col ms-auto">
-                <h6 class="text-end mt-1"><a class="text-black" href="">Lihat semua</a></h6>
-            </div>
-        </div>
 
         <!-- CAROUSEL -->
-        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+        {{-- <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                 <ul class="list-unstyled d-flex justify-content-center">
@@ -202,130 +191,41 @@
                     <span class="ccn btn btn-dark btn-sm rounded-pill" aria-hidden="true" ><i class="bi bi-arrow-right-short fs-1"></i></span>
                     <span class="visually-hidden">Next</span>
             </button>
-            </div>      
-    </section>
+            </div>       --}}
+    
+    
+        </section>
 
     <div class="container">
-        <hr>
+
         <div class="row">
-            <div class="col mb-3">
-                <h1 class="text-center">Objek Wisata Terpopuler di Medan</h1>
-            </div>
-        </div>
-        <div class="row">
+            @for ($i = 0; $i < 6; $i++)
+            
             <div class="col-md-4 mb-3">
-                <div class="card" style="width: 300; height:300">
-                    <div class="img-wrapper">
-                    <img src="img/graha bunda maria.jpg" class="card-img-top" alt="...">
-                    <button class="btn btn-light btn-sm inline-flex rounded-pill"><i class="bi bi-heart-fill text-black"></i></button>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="fw-bold"><a class="text-black no-underline" href="{{route('destinasi_detail')}}">Graha Bunda Maria</a></h5>
-                        <div class="rating">
-                            <i class="bi bi-star-fill text-success"></i>
-                            <i class="bi bi-star-fill text-success"></i>
-                            <i class="bi bi-star-fill text-success"></i>
-                            <i class="bi bi-star-fill text-success"></i>
-                            <i class="bi bi-star-half text-success"></i>
-                            <p class="small">250</p>
-                        </div>
-                        <p class="card-text">Museum Benda Khusus</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <div class="card" style="width: 300; height:300"">
-                    <img src="img/mahaviharamaitreya.jpg" class="card-img-top" alt="...">
-                    <button class="btn btn-light btn-sm inline-flex rounded-pill"><i class="bi bi-heart-fill text-black"></i></button>
-                    <div class="card-body">
-                        <h5 class="fw-bold"><a class="text-black no-underline" href="">Mahavihara Maitreya</a></h5>
-                        <div class="rating">
-                            <i class="bi bi-star-fill text-success"></i>
-                            <i class="bi bi-star-fill text-success"></i>
-                            <i class="bi bi-star-fill text-success"></i>
-                            <i class="bi bi-star-fill text-success"></i>
-                            <i class="bi bi-star-half text-success"></i>
-                            <p class="small">250</p>
-                        </div>
-                        <p class="card-text">Museum Benda Khusus</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <div class="card" style="width: 300; height:300">
-                    <button class="btn btn-light btn-sm inline-flex rounded-pill"><i class="bi bi-heart-fill text-black"></i></button>
-                    <img src="img/vihara-gunung-timur-temple.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="fw-bold"><a class="text-black no-underline" href="">Vihara Gunung Timur</a></h5>
-                        <div class="rating">
-                            <i class="bi bi-star-fill text-success"></i>
-                            <i class="bi bi-star-fill text-success"></i>
-                            <i class="bi bi-star-fill text-success"></i>
-                            <i class="bi bi-star-fill text-success"></i>
-                            <i class="bi bi-star-half text-success"></i>
-                            <p class="small">250</p>
-                        </div>
-                        <p class="card-text">Museum Benda Khusus</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <div class="card" >
-                    <img src="img/MasjidRaya.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
+                <a class="text-black no-underline" href="destinasi_detail">
+                    <div class="card" style="width: 300; height:300">
+                        <div class="img-wrapper">
+                        <img src="img/graha bunda maria.jpg" class="card-img-top" alt="...">
                         <button class="btn btn-light btn-sm inline-flex rounded-pill"><i class="bi bi-heart-fill text-black"></i></button>
-                        <h5 class="fw-bold"><a class="text-black no-underline" href="">Masjid Raya</a></h5>
-                        <div class="rating">
-                            <i class="bi bi-star-fill text-success"></i>
-                            <i class="bi bi-star-fill text-success"></i>
-                            <i class="bi bi-star-fill text-success"></i>
-                            <i class="bi bi-star-fill text-success"></i>
-                            <i class="bi bi-star-half text-success"></i>
-                            <p class="small">250</p>
                         </div>
-                        <p class="card-text">Museum Benda Khusus</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <div class="card">
-                    <img src="img/kuil-shri-mariamman.jpg" class="card-img-top" alt="...">
-                    <button class="btn btn-light btn-sm inline-flex rounded-pill"><i class="bi bi-heart-fill text-black"></i></button>
-                    <div class="card-body">
-                        <h5 class="fw-bold"><a class="text-black no-underline" href="">Kuil</a></h5>
-                        <div class="rating">
-                            <i class="bi bi-star-fill text-success"></i>
-                            <i class="bi bi-star-fill text-success"></i>
-                            <i class="bi bi-star-fill text-success"></i>
-                            <i class="bi bi-star-fill text-success"></i>
-                            <i class="bi bi-star-half text-success"></i>
-                            <p class="small">250</p>
+                        <div class="card-body">
+                            <h5 class="fw-bold">Graha Bunda Maria</h5>
+                            <div class="rating">
+                                <i class="bi bi-star-fill text-success"></i>
+                                <i class="bi bi-star-fill text-success"></i>
+                                <i class="bi bi-star-fill text-success"></i>
+                                <i class="bi bi-star-fill text-success"></i>
+                                <i class="bi bi-star-half text-success"></i>
+                                <p class="small">250</p>
+                            </div>
+                            <p class="card-text">Museum Benda Khusus</p>
                         </div>
-                        <p class="card-text">Museum Benda Khusus</p>
                     </div>
-                </div>
+                </a>
             </div>
-            <div class="col-md-4 mb-3">
-                <div class="card">
-                    <img src="img/stupa-borobudur-yang.jpg" class="card-img-top" alt="...">
-                    <button class="btn btn-light btn-sm inline-flex rounded-pill"><i class="bi bi-heart-fill text-black"></i></button>
-                    <div class="card-body">
-                        <h5 class="fw-bold"><a class="text-black no-underline" href="">Stupa Borobudur</a></h5>
-                        <div class="rating">
-                            <i class="bi bi-star-fill text-success"></i>
-                            <i class="bi bi-star-fill text-success"></i>
-                            <i class="bi bi-star-fill text-success"></i>
-                            <i class="bi bi-star-fill text-success"></i>
-                            <i class="bi bi-star-half text-success"></i>
-                            <p class="small">250</p>
-                        </div>
-                        <p class="card-text">Museum Benda Khusus</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col d-inline-flex justify-content-center m-4 ">
-                <a href="" class="btn btn-black text-white bg-black rounded-pill p-3">Lihat Semua</a>
-            </div>
+
+            @endfor
+
         </div>
         <hr>
     </div>

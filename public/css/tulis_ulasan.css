@@ -1,0 +1,105 @@
+@font-face {
+    font-family: TripSans;
+    src: url(../font/TripSans-Regular.ttf);
+ }
+
+ @font-face {
+    font-family: TripSansBold;
+    src: url(../font/TripSans-Bold.ttf);
+ }
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: TripSans;
+}
+
+.bold {
+    font-family: TripSansBold;
+}
+
+.tu {
+    display: flex;
+    justify-content: center;
+}
+
+.tua {
+    width: 963px;
+    height: 100px;
+    display: flex;
+}
+
+.tuab {
+    border-right: 1px solid #E0E0E0;
+    margin-top: 140px;
+    height: max-content;
+    width: 375px;
+}
+
+.borderUlasan {
+    height: 293px;
+    width: 213px;
+    border: 1px solid  #E0E0E0;
+    padding: 16px 16px 16px 16px;
+}
+
+.borderUlasan img {
+    height: 213px;
+    width: 213px;
+}
+
+.tuac {
+    height: 1469.8px;
+    width: 728.2px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.tuacA {
+    width: 90%;
+}
+
+.w100 {
+    width: 100%;
+}
+
+.flex {
+    display: flex;
+}
+
+.tanggal {
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #bcbaba;
+}
+
+.tujuan {
+    height: 39.2px;
+    width: 116.488px;
+    border: 2px solid  #E0E0E0;
+    padding: 8px 12px 8px 12px;
+    border-radius: 30px;
+}
+
+.tujuan option {
+    font-size: large;
+    font-weight: bold;
+}
+
+.tuRate textarea{
+    padding: 10px;
+}
+
+.ulasanSubmit {
+    background-color: black;
+    color: white;
+    height: 52px;
+    width: 552px;
+    padding: 18px 24px 18px 24px;
+    border-radius: 28px;
+}
