@@ -43,3 +43,62 @@ a {
     padding: 20px 0 20px 0;
     align-items: center;
 }
+
+.dtbody {
+    height: fit-content;
+    width: 80%;
+    padding: 0 10%;
+}
+
+.dtDay {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 94%;
+    padding: 0 3%;
+    height: 40px;
+    margin: 20px 0 15px 0;
+    border-radius: 30px;
+    background-color: #E0E0E0;
+}
+
+.dtTrip {
+    height: 300px;
+    width: 402px;
+    border: 1px solid #E0E0E0;
+    margin: 5px 5px 5px 0;
+}
+
+.dtTripImg {
+    height: 200px;
+    width: 402px;
+    overflow: hidden;
+}
+
+.dtTripImg img {
+    object-fit: cover;
+    object-position: center center;
+}
+
+.dtTripDetail {
+    padding: 10px 20px 0 20px;
+}
+
+.dtTripDetail input{
+    padding: 5px 10px;
+    margin-top: 5px;
+}
+
+.dtListTrip {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.dtTripDetail [type=text] {
+    font-size: medium;
+}
+
+.green {
+    color: #00AA6C;
+}

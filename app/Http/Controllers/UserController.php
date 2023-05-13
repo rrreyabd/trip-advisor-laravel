@@ -16,6 +16,9 @@ class UserController extends Controller
     public function hotel() {
         return view('hotel.hotel');
     }
+    public function hotel_detail() {
+        return view('hotel.hotel_detail');
+    }
 
     // Forum
     public function forum()

@@ -19,6 +19,7 @@ Route::get('/', [UserController::class, 'index'])->name('index');
 
 // Hotel
 Route::get('/hotel', [UserController::class, 'hotel'])->name('hotel');
+Route::get('/hotel-detail', [UserController::class, 'hotel_detail'])->name('hotel_detail');
 
 // Restoran
 Route::get('/restoran', [UserController::class, 'restoran'])->name('restoran');

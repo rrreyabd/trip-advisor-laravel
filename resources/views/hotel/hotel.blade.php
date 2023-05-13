@@ -23,7 +23,7 @@
         <div class="rBb">
             <div class="rBbA">
                 @for ($i = 0; $i < 10; $i++)
-                <a href="restoran-detail">
+                <a href="{{ route('hotel_detail')}}">
                     <div class="loopingRestoran">
                 
                         <div class="restoranImg">

@@ -1,13 +1,27 @@
 @font-face {
     font-family: TripSans;
     src: url(../font/TripSans-Regular.ttf);
- }
+}
+
+@font-face {
+    font-family: TripSansBold;
+    src: url(../font/TripSans-Bold.ttf);
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
 
 * {
     margin: 0;
     padding: 0;
     font-family: TripSans;
 }
+
+.bold {
+    font-family: TripSansBold;
+}
+
 
 body {
     display: flex;
@@ -41,9 +55,6 @@ a {
 }
 
 /* FONT START */
-.bold {
-    font-weight: 600;
-}
 
 .veryLarge {
     font-size: 32px;
@@ -131,8 +142,88 @@ header {
     padding-bottom: 20px;
 }
 
-.image a{
+.TopContent {
     display: flex;
+}
+
+.penawaran {
+    width: 40%;
+    height: 600px;
+}
+
+.PenawaranContainer {
+    width: 80%;
+    height: 80%;
+    padding: 5%;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.PenawaranContainer h1 {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    color: #00AA6C;
+    border: 1px solid ;
+    border-radius: 50px;
+    padding: 20px;
+    transition: .2s ease;
+    background-color: white;
+    margin-bottom: 50px;
+}
+
+.linkMitra {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #F2B203;
+    color: black;
+    height: 15px;
+    border-radius: 30px;
+    transition: .2s ease;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .5);
+}
+
+.linkMitra:hover {
+    background-color: #000000;
+    color: #F2B203;
+}
+
+.linkMitra p{
+    margin-top: 15px;
+}
+
+.mitra {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.PenawaranContainer h1:hover {
+    color: white;
+    background-color: #00AA6C;
+}
+
+.image {
+    width: 60%;
+    height: 400px;
+    position: relative;
+}
+
+.click {
+    color: white;
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+}
+
+.image a{
+    width: 100%;
+    height: 400px;
+    display: flex;
+    flex-direction: row;
     flex-wrap: nowrap;
     overflow: hidden;
 }
@@ -140,11 +231,11 @@ header {
 .image a img {
     margin: 2px;
     transition: .2s ease;
-    filter: brightness(1);
+    filter: brightness(0.7);
 }
 
-.image a img:hover {
-    filter: brightness(0.7);
+.image img:hover {
+    filter: brightness(.9);
 }
 
 .detail {
