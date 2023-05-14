@@ -12,6 +12,12 @@ class UserController extends Controller
         return view('index');
     }
 
+    // Profile
+    public function profile()
+    {
+        return view('profile.profile');
+    }
+
     // Hotel
     public function hotel() {
         return view('hotel.hotel');

@@ -49,7 +49,7 @@
                             <br>
                             <h3 class="bold">Title</h3>
                             <p>oleh <span class="bold">Rey</spon> </p>
-                            <p>Menampilkan <span class="bold">2 item</span> </p>
+                            <p>Menampilkan <span class="bold">35 item</span> </p>
                         </div>
 
                         <img src="https://i.pinimg.com/564x/5c/16/89/5c1689b57af54e55c762188cccd58439.jpg" class="profilePhoto" alt="">

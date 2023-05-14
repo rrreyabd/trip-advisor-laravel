@@ -50,3 +50,6 @@ Route::get('/masuk', [UserController::class, 'masuk'])->name('masuk');
 // Ulasan
 Route::get('/ulasan', [UserController::class, 'ulasan'])->name('ulasan');
 Route::get('/tulis-ulasan', [UserController::class, 'tulis_ulasan'])->name('tulis_ulasan');
+
+// Profile
+Route::get('/profile', [UserController::class, 'profile'])->name('profile');

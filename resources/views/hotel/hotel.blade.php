@@ -15,30 +15,36 @@
     {{-- navbar end --}}
 
     <div class="rA">
-        <h1>Hotel di Medan</h1>
+        <h1>Restoran di Medan</h1>
     </div>
 
     <div class="rB">
+        <div class="rBa">
+            <div class="rBaA">
+                <div class="rBaAa">
+
+                </div>
+            </div>
+        </div>
+
 
         <div class="rBb">
             <div class="rBbA">
-                @for ($i = 0; $i < 10; $i++)
-                <a href="{{ route('hotel_detail')}}">
-                    <div class="loopingRestoran">
-                
+                @for ($i = 0; $i < 20; $i++)
+                <div class="loopingRestoran">
+                    <a href="restoran-detail">
                         <div class="restoranImg">
                             <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/26/ed/9e/19/lobby.jpg?w=1200&h=-1&s=1" alt="">
                         </div>
                         
                         <div class="restoranCard">
-                            <p class="bold">JW Marriott Hotel Medan</p>
-                            <b class="bold green">5.0 dari 5.0</b>
+                            <p class="bold">TheBites Brownies</p>
+                            <b class="bold green">4.5</b>
                             <br> 
-                            <b class="small">634 Ulasan</b>
+                            <b class="small">20 Ulasan</b>
                         </div>
-                        
-                    </div>
-                </a>    
+                    </a>
+                </div>
                 @endfor
             </div>
         </div>

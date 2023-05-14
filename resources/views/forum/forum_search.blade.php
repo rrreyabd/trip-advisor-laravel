@@ -48,6 +48,8 @@
                         <th class="lastDate">Balasan terakhir</th>
                     </tr>
 
+                    @for ($i = 0; $i < 5; $i++)
+                        
                     <tr>
                         <td> <a href="forum-detail" class="green">Adakah saran untuk perjalanan di Medan?</a> </td>
                         <td class="answer">1</td>
@@ -65,6 +67,8 @@
                         <td class="answer">0</td>
                         <td class="green lastDate">-</td>
                     </tr>
+
+                    @endfor
 
                 </table>
             </div>

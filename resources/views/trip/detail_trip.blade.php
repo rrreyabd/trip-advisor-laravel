@@ -23,7 +23,7 @@
         <div class="dtbody">
             <div class="dtDay">
                 <p class="bold">Hari ke-{{$j}}</p>
-                <p class="bold">2 item</p>
+                <p class="bold">5 item</p>
             </div>
 
             

@@ -36,10 +36,11 @@
 
             </div>
         </div>
-
-        
+        @php $j = 20; @endphp
+        @for ($i = 1; $i <= $j; $i++)
+            
         <div class="reply">
-            <h2>Balasan 1 dari 10</h2>
+            <h2>Balasan {{$i}} dari {{$j}}</h2>
             <br>
             <div class="uC">
                 <div class="uCa">
@@ -57,6 +58,7 @@
                 </div>
             </div>
         </div>
+        @endfor
 
     </section>
 </body>

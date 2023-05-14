@@ -1,0 +1,144 @@
+@font-face {
+    font-family: TripSans;
+    src: url(../font/TripSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: TripSansBold;
+    src: url(../font/TripSans-Bold.ttf);
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: TripSans;
+}
+
+.bold {
+    font-family: TripSansBold;
+}
+
+.green {
+    color: #00AA6C;
+}
+
+nav {
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+.BodyContainer {
+    background-color: #f2f2f2;
+}
+
+.ProfileContainer {
+    height: max-content;
+    padding: 0 0 20px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ProfileMainContainer {
+    height: fit-content;
+    width: 1232px;
+}
+
+.TopProfile {
+    height: 208px;
+    margin: 0 0 37px 0;
+    width: 1232px;
+    background-color: #fff;
+}
+
+.BottomProfile {
+    display: flex;
+    height: 800px;
+}
+
+.BottomLeftProfile {
+    margin: 0 30px 0 0;
+}
+
+.BottomRightProfile {
+    margin: 0 0 0px 0 ;
+}
+
+.TopBottomLeftProfile {
+    height: 162.4px;
+    width: 242px;
+    margin: 0 0 12px 0;
+    padding: 24px 24px 24px 24px;
+    background-color: white;
+}
+
+.BottomBottomLeftProfile {
+    height: 128px;
+    width: 242px;
+    padding: 24px 24px 12px 24px;
+    background-color: white;
+}
+
+.TopCarousel {
+    max-height: 67.6px;
+    height: 67.6px;
+    background-color: white;
+}
+
+/* carousel */
+.carousel {
+    width: 604px;
+    height: 604px;
+}
+
+.carousel-slide {
+    width: 604px;
+    height: 604px;
+}
+
+.carousel-image {
+    width: 604px;
+    height: 604px;
+    overflow: hidden;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+}
+
+.carousel-image img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.carousel-details {
+    width: 584px;
+    background-color: #fff;
+    height: 109px;
+    padding: 10px;
+}
+
+.carousel-details h3,
+.carousel-details p {
+    margin: 0;
+    padding: 0;
+}
+
+.carousel-details h3 {
+    font-size: 18px;
+}
+
+.carousel-details p {
+    font-size: 14px;
+}
