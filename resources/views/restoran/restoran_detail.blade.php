@@ -150,9 +150,7 @@
                     
                     <b>MAKANAN</b>
                     <p>Makan Siang, Makan Malam, Larut Malam</p>
-                    
-                    <b>Lihat semua rincian</b>
-                    <p>Makanan, Fitur</p>
+
                 </div>
 
                 <div class="detailContainer">

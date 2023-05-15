@@ -78,7 +78,7 @@
                     </div>
                 </a> -->
 
-                <a href="./login">
+                <a href="profile">
                     <div class="masuk center">
                         <p class="bold center">Masuk</p>
                     </div>

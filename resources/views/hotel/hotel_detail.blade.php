@@ -163,19 +163,18 @@
                 </div>
 
                 <div class="detailContainer">
-                    <h2>Rincian</h2>
+                    <h2>Fasilitas</h2>
                     
-                    <b>MASAKAN</b>
-                    <p>Asia, Indonesia</p>
+                    <p class="bold">Parking</p>
+                    <p class="bold">Parking</p>
+                    <p class="bold">Parking</p>
+                    <p class="bold">Parking</p>
+                    <p class="bold">Parking</p>
+                    <p class="bold">Parking</p>
+                    <p class="bold">Parking</p>
+                    <p class="bold">Parking</p>
                     
-                    <b>DIET KHUSUS</b>
-                    <p>Halal</p>
-                    
-                    <b>MAKANAN</b>
-                    <p>Makan Siang, Makan Malam, Larut Malam</p>
-                    
-                    <b>Lihat semua rincian</b>
-                    <p>Makanan, Fitur</p>
+
                 </div>
 
                 <div class="detailContainer">

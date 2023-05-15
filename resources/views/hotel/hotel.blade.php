@@ -15,7 +15,7 @@
     {{-- navbar end --}}
 
     <div class="rA">
-        <h1>Restoran di Medan</h1>
+        <h1>Hotel di Medan</h1>
     </div>
 
     <div class="rB">
@@ -32,13 +32,13 @@
             <div class="rBbA">
                 @for ($i = 0; $i < 20; $i++)
                 <div class="loopingRestoran">
-                    <a href="restoran-detail">
+                    <a href="{{route('hotel_detail')}}">
                         <div class="restoranImg">
                             <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/26/ed/9e/19/lobby.jpg?w=1200&h=-1&s=1" alt="">
                         </div>
                         
                         <div class="restoranCard">
-                            <p class="bold">TheBites Brownies</p>
+                            <p class="bold">JW Marriott Hotel Medan</p>
                             <b class="bold green">4.5</b>
                             <br> 
                             <b class="small">20 Ulasan</b>

@@ -16,7 +16,7 @@ function nextSlide() {
 }
 
 // Ganti dengan setInterval jika ingin penggeseran otomatis
-setInterval(nextSlide, 5000);
+setInterval(nextSlide, 3000);
 
 // Panggil showSlide(0) jika ingin menampilkan slide pertama secara manual
 showSlide(0);
