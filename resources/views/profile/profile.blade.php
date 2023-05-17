@@ -20,13 +20,15 @@
         <div class="ProfileMainContainer">
             <div class="TopProfile">
                 <div class="TopProfileImage">
-                    <img src="https://i.pinimg.com/564x/18/47/5d/18475de42366a2f0807d6763ef19827f.jpg" alt="">
+                    @if (Auth::check())
+                        <img src="{{ asset('img/' . Auth::user()->profile_photo) }}" alt="Profile Photo">
+                    @endif
                 </div>
                 <div class="TopProfileDetail">
                     <div class="TopTopProfileDetail">
                         <div class="Username">
-                            <h2 class="bold">Rey</h2>
-                            <p>@rrreyabd</p>
+                            <h2 class="bold">{{Auth::user()->firstName}} {{Auth::user()->lastName}}</h2>
+                            <span>@</span><span>{{Auth::user()->username}}</span>
                         </div>
 
                         <div class="EditProfile">
@@ -56,8 +58,9 @@
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                 <path d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z" stroke-width="0" fill="currentColor"></path>
                              </svg>
-                             <p>Medan, Indonesia</p>
-                        </div>
+                             <span>{{Auth::user()->city}}, &nbsp;</span>
+                             <span> {{Auth::user()->country}}</span>
+                            </div>
 
                         <div class="JoinDate">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-event" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -68,7 +71,7 @@
                                 <path d="M4 11l16 0"></path>
                                 <path d="M8 15h2v2h-2z"></path>
                              </svg>
-                             <p>Bergabung pada Apr 2023</p>
+                             <p>Bergabung pada {{ \Carbon\Carbon::parse(Auth::user()->created_at)->translatedFormat('F Y') }}</p>
                         </div>
 
                         <div class="WebUrl">
@@ -82,13 +85,23 @@
                                 <path d="M19 22v-6"></path>
                                 <path d="M22 19l-3 -3l-3 3"></path>
                             </svg>
-                            <a href="https://github.com/rrreyabd" target="_blank">
-                                <b>github.com</b>    
+                            @if (Auth::user()->website)
+                            <a href="{{Auth::user()->website}}" target="_blank">
+                                <b>{{ parse_url(Auth::user()->website)['host'] }}</b>    
                             </a>
+                            @else 
+                            <a href="">
+                                <p>Tambahkan situs web</p>
+                            </a>
+                            @endif
                         </div>
 
                         <div class="ProfileDescription">
+                            @if (Auth::user()->about)
+                            <p>{{Auth::user()->about}}</p>
+                            @else
                             <p>Description here</p>
+                            @endif
                         </div>
                     </div>
 
@@ -127,7 +140,7 @@
                             <div class="TopCarousel">
                                 <div class="LeftTopCarousel">
                                     <div class="TopCarouselImage">
-                                        <img src="https://i.pinimg.com/564x/18/47/5d/18475de42366a2f0807d6763ef19827f.jpg" alt="">
+                                        <img src="{{ asset('img/' . Auth::user()->profile_photo) }}" alt="">
                                     </div>
                                     
                                     <div class="TopCarouselDetail">
@@ -149,7 +162,7 @@
                             </div>
 
                             <div class="carousel-image">
-                                <img src="https://i.pinimg.com/564x/9e/00/0c/9e000c3a2ba43c48cb07e8a3ca880246.jpg" alt="Gambar 2">
+                                <img src="https://i.pinimg.com/564x/4d/25/9e/4d259e22398ae590473630e97e15013f.jpg" alt="Gambar 2">
                             </div>
 
                             <div class="carousel-details">

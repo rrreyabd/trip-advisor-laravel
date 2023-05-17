@@ -78,11 +78,33 @@
                     </div>
                 </a> -->
 
+                @if (Route::has('login'))
+                <div class="center login">
+                    @auth
+                        
+                        <a href="{{ url('/profile-detail') }}">
+                            <div class="profileImage">
+                                @if (Auth::check())
+                                    <img src="{{ asset('img/' . Auth::user()->profile_photo) }}" alt="Profile Photo">
+                                @endif
+                                {{-- <img src="{{asset('img/profile1.jpg')}}" alt=""> --}}
+                            </div>
+                        </a>
+                    @else
+                        <div class="masuk center">
+                            <a href="profile" class="bold">
+                                Masuk
+                            </a>
+                        </div>
+                    @endauth
+                </div>
+                @endif
+
+                {{-- <div class="masuk center">
                 <a href="profile">
-                    <div class="masuk center">
                         <p class="bold center">Masuk</p>
-                    </div>
-                </a>
+                    </a>
+                </div> --}}
                 
 
             </div>

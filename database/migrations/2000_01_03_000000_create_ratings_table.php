@@ -13,11 +13,8 @@ return new class extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-            $table->integer('sangatBuruk');
-            $table->integer('buruk');
-            $table->integer('biasa');
-            $table->integer('sangatBagus');
-            $table->integer('luarBiasa');
+            $table->string('rating_tyoe');
+            $table->integer('value'); //1-5
         });
     }
 

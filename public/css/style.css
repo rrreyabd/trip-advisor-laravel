@@ -151,6 +151,10 @@ nav {
     color: #fff;
 }
 
+.masuk a {
+    color: #fff;
+}
+
 .ulas,
 .trip,
 .pemberitahuan{
@@ -167,6 +171,20 @@ nav {
 
 .masuk:hover {
     background-color: #323232;
+}
+
+.profileImage {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+}
+
+.profileImage img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 /* NAV END */

@@ -193,6 +193,14 @@
                                             <td>2011/07/25</td>
                                             <td>$170,750</td>
                                         </tr>
+                                        <tr>
+                                            <td>{{$user->name}}</td>
+                                            <td>Accountant</td>
+                                            <td>Tokyo</td>
+                                            <td>63</td>
+                                            <td>2011/07/25</td>
+                                            <td>$170,750</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
