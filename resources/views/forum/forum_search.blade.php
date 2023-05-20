@@ -45,30 +45,18 @@
                     <tr class="tableHeader">
                         <th class="question">Topik</th>
                         <th class="answer">Balasan</th>
-                        <th class="lastDate">Balasan terakhir</th>
+                        <th class="lastDate">Tanggal Forum</th>
                     </tr>
 
-                    @for ($i = 0; $i < 5; $i++)
-                        
+                    @foreach ($forums as $forum)
+                                         
                     <tr>
-                        <td> <a href="forum-detail" class="green">Adakah saran untuk perjalanan di Medan?</a> </td>
+                        <td> <a href="{{ asset('forum_detail/' . $forum->id) }}" class="green">{{Str::limit($forum->title, 70)}}</a> </td>
                         <td class="answer">1</td>
-                        <td class="green lastDate">21 Apr 2023</td>
+                        <td class="green lastDate">{{\Carbon\Carbon::parse($forum->upload_date)->format('d F Y')}}</td>
                     </tr>
 
-                    <tr>
-                        <td class="green">Berikan saya saran hotel di Medan</td>
-                        <td class="answer">2</td>
-                        <td class="green lastDate">12 Feb 2023</td>
-                    </tr>
-
-                    <tr>
-                        <td class="green">Booking tiket kereta via tiket.com</td>
-                        <td class="answer">0</td>
-                        <td class="green lastDate">-</td>
-                    </tr>
-
-                    @endfor
+                    @endforeach
 
                 </table>
             </div>

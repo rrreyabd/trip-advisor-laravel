@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tulis ulasan - Tripadvisor</title>
 
-    <link rel="stylesheet" href="./css/ulas.css">
+    <link rel="stylesheet" href="{{ asset('/css/ulas.css') }}">
     <link rel="icon" href="./img/Tripadvisor_logoset_solid_green.svg">
 
     <script src="https://kit.fontawesome.com/e87c4faa10.js" crossorigin="anonymous"></script>
@@ -41,39 +41,45 @@
             <div class="uA">
                 <h1>Ulasan Anda</h1>
             </div>
-
+            @if (empty($ulasans))
             <div class="uB">
                 <p>Anda belum memiliki ulasan. Setelah Anda menulis beberapa, ulasan tersebut akan ditampilkan di sini.</p>
             </div>
+            @else
 
+            @foreach ($ulasans as $ulasan)
+                
             <div class="uC">
                 <div class="uCa">
 
                     <img src="./img/Tripadvisor_logoset_solid_green.svg" alt="" width="70px" height="70px">
                     
                     <div class="lok">
-                        <h3>Rumah Tjong A Fie</h3>
-                        <p>Medan</p>
+                        {{-- <h3>{{$ulasan->destination_id->destination_name}}</h3> --}}
+                        <p>{{$ulasan->destination->destination_name}}</p>
                     </div>
                     
-                    <button>
+                    <a href="">
                         Hapus ulasan
-                    </button>
+                    </a>
                 </div>
 
                 <div class="uCb">
-                    <h3>4.0</h3>
-                    <h4>Title</h4>
-                    <p>Maret 2023</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur odio nesciunt quidem rem, voluptatem tempora mollitia iure autem dolor hic, voluptatibus ullam consectetur nihil consequuntur adipisci possimus aliquid saepe culpa ad doloribus deleniti. Architecto porro voluptatem natus voluptate repellendus. Dolor assumenda recusandae tempore iste, ipsa corrupti quasi quo doloremque. Tempora cumque et, saepe in iure eaque dolores odit tempore modi veniam. Accusamus dolorem, impedit illo repellat corrupti, nesciunt rem tenetur autem explicabo nemo aperiam. Non, nisi sequi. Maxime, atque iste suscipit nisi incidunt voluptatem optio officia. Aperiam, ab nihil, repudiandae tempore recusandae optio inventore molestiae magnam debitis nesciunt labore dolores.</p>
+                    <h3>Rating : {{$ulasan->destination->rating_id}}/5</h3>
+                    <h4>{{$ulasan->title}}</h4>
+                    <p>{{\Carbon\Carbon::parse($ulasan->upload_date)->translatedFormat('d F Y')}}</p>
+                    <p>{{$ulasan->content}}</p>
                     <img src="./img/Tripadvisor_logoset_solid_green.svg" width="100px" height="100px" alt="">
                 
                     <br><br>
 
-                    <p class="small">Ditulis pada 7 Mei 2023</p>
+                    <p class="small">Ditulis pada {{\Carbon\Carbon::parse($ulasan->upload_date)->translatedFormat('d F Y')}}</p>
                     <p class="small">Ulasan ini adalah opini subjektif dari anggota Tripadvisor, bukan dari Tripadvisor LLC. Tripadvisor melakukan pemeriksaan terhadap ulasan.</p>
                 </div>
             </div>
+            @endforeach
+
+            @endif
         </div>
     </section>
 </body>

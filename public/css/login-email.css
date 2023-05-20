@@ -16,7 +16,12 @@ body {
     align-items: center;
     /* background-color: rgba(255, 255, 255, .4); */
     background-image: url(../img/section4/bg-img.jpeg);
+ 
 }
+
+input {
+    font-weight: bold;
+}  
 
 section {
     background-color: white;
@@ -27,6 +32,22 @@ section {
     padding: 60px;
     line-height: 1.3;
     position: relative;
+}
+
+.register::-webkit-scrollbar {
+    display: none;
+}
+
+.register {
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width: 380px;
+    max-height: 502.2px;
+    border-radius: 20px;
+    padding: 60px;
+    line-height: 1.3;
+    position: relative;
+    overflow: auto;
 }
 
 .input form{
@@ -68,4 +89,16 @@ button {
     text-align: center;
     flex-direction: column;
     font-size: 13px;
+}
+
+.inputName {
+    width: 172px;
+}
+
+.firstName {
+    margin-right: 10px;
+}
+
+.inputNameContainer {
+    display: flex;
 }

@@ -11,6 +11,10 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+    public function ulas() {
+        return view('profile.ulas');
+    }
+
     /**
      * Display the user's profile form.
      */
@@ -19,6 +23,11 @@ class ProfileController extends Controller
         return view('profile.edit', [
             'user' => $request->user(),
         ]);
+    }
+
+    public function show_profile(Request $request): View
+    {
+        return view('profile.profile');
     }
 
     /**

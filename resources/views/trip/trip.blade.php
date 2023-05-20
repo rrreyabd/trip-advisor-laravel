@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Trip</title>
 
-    <link rel="stylesheet" href="./css/trip.css">
+    <link rel="stylesheet" href="{{ asset('css/trip.css')}}">
 </head>
 <body>
     @include('layout.nav')
@@ -24,7 +24,7 @@
                 <a href="">Perjalanan Publik</a>
                 <a href="">Simpanan Saya</a>
             </div>
-
+        
             <div class="tbodyTrip">
                 <button id="openModalBtn">
                     <div class="tbodyAdd">
@@ -36,10 +36,10 @@
                     </div>
                 </button>
 
-
-                @for ($i = 0; $i < 4; $i++)
-                    
-                <a href="{{ route('detail_trip') }}">
+                @foreach ($trips as $trip)
+                    @if ($trip->user_id == auth()->id())
+                 
+                <a href="{{ route('detail_trip', ['id' => $trip->id]) }}">
                     <div class="tbodyBorder">
                         <div class="tbodyBorderImg">
                             <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/4d/47/82/jeju-island.jpg?w=1200&h=-1&s=1" alt="">
@@ -47,16 +47,18 @@
                         
                         <div class="tbodyBorderDetail">
                             <br>
-                            <h3 class="bold">Title</h3>
-                            <p>oleh <span class="bold">Rey</spon> </p>
-                            <p>Menampilkan <span class="bold">35 item</span> </p>
+                            <h3 class="bold">{{$trip->trip_name}}</h3>
+                            <p>oleh <span class="bold">{{Auth::user()->firstName}} {{Auth::user()->lastName}}</spon> </p>
+                            <p>Menampilkan <span class="bold">7 item</span> </p>
                         </div>
 
-                        <img src="https://i.pinimg.com/564x/5c/16/89/5c1689b57af54e55c762188cccd58439.jpg" class="profilePhoto" alt="">
+                        <img src="{{ asset('img/' .Auth::user()->profile_photo )}}" class="profilePhoto" alt="">
                     </div>    
                 </a>
 
-                @endfor
+                    @endif
+                @endforeach
+
             </div>
         </div>
     </div>

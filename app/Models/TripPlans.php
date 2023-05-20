@@ -5,8 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Destination extends Model
+class TripPlans extends Model
 {
     use HasFactory;
 
+    public function tripDetails()
+    {
+        return $this->hasMany(TripDetail::class);
+    }
 }

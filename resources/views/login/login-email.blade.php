@@ -40,6 +40,7 @@
         </div>
         
         <div class="footer">
+            <h3>Belum memiliki akun? <a href="{{route('register')}}">Daftar</a> </h3>
             <p>
                 Dengan melanjutkan, berarti Anda menyetujui Persyaratan Penggunaan 
                 serta mengonfirmasi bahwa Anda telah membaca Pernyataan Privasi dan Cookie kami.
@@ -47,7 +48,7 @@
             <br>
             <p>
                 Situs ini dilindungi reCAPTCHA dan Kebijakan Privasi serta Persyaratan Layanan Google berlaku.
-            </p>
+            </p>    
         </div>
     </section>
 </body>

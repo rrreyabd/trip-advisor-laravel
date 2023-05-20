@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Comment;
 
 class UlasanController extends Controller
 {
@@ -15,4 +16,15 @@ class UlasanController extends Controller
     {
         return view('ulas.tulis_ulasan');
     }
+
+    public function show_ulasan($id) {
+        $ulasans = Comment::with(['destination'])
+        ->where("user_id", "=", $id)
+        ->orderBy('id', 'asc')
+        ->get();
+        return view('profile.ulas', [
+            'ulasans' => $ulasans
+        ]);
+    }
+    
 }

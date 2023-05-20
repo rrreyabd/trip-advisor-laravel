@@ -10,6 +10,7 @@ use App\Http\Controllers\WisataController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\UlasanController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PhotoController;
 
 
 /*
@@ -29,10 +30,14 @@ Route::get('/', function () {
 
 Route::get('/', function () {
     return view('index');
-})->middleware(['auth', 'verified'])->name('index');
+})->name('index');
+
+// Route::get('/', function () {
+//     return view('index');
+// })->middleware(['auth', 'verified'])->name('index');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
@@ -56,11 +61,12 @@ Route::get('/destinasi_detail', [WisataController::class, 'destinasi_detail'])->
 
 // Forum
 Route::get('/forum', [ForumController::class, 'forum'])->name('forum');
-Route::get('/forum-search', [ForumController::class, 'forum_search'])->name('forum_search');
+Route::get('/forum-search', [ForumController::class, 'show_forum'])->name('forum_search');
 Route::get('/forum-detail', [ForumController::class, 'forum_detail'])->name('forum_detail');
 
 // Trip
-Route::get('/trip', [TripController::class, 'trip'])->name('trip');
+Route::get('/trip/{id}', [TripController::class, 'show_trip_plans'])->name('trip');
+// Route::get('/trip/{id}', [TripController::class, 'trip'])->name('trip');
 Route::get('/detail-trip', [TripController::class, 'detail_trip'])->name('detail_trip');
 
 // Layout
@@ -71,8 +77,8 @@ Route::get('/ulasan', [UlasanController::class, 'ulasan'])->name('ulasan');
 Route::get('/tulis-ulasan', [UlasanController::class, 'tulis_ulasan'])->name('tulis_ulasan');
 
 // Profile
-Route::get('/profile-detail', [ProfileController::class, 'profile_detail'])->name('profile_detail');
-Route::get('/ulas', [ProfileController::class, 'ulas'])->name('ulas');
+Route::get('/profile-detail/{id}', [PhotoController::class, 'show_photo'])->name('profile_detail');
+Route::get('/ulas/{id}', [UlasanController::class, 'show_ulasan'])->name('ulas');
 
 //////////////// ADMIN //////////////////
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin');

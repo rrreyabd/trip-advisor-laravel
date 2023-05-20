@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./css/nav.css">
+<link rel="stylesheet" href="{{asset('/css/nav.css')}}">
 <link rel="icon" href="./img/Tripadvisor_logoset_solid_green.svg">
 
 <script src="https://kit.fontawesome.com/e87c4faa10.js" crossorigin="anonymous"></script>
@@ -8,22 +8,22 @@
     <div class="kA">
         <ul class="kAa">
             <li>
-                <a href="hotel">
+                <a href="{{ route('hotel') }}">
                     Hotel
                 </a>
             </li>
             <li>
-                <a href="destinasi">
+                <a href="{{ route('destinasi') }}">
                     Hal yang dapat dilakukan
                 </a>
             </li>
             <li>
-                <a href="restoran">
+                <a href="{{ route('restoran') }}">
                     Restoran
                 </a>
             </li>
             <li>
-                <a href="forum">
+                <a href="{{ route('forum') }}">
                     Forum
                 </a>
             </li>

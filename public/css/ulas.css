@@ -3,10 +3,10 @@
     src: url(../font/TripSans-Regular.ttf);
  }
 
- @font-face {
+@font-face {
     font-family: TripSansBold;
     src: url(../font/TripSans-Bold.ttf);
- }
+}
 
 ::-webkit-scrollbar {
     display: none;
@@ -138,7 +138,7 @@ input[type=text] {
     line-height: 1.4;
 }
 
-.uC button {
+.uC a {
     background-color: transparent;
     border: none;
     position: absolute;

@@ -57,7 +57,7 @@
                     </div>
                 </a>
                 
-                <a href="{{route('trip')}}">
+                <a href="">
                     <div class="trip center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heart" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -78,21 +78,27 @@
                     </div>
                 </a> -->
 
+                @php
+                    $user = Auth::user();
+                @endphp
+
                 @if (Route::has('login'))
                 <div class="center login">
                     @auth
-                        
-                        <a href="{{ url('/profile-detail') }}">
+                        <a href="{{ url('/profile-detail', ['id' => $user->id] ) }}">
                             <div class="profileImage">
                                 @if (Auth::check())
-                                    <img src="{{ asset('img/' . Auth::user()->profile_photo) }}" alt="Profile Photo">
+                                    @if (Auth::user()->profile_photo)
+                                        <img src="{{ asset('img/' . Auth::user()->profile_photo) }}">
+                                    @else 
+                                        <img src="https://media-cdn.tripadvisor.com/media/photo-l/1a/f6/ea/2e/default-avatar-2020-67.jpg" alt="">
+                                    @endif
                                 @endif
-                                {{-- <img src="{{asset('img/profile1.jpg')}}" alt=""> --}}
                             </div>
                         </a>
                     @else
                         <div class="masuk center">
-                            <a href="profile" class="bold">
+                            <a href="{{ route('login')}}" class="bold">
                                 Masuk
                             </a>
                         </div>

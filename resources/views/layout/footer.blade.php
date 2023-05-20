@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./css/footer.css">
+<link rel="stylesheet" href="{{asset('css/footer.css')}}">
 
 <footer>
 
@@ -6,7 +6,7 @@
         <div class="leftBottomFooter">
 
             <div class="topLeftBottomFooter">
-                <img src="./img/Tripadvisor_logoset_solid_green.svg" width="40px" height="40px" alt="">
+                <img src="{{ asset('./img/Tripadvisor_logoset_solid_green.svg')}}" width="40px" height="40px" alt="">
                 <div class="copyright">
                     <p>&copy; 2023 Tripadvisor LLC Semua hak dilindungi undang-undang.</p>
                     <a href="">Persyaratan Penggunaan </a>

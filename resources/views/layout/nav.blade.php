@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="./css/nav.css">
-<link rel="icon" href="./img/Tripadvisor_logoset_solid_green.svg">
+<link rel="stylesheet" href="{{asset('/css/nav.css')}}">
+<link rel="icon" href="{{asset('img/Tripadvisor_logoset_solid_green.svg')}}">
 
 <script src="https://kit.fontawesome.com/e87c4faa10.js" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/1fc4ea1c6a.js" crossorigin="anonymous"></script>
@@ -9,7 +9,7 @@
 
         <div class="nAa">
             <a href="/">
-                <img width="190px" height="54px" src="./img/Logo.svg" alt="">
+                <img width="190px" height="54px" src="{{asset('/img/Logo.svg')}}" alt="">
             </a>
 
             <form action="" class="center">
@@ -21,8 +21,10 @@
         </div>
 
         <div class="nAb center">
-                
-            <a href="ulas">
+            @php
+                $user = Auth::user();
+            @endphp
+            <a href="{{ url('/ulas', ['id' => $user->id] ) }}">
                 <div class="ulas center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -33,7 +35,7 @@
                 </div>
             </a>
             
-            <a href="trip">
+            <a href="{{ url('/trip', ['id' => $user->id] ) }}">
                 <div class="trip center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heart" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>

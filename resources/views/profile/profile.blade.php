@@ -7,7 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Profile</title>
 
-    <link rel="stylesheet" href="./css/profile.css">
+    <link rel="stylesheet" href="{{asset('css/profile.css')}}">
+    <link rel="icon" href="./img/Tripadvisor_logoset_solid_green.svg">
+
 </head>
 
 <body class="BodyContainer">
@@ -32,10 +34,20 @@
                         </div>
 
                         <div class="EditProfile">
-                            <a href="">
+                            <button id="editButton">
                                 <p class="bold">Edit profil</p>
-                            </a>
+                            </button>
                         </div>
+
+                        <div id="editProfileModal" class="modal">
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                
+                                
+                            </div>
+                        </div>
+
+
                     </div>
 
                     <div class="BottomTopProfileDetail">
@@ -125,17 +137,27 @@
                                 <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
                                 <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
                                 <path d="M16 5l3 3"></path>
-                             </svg>
-                             <a href="{{ route('ulas')}}">
+                            </svg>
+                            @php
+                                 $user = Auth::user();
+                            @endphp
+                            <a href="{{ url('/ulas', ['id' => $user->id] ) }}">
                                 <p>Tulis Ulasan</p>
-                             </a>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="keluar">
+                        <b>Logout</b>
+                        <div class="keluarLink">
+                            <a class="bold" href="{{ route('logout')}}">Logout</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="BottomRightProfile">
                     <div class="carousel">
-                            
+                        
                         <div class="carousel-slide">
                             <div class="TopCarousel">
                                 <div class="LeftTopCarousel">
@@ -144,8 +166,9 @@
                                     </div>
                                     
                                     <div class="TopCarouselDetail">
-                                        <b>Rey</b>
-                                        <p class="small">Today</p>
+                                @foreach ($photos as $photo)
+                                        <b>{{Auth::user()->firstName}} {{Auth::user()->lastName}} </b>
+                                        <p class="small">{{\Carbon\Carbon::parse($photo->upload_date)->translatedFormat('d F Y')}}</p>
                                     </div>
                                 </div>
 
@@ -162,16 +185,19 @@
                             </div>
 
                             <div class="carousel-image">
-                                <img src="https://i.pinimg.com/564x/4d/25/9e/4d259e22398ae590473630e97e15013f.jpg" alt="Gambar 2">
+                                
+                                    <img src="{{ asset('img/' . $photo->photo) }}" alt="Profile Photo">
+                                @endforeach
                             </div>
 
                             <div class="carousel-details">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, obcaecati soluta laudantium excepturi illum quos eligendi explicabo magnam aperiam accusantium repellat beatae facilis repudiandae, minus quisquam impedit aspernatur, ratione perspiciatis incidunt adipisci enim alias nulla ea. Vero, commodi. Maxime debitis, corporis nisi iste tenetur distinctio! Culpa amet ab expedita voluptate?</p>
-                                <b>Lokasi</b>
+                                <p>{{$photo->content}}</p>
+                                <a href="{{route('destinasi_detail' , ['destination_id' => $photo->destination->id] )}}">
+                                    <b>{{$photo->destination->destination_name}}</b>
+                                </a>
                             </div>
                         </div>
-                    
-                
+                        
                     </div>
                 </div>
             </div>
@@ -210,6 +236,32 @@
             </div>
         </div>
     </div> --}}
+
+    <script>
+        // Mengambil referensi ke elemen tombol dan modal
+        var editButton = document.getElementById("editButton");
+        var editProfileModal = document.getElementById("editProfileModal");
+    
+        // Mendapatkan elemen close di dalam modal
+        var closeBtn = editProfileModal.getElementsByClassName("close")[0];
+    
+        // Ketika tombol diklik, tampilkan modal
+        editButton.addEventListener("click", function() {
+            editProfileModal.style.display = "block";
+        });
+    
+        // Ketika tombol close di dalam modal diklik, sembunyikan modal
+        closeBtn.addEventListener("click", function() {
+            editProfileModal.style.display = "none";
+        });
+    
+        // Jika pengguna mengklik di luar modal, sembunyikan modal
+        window.addEventListener("click", function(event) {
+            if (event.target == editProfileModal) {
+                editProfileModal.style.display = "none";
+            }
+        });
+    </script>
 
     <script src="./js/profile.js"></script>
 </body>
