@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Forgot Password</title>
     <link rel="stylesheet" href="./css/lupa-sandi.css">
     <link rel="icon" href="./img/Tripadvisor_logoset_solid_green.svg">
 
@@ -17,14 +17,17 @@
         <h1>Lupa sandi?</h1>
         <p>Tidak masalah. Masukkan alamat email Anda di bawah ini. Kami akan mengirim link untuk membuat ulang sandi.</p>
         
-        <div class="input">
-            <b>Alamat Email</b>
-            <input type="text" placeholder="Email">
+        <form method="POST" action="{{ route('password.email') }}">
+            @csrf
+            <div class="input">
+                <b>Alamat Email</b>
+                <input id="email" type="email" name="email" :value="old('email')" required autofocus placeholder="Email">
 
-            <div class="button">
-                <button type="submit" id="kirim">Kirim link</button>
+                <div class="button">
+                    <button type="submit" id="kirim">Kirim link</button>
+                </div>
             </div>
-        </div>
+        </form>
         
         <div class="footer">
             <p>

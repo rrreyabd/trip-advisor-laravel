@@ -24,17 +24,17 @@ use App\Http\Controllers\PhotoController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+// Route::get('/', function () {
+//     return view('index');
+// });
 
 // Route::get('/', function () {
 //     return view('index');
-// })->middleware(['auth', 'verified'])->name('index');
+// })->name('index');
+
+Route::get('/', function () {
+    return view('index');
+})->middleware(['auth', 'verified'])->name('index');
 
 Route::middleware('auth')->group(function () {
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -49,15 +49,15 @@ require __DIR__.'/auth.php';
 
 // Hotel
 Route::get('/hotel', [HotelController::class, 'hotel'])->name('hotel');
-Route::get('/hotel-detail', [HotelController::class, 'hotel_detail'])->name('hotel_detail');
+Route::get('/hotel-detail/{id}', [HotelController::class, 'hotel_detail'])->name('hotel_detail');
 
 // Restoran
 Route::get('/restoran', [RestoranController::class, 'restoran'])->name('restoran');
-Route::get('/restoran-detail', [RestoranController::class, 'restoran_detail']);
+Route::get('/restoran-detail/{id}', [RestoranController::class, 'restoran_detail'])->name('restoran_detail');
 
 // Destinasi
-Route::get('/destinasi', [WisataController::class, 'destinasi'])->name('destinasi');
-Route::get('/destinasi_detail', [WisataController::class, 'destinasi_detail'])->name('destinasi_detail');
+Route::get('/destinasi', [WisataController::class, 'wisata'])->name('destinasi');
+Route::get('/destinasi_detail/{id}', [WisataController::class, 'destinasi_detail'])->name('destinasi_detail');
 
 // Forum
 Route::get('/forum', [ForumController::class, 'forum'])->name('forum');
@@ -65,7 +65,7 @@ Route::get('/forum-search', [ForumController::class, 'show_forum'])->name('forum
 Route::get('/forum-detail', [ForumController::class, 'forum_detail'])->name('forum_detail');
 
 // Trip
-Route::get('/trip/{id}', [TripController::class, 'show_trip_plans'])->name('trip');
+Route::get('/trip/{id}', [TripController::class, 'show_trip_plans'])->middleware(['auth', 'verified'])->name('trip');
 // Route::get('/trip/{id}', [TripController::class, 'trip'])->name('trip');
 Route::get('/detail-trip', [TripController::class, 'detail_trip'])->name('detail_trip');
 
@@ -73,7 +73,7 @@ Route::get('/detail-trip', [TripController::class, 'detail_trip'])->name('detail
 // Route::get('/navbar', [UserController::class, 'navbar'])->name('navbar');
 
 // Ulasan
-Route::get('/ulasan', [UlasanController::class, 'ulasan'])->name('ulasan');
+Route::get('/ulasan/{id}', [UlasanController::class, 'ulasan'])->name('ulasan');
 Route::get('/tulis-ulasan', [UlasanController::class, 'tulis_ulasan'])->name('tulis_ulasan');
 
 // Profile
@@ -81,4 +81,10 @@ Route::get('/profile-detail/{id}', [PhotoController::class, 'show_photo'])->name
 Route::get('/ulas/{id}', [UlasanController::class, 'show_ulasan'])->name('ulas');
 
 //////////////// ADMIN //////////////////
-Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
+Route::get('/admin', [AdminController::class, 'count_all'])->name('admin');
+Route::get('/admin/manage-user', [AdminController::class, 'show_all_users'])->name('manage-user');
+Route::get('/admin/manage-destination', [AdminController::class, 'show_all_destinations'])->name('manage-destination');
+Route::get('/admin/manage-destination/{id}/detail', [AdminController::class, 'show_detail_destination'])->name('manage-destination-detail');
+
+// delete
+Route::delete('/admin/manage-postingan/{id}/delete', [AdminController::class, 'delete_destination'])->name('destination-delete');

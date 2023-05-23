@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('restaurants', function (Blueprint $table) {
+        Schema::create('restaurant_types', function (Blueprint $table) {
             $table->id();
             $table->foreignId('destination_id')->constrained('destinations')->onDelete('restrict');
             $table->string('diet');

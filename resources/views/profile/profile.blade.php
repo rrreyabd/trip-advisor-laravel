@@ -165,8 +165,8 @@
                                         <img src="{{ asset('img/' . Auth::user()->profile_photo) }}" alt="">
                                     </div>
                                     
+                                    @foreach ($photos as $photo)
                                     <div class="TopCarouselDetail">
-                                @foreach ($photos as $photo)
                                         <b>{{Auth::user()->firstName}} {{Auth::user()->lastName}} </b>
                                         <p class="small">{{\Carbon\Carbon::parse($photo->upload_date)->translatedFormat('d F Y')}}</p>
                                     </div>
@@ -187,7 +187,7 @@
                             <div class="carousel-image">
                                 
                                     <img src="{{ asset('img/' . $photo->photo) }}" alt="Profile Photo">
-                                @endforeach
+                                
                             </div>
 
                             <div class="carousel-details">
@@ -195,6 +195,7 @@
                                 <a href="{{route('destinasi_detail' , ['destination_id' => $photo->destination->id] )}}">
                                     <b>{{$photo->destination->destination_name}}</b>
                                 </a>
+                                @endforeach
                             </div>
                         </div>
                         

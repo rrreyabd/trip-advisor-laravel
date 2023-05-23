@@ -16,12 +16,16 @@ return new class extends Migration
             $table->id();
             $table->foreignId('rating_id')->constrained('ratings')->onDelete('restrict');
             $table->string('destination_name');
+            // $table->string('destination_type');
+            $table->enum("destination_type", ["wisata", "hotel","restoran"]);
+            $table->string('category')->nullable();
             $table->string('address');
-            $table->string('destination_type');
-            $table->integer('rank');
+            $table->string('city');
+            $table->string('province');
+            $table->text('map');
             $table->string('website')->nullable();
             $table->string('contact');
-            $table->string('category')->nullable();
+            $table->string('photo');
             $table->timestamps();
         });
     }

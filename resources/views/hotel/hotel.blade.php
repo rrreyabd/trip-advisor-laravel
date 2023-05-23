@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Restoran</title>
+    <title>Hotel</title>
     
     <link rel="stylesheet" href="css/restoran.css">
 </head>
@@ -30,22 +30,30 @@
 
         <div class="rBb">
             <div class="rBbA">
-                @for ($i = 0; $i < 20; $i++)
+                @foreach ($hotels as $hotel)
                 <div class="loopingRestoran">
-                    <a href="{{route('hotel_detail')}}">
+                    <a href="{{ route('hotel_detail', ['id' => $hotel->id ]) }}">
                         <div class="restoranImg">
-                            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/26/ed/9e/19/lobby.jpg?w=1200&h=-1&s=1" alt="">
+                            <img src= "{{ asset('/img/hotel/' . $hotel->photo ) }}" alt="">
                         </div>
                         
                         <div class="restoranCard">
-                            <p class="bold">JW Marriott Hotel Medan</p>
-                            <b class="bold green">4.5</b>
+                            <p class="bold">{{ $hotel->destination_name }}</p>
+                            <b class="bold green">{{ $hotel->rating_id }}</b>
                             <br> 
-                            <b class="small">20 Ulasan</b>
+                            <b class="small">
+                                @php $i=0 @endphp 
+                                @foreach($comments as $comment)
+                                    @if($comment->destination->id == $hotel->id)
+                                        @php $i++ @endphp 
+                                    @endif
+                                @endforeach
+                                {{ $i }} ulasan
+                            </b>
                         </div>
                     </a>
                 </div>
-                @endfor
+                @endforeach
             </div>
         </div>
     </div>

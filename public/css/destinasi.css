@@ -235,3 +235,20 @@
 }
 
 /* END FOR CSS ULASAN.HTML */
+
+.hidden-checkbox {
+  display: none;
+}
+
+.hRed {
+  color: black !important;
+}
+
+.hidden-checkbox:checked + label .hRed {
+  color: red !important;
+}
+
+.hidden-checkbox:disabled + label .hRed {
+  color: gray;
+  cursor: not-allowed;
+}

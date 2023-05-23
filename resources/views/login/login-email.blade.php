@@ -31,7 +31,7 @@
                 required autocomplete="current-password"  placeholder="Password"/>
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 
-                <a href="lupa-sandi.html">Lupa sandi?</a>
+                <a href="{{ route('password.request') }}">Lupa sandi?</a>
 
                 <div class="btnLogin">
                     <button type="submit">Masuk</button>

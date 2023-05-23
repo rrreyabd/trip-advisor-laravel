@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Restoran</title>
     
-    <link rel="stylesheet" href="css/restoran.css">
+    <link rel="stylesheet" href="{{ asset('css/restoran.css') }}">
 </head>
 <body>
     {{-- navbar --}}
@@ -30,22 +30,30 @@
 
         <div class="rBb">
             <div class="rBbA">
-                @for ($i = 0; $i < 20; $i++)
+                @foreach($restaurants as $restaurant)
                 <div class="loopingRestoran">
-                    <a href="restoran-detail">
+                    <a href="{{ route('restoran_detail', [ 'id' => $restaurant->id ]) }}">
                         <div class="restoranImg">
-                            <img src="./img/restoranFood/milo-brownies-memiliki.jpg" alt="">
+                            <img src="{{ asset('/img/restoran/imageRestoran/' . $restaurant->photo) }}" alt="">
                         </div>
                         
                         <div class="restoranCard">
-                            <p class="bold">TheBites Brownies</p>
+                            <p class="bold">{{ $restaurant->destination_name }}</p>
                             <b class="bold green">4.5</b>
                             <br> 
-                            <b class="small">20 Ulasan</b>
+                            <b class="small">
+                                @php $i=0 @endphp 
+                                @foreach($comments as $comment)
+                                    @if($comment->destination->id == $restaurant->id)
+                                        @php $i++ @endphp 
+                                    @endif
+                                @endforeach
+                                {{ $i }} ulasan
+                            </b>
                         </div>
                     </a>
                 </div>
-                @endfor
+                @endforeach
             </div>
         </div>
     </div>

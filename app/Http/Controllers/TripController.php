@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\TripPlans;
+use App\Models\Trip_plan;
 
 
 class TripController extends Controller
@@ -17,7 +17,7 @@ class TripController extends Controller
 
     public function show_trip_plans($id)
     {
-        $trips = TripPlans::where('user_id', auth()->id())->get();
+        $trips = Trip_plan::where('user_id', auth()->id())->get();
         // $count = TripPlans::where('user_id', auth()->id())->count();
         return view('trip.trip', [
             'trips' => $trips

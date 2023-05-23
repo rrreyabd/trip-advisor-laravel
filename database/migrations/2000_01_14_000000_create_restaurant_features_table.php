@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('restaurant_features', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('restaurant_id')->constrained('destinations')->onDelete('restrict');
+            $table->foreignId('destination_id')->constrained('destinations')->onDelete('restrict');
             $table->foreignId('feature_id')->constrained('features')->onDelete('restrict');
         });
     }

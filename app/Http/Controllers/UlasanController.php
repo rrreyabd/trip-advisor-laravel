@@ -8,16 +8,12 @@ use App\Models\Comment;
 class UlasanController extends Controller
 {
     // Ulasan
-    public function ulasan()
-    {
-        return view('layout.ulasan');
-    }
     public function tulis_ulasan()
     {
         return view('ulas.tulis_ulasan');
     }
 
-    public function show_ulasan($id) {
+    public function show_ulasan($id) { // Menampilkan ulasan milik user
         $ulasans = Comment::with(['destination'])
         ->where("user_id", "=", $id)
         ->orderBy('id', 'asc')
@@ -27,4 +23,14 @@ class UlasanController extends Controller
         ]);
     }
     
+    public function ulasan($id){ // Menampilkan ulasan destinasi
+        $comments = Comment::with('destination')
+        ->where('destination_id', '=', $id)
+        ->orderBy('id', 'asc')
+        ->get();
+        // dd($comments);
+        return view('layout.ulasan', compact('comments'));
+
+
+    }
 }

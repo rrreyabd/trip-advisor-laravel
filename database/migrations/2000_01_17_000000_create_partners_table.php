@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('partner');
             $table->string('website');
+            $table->string('photo');
             $table->timestamps();
         });
     }

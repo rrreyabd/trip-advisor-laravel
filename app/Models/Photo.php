@@ -13,8 +13,9 @@ class Photo extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function destination() {
-        return $this->belongsTo(Destination::class);
+    public function destination()
+    {
+        return $this->belongsTo(Destination::class, 'destination_id');
     }
 }
 

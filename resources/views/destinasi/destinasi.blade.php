@@ -6,14 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <!-- CSS -->
-    <link rel="stylesheet" href="css/destinasi.css" />
-    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/destinasi.css') }}" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">  
-  </head>
-  
+    
+    {{-- NAV AND CATEGORY --}}
+    <link rel="stylesheet" href="{{ asset('./css/nav.css') }}">
+
+    <link rel="icon" href="{{ asset('./img/Tripadvisor_logoset_solid_green.svg') }}">
+    <link rel="icon" href="{{ asset('./img/Tripadvisor_logoset_solid_green.svg') }}">
+
+    </head>
 <body>
 
-    <!-- AD START -->
+    {{-- <!-- AD START -->
     <div class="container">
         <div class="ad row">
             <div class="d-flex justify-content-end">
@@ -46,21 +52,97 @@
               </li>
               <li class="nav-item mt-1">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src="img/profile.webp" class="rounded-pill" width="40" height="40" alt="">
+                  <img src="{{ asset('img/profile.png') }}" class="rounded-pill" width="40" height="40" alt="">
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end text-start">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Lihat Profil</a></li>
+                  <li><a class="dropdown-item" href="#">Info Akun</a></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <li><a class="dropdown-item" href="#">Keluar</a></li>
                 </ul>
               </li>
             </ul>
           </div>
         </div>
       </nav>
-    <!-- NAVBAR END -->
-      
+    <!-- NAVBAR END --> --}}
+
+    {{-- NAVBAR START --}}
+    <div class="nav center">
+            <div class="nA">
+                <div class="nAa">
+                    <a href="{{ route('index') }}">
+                        <img width="190px" height="54px" src="{{ asset('./img/Logo.svg') }}" alt="">
+                    </a>
+    
+                    <form action="" class="center">
+                        <input type="text">
+                        <button type="submit">
+                            <i class="fa fa-search d-inline-flex align-items-center"></i>
+                        </button>
+                    </form>
+                </div>
+    
+                <div class="nAb center mt-3">
+                    <div class="d-inline-flex align-items-center mt-2">
+                            <a href="ulas" class="d-inline-flex">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"></path>
+                                <path d="M13.5 6.5l4 4"></path>
+                            </svg>
+                            <p class="bold d-inline-flex">Ulas</p>
+                            </a>
+                        </div>
+                    
+                        <div class=" d-inline-flex align-items-center mt-2">
+                            <a href="trip">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heart" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"></path>
+                            </svg>
+                            <p class="bold d-inline-flex">Trip</p>
+                            </a>
+                        </div>
+                    
+                        <div class="masuk d-inline-flex align-items-center mt-2">
+                            <a href="masuk">
+                            <p class="bold d-inline-flex">Masuk</p>
+                            </a>
+                        </div>
+                    
+                </div>
+    
+            </div>
+        </div>
+        </div>
+        {{-- NAVBAR END --}}
+        
+    {{-- KATEGORI START --}}
+    <div class="container">
+        <div class="row">
+        <div class="kAa col mt-2 mb-2">
+                    <li>
+                        <a href="{{ route('hotel') }}">Hotel</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('destinasi') }}">Hal yang dapat dilakukan</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('restoran') }}">Restoran</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('forum') }}">Forum</a>
+                    </li>
+                </ul>                
+        </div>
+        </div>
+        <div class="row">
+            <hr style="width:100vw; position:absolute;left:0;">
+        </div>
+    </div>
+    {{-- KATEGORI END --}}
+    
     <!-- JUDUL -->
     <section id="kategori">
     <div class="container ">
@@ -71,10 +153,10 @@
         </div>
     </div>
     <!-- AWAL KATEGORI -->
-    <div class="container mt-4">
+    {{-- <div class="container mt-4"> 
 
         <!-- CAROUSEL -->
-        {{-- <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+         <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                 <ul class="list-unstyled d-flex justify-content-center">
@@ -197,43 +279,62 @@
         </section>
 
     <div class="container">
-
-        <div class="row">
-            @for ($i = 0; $i < 6; $i++)
-            
-            <div class="col-md-4 mb-3">
-                <a class="text-black no-underline" href="destinasi_detail">
+        <div class="row d-flex justify-content-center">
+            @php $h=1 @endphp
+            @foreach ($attractions as $wisata)
+            <div class="col-md-3 mb-3">
+                <a class="text-black no-underline" href="{{ route('destinasi_detail', ['id' => $wisata->id ]) }}">
                     <div class="card" style="width: 300; height:300">
                         <div class="img-wrapper">
-                        <img src="img/graha bunda maria.jpg" class="card-img-top" alt="...">
-                        <button class="btn btn-light btn-sm inline-flex rounded-pill"><i class="bi bi-heart-fill text-black"></i></button>
+                            <img src="{{ asset('img/wisata/' . $wisata->photo) }}" class="card-img-top" alt="...">
                         </div>
+                </a>
+                    <div>
+                        <input type="checkbox" id="heartCheckbox{{ $h }}" class="hidden-checkbox">
+                        <label for="heartCheckbox{{ $h }}" class="btn btn-light btn-sm inline-flex rounded-pill">
+                          <i class="bi bi-heart-fill hRed"></i>
+                        </label>
+                        @php $h++ @endphp
+                    </div>
+                    <a class="text-black no-underline" href="{{ route('destinasi_detail', ['id' => $wisata->id ]) }}">
                         <div class="card-body">
-                            <h5 class="fw-bold">Graha Bunda Maria</h5>
+                            <h5 class="fw-bold">{{ $wisata->destination_name }}</h5>
                             <div class="rating">
-                                <i class="bi bi-star-fill text-success"></i>
-                                <i class="bi bi-star-fill text-success"></i>
-                                <i class="bi bi-star-fill text-success"></i>
-                                <i class="bi bi-star-fill text-success"></i>
-                                <i class="bi bi-star-half text-success"></i>
-                                <p class="small">250</p>
+                                @for($i=0; $i < $wisata->rating->value; $i++)
+                                <i class="bi bi-circle-fill text-success"></i>
+                                @endfor
+                                @for($i=0; $i < 5 - $wisata->rating->value; $i++)
+                                <i class="bi bi-circle"></i>
+                                @endfor
+                                <p class="small mb-0">
+                                    @php $i=0 @endphp 
+                                    @foreach($comments as $comment)
+                                        @if($comment->destination->id == $wisata->id)
+                                            @php $i++ @endphp 
+                                        @endif
+                                    @endforeach
+                                    {{ $i }} ulasan
+                                </p>
                             </div>
-                            <p class="card-text">Museum Benda Khusus</p>
+                            <span class="text-secondary" style="margin-top:0;">{{ $wisata->category }}</span>
                         </div>
                     </div>
                 </a>
             </div>
-
-            @endfor
-
+            @endforeach
         </div>
         <hr>
     </div>
     <!-- AKHIR KATEGORI WISATA -->
 
     <!-- JQUERY DAN JAVASCRIPT -->
-    <script src="js/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
-    <script src="js/bootstrap.js"></script>
+
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.js') }}"></script>
+
+    {{-- NAV --}}
+    <script src="https://kit.fontawesome.com/e87c4faa10.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/1fc4ea1c6a.js" crossorigin="anonymous"></script>
 </body>
 </html>

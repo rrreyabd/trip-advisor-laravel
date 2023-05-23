@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hotels', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('destination_id')->constrained('destinations')->onDelete('restrict');
-        });
+        // Schema::create('hotels', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('destination_id')->constrained('destinations')->onDelete('restrict');
+        // });
     }
 
     /**

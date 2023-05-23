@@ -20,9 +20,6 @@ Route::middleware('guest')->group(function () {
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
                 ->name('login');
 
-    Route::get('login_options', [AuthenticatedSessionController::class, 'login_options'])
-                ->name('login_options');
-
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
@@ -59,5 +56,4 @@ Route::middleware('auth')->group(function () {
 
     Route::match(['get', 'post'], 'logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
-
 });

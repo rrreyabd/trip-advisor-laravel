@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('destination_id')->constrained('destinations')->onDelete('restrict');
-            $table->foreignId('user_id')->constrained('users')->onDelete('restrict');
-            $table->foreignId('rating_id')->constrained('ratings')->onDelete('restrict');
+            $table->foreignId('destination_id')->constrained('destinations')->onDelete('restrict');//many to one
+            $table->foreignId('user_id')->constrained('users')->onDelete('restrict');//many to one
+            $table->foreignId('rating_id')->constrained('ratings')->onDelete('restrict');//one to one
             $table->string('title');
-            $table->string('destination_type');
+            $table->enum("destination_type", ["wisata", "hotel","restoran"]);
             $table->dateTime('upload_date');
             $table->longText('content');
         });
