@@ -1,0 +1,107 @@
+footer {
+    height: 300px;
+    width: 100%;
+    background-color:  #FAF1ED;
+    display: flex;
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.topFooter {
+    height: 246px;
+    width: 1136px;
+    display: flex;
+    margin-top: 30px;
+}
+
+.topFooter a {
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    text-align: left;
+
+}
+
+.topFooter ul {
+    list-style-type: none;;
+}
+
+.tentang,
+.bisnis,
+.telusuri {
+    line-height: 25px;
+    height: 246px;
+    width: 176px;
+    margin-right: 30px;
+}
+
+.bottomFooter {
+    height: 211px;
+    width: 1136px;
+    padding-top: 50px;
+    display: flex;
+}
+
+.topLeftBottomFooter {
+    display: flex;
+    width: 752px;
+}
+
+.copyright {
+    margin-left: 10px;
+}
+
+.copyright p{
+    font-size: small;
+}
+
+.copyright a{
+    text-decoration: underline;
+    transition: .2s ease;
+    color: #000;
+    font-weight: 600;
+    margin-right: 10px;
+    line-height: 1.2;
+}
+
+.copyright a:hover {
+    color: #454343;
+}
+
+.bottomLeftBottomFooter {
+    margin-top: 10px;
+    width: 752px;
+    line-height: 1.2;
+}
+
+.rightBottomFooter {
+    margin-left: 30px;
+}
+
+.rightBottomFooter select{
+    font-size: 16px;
+    font-weight: 700;
+    width: 190px;
+    height: 35.2px;
+    padding: 7px 14px 5px 14px;
+    border-radius: 12px;
+    border: 2px #E0E0E0 solid;
+}
+
+.currency {
+    display: flex;
+    flex-direction: row;
+}
+
+.socialMedia {
+    width: 392px;
+    height: 48px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.socialMedia a {
+    margin: 13px;
+}

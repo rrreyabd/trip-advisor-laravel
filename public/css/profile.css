@@ -1,0 +1,318 @@
+@font-face {
+    font-family: TripSans;
+    src: url(../font/TripSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: TripSansBold;
+    src: url(../font/TripSans-Bold.ttf);
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: TripSans;
+}
+
+.bold {
+    font-family: TripSansBold;
+}
+
+.small {
+    font-size: small;
+}
+
+.green {
+    color: #00AA6C;
+}
+
+nav {
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+.BodyContainer {
+    background-color: #f2f2f2;
+}
+
+.ProfileContainer {
+    height: max-content;
+    padding: 0 0 20px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ProfileMainContainer {
+    height: fit-content;
+    width: 1232px;
+}
+
+.TopProfile {
+    height: 178px;
+    margin: 0 0 37px 0;
+    width: 1232px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.BottomProfile {
+    display: flex;
+    min-height: 800px;
+}
+
+.BottomLeftProfile {
+    margin: 0 30px 0 0;
+}
+
+.BottomLeftProfile * a:hover {
+    text-decoration: underline;
+}
+
+.TopBottomLeftProfile {
+    height: 162.4px;
+    width: 242px;
+    margin: 0 0 12px 0;
+    padding: 24px 24px 24px 24px;
+    background-color: white;
+}
+
+.BottomBottomLeftProfile {
+    height: 128px;
+    width: 242px;
+    padding: 24px 24px 12px 24px;
+    background-color: white;
+}
+
+.TopCarousel {
+    max-height: 67.6px;
+    height: 67.6px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+/* Top Profile */
+.TopProfileImage {
+    height: 126px;
+    width: 126px;
+    margin: 0 20px 0 20px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.TopProfileImage img {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
+.TopProfileDetail {
+    height: 126px;
+    width: 1050px;
+}
+
+.TopTopProfileDetail {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 46px;
+    width: auto;
+}
+
+.BottomTopProfileDetail {
+    margin-top: 20px;
+    width: 90px;
+}
+
+.EditProfile{
+    border: 1px solid #e0e0e0;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.EditProfile button {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Top Left Profile */
+.Location,
+.JoinDate,
+.WebUrl,
+.ProfileDescription, 
+.PostingFoto,
+.TulisUlasan {
+    display: flex;
+    font-size: medium;
+    margin-top: 20px;
+}
+
+.Location svg,
+.JoinDate svg,
+.WebUrl svg,
+.PostingFoto svg,
+.TulisUlasan svg {
+    height: 17px;
+    width: 17px;
+    margin-right: 5px;
+}
+
+.keluar {
+    margin: 15px 0;
+    width: 242px;
+    height: 100px;
+    padding: 24px 24px 12px 24px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.keluarLink a {
+    color: white;
+    border: 1px solid red;
+    background-color: red;
+    width: 100%;
+    padding: 5px;
+}
+
+.keluarLink {
+    margin-top: 10px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+/* Bottom Left Profile */
+
+/* carousel */
+.carousel {
+    width: 604px;
+    height: 604px;
+}
+
+.carousel-slide {
+    width: 604px;
+    height: 604px;
+}
+
+.carousel-image {
+    width: 604px;
+    height: 604px;
+    overflow: hidden;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+}
+
+.carousel-image img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.carousel-details {
+    width: 584px;
+    background-color: #fff;
+    min-height: 50px;
+    padding: 10px;
+}
+
+.carousel-details h3,
+.carousel-details p {
+    margin: 0;
+    padding: 0;
+}
+
+.carousel-details h3 {
+    font-size: 18px;
+}
+
+.carousel-details p {
+    font-size: 14px;
+}
+
+.TopCarouselImage {
+    height: 50px;
+    width: 50px;
+    margin: 0 10px 0 10px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.TopCarouselImage img {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
+.TopCarouselDetail {
+    line-height: 1.4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.LeftTopCarousel {
+    display: flex;
+}
+
+.DeleteCarousel {
+    margin-right: 10px;
+}
+
+
+/* MODAL */
+/* CSS untuk menampilkan modal secara khusus */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+    max-width: 600px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

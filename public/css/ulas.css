@@ -1,0 +1,150 @@
+@font-face {
+    font-family: TripSans;
+    src: url(../font/TripSans-Regular.ttf);
+ }
+
+@font-face {
+    font-family: TripSansBold;
+    src: url(../font/TripSans-Bold.ttf);
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: TripSans;
+}
+
+.bold {
+    font-family: TripSansBold;
+}
+
+.hero {
+    height: 100vh;
+    width: 100vw;
+    background-color: #faf1ed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 28px;
+    height: 100px;
+    width: 1136px;
+}
+
+.small {
+    font-size: 14px;
+}
+
+.desc {
+    font-size: 25px;
+    display: flex;
+    text-align: center;
+    height: 87px;
+    width: 670px;
+}
+
+.hero div {
+    margin: 10px 0 20px 0;
+}
+
+input {
+    height: 24px;
+    width: 694px;
+    padding: 12px 12px 12px 44px;
+    border-radius: 48px;
+    border: 1px solid #bbbbbb;
+    margin-bottom: 30px;
+}
+
+.fa-magnifying-glass {
+    font-size: 20px;
+}
+
+form {
+    position: relative;
+}
+
+.searchBtn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: -2px;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    width: 60px;
+    height: 56px;
+}
+
+input[type=text] {
+    color: #000;
+    font-size: 15px;
+}
+
+.img {
+    width: 600px;
+    margin: 40px 0 0 0;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.ulasanList {
+    height: 70vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+.ulasanContainer {
+    width: 80%;
+    margin: 30px 0 10px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.uA {
+    height: 50px;
+}
+
+.uB {
+    height: 50px;
+}
+
+.uC {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 0 0 30px 0;
+}
+
+.uCa {
+    display: flex;
+}
+
+.uCb {
+    line-height: 1.4;
+}
+
+.lok {
+    margin-left: 20px;
+    line-height: 1.4;
+}
+
+.uC a {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: 0;
+    right: 40px;
+    font-family: TripSansBold;
+    font-size: medium;
+    color: red;
+}

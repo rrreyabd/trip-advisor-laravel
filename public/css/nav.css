@@ -1,0 +1,128 @@
+@font-face {
+    font-family: TripSans;
+    src: url(../font/TripSans-Regular.ttf);
+ }
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: TripSans;
+}
+
+/* FONT START */
+.bold {
+    font-weight: 600;
+}
+
+.veryLarge {
+    font-size: 32px;
+}
+
+.large {
+    font-size: 23.5px;
+}
+
+.medium {
+    font-size: 16px;
+}
+
+.small {
+    font-size: 12px;
+}
+/* FONT END */
+
+.center {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.nav {
+    height: 60px;
+    width: 100%;
+    border-bottom: 1px solid rgb(186, 186, 186);
+}
+
+.nA {
+    height: 60px;
+    width: 1184px;
+    margin: 0 168px 0 168px;
+    padding: 0 24px 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nAa {
+    display: flex;
+}
+
+.nAa form {
+    position: relative;
+}
+
+.nAa form input {
+    padding: 2px 30px 2px 40px;
+    border-radius: 21px;
+    height: 40px;
+    width: 300.8px;
+    margin-left: 20px;
+    border: 1px solid #a5a2a2;
+}
+
+.nAa form input[type=text] {
+    font-size: large;
+}
+
+.nAa form button {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    position: absolute;
+    top: 17px;
+    left: 30px;
+}
+
+.nAb a{
+    margin-left: 20px;
+    color: black;
+    text-decoration: none;
+}
+
+/* Kategori */
+
+.kategori {
+    height: 42px;
+    width: 100%;
+    border-bottom: 1px solid rgb(186, 186, 186);
+}
+
+.kA {
+    height: 42px;
+    width: 1280px;
+    margin: 0 126px 0 126px;
+    padding: 0 24px 0 24px;
+    display: flex;
+    align-items: center;
+}
+
+.kAa {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+}
+
+.kAa li {
+    margin-right: 10px;
+}
+
+.kAa li a {
+    color: black;
+    text-decoration: none;
+}
+
+.kAa li a:visited {
+    font-weight: bold;
+    text-decoration: underline;
+}
