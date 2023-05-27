@@ -15,50 +15,51 @@
             <div class="uC">
 
                 <div class="uCa">
-                    <img src="./img/Tripadvisor_logoset_solid_green.svg" alt="" width="70px" height="70px">
+                    <img src="{{ asset ('img/' . $forum->user->profile_photo) }}" alt="" style="border-radius: 50%; border: 4px solid #00AA6C" width="70px" height="70px">
         
                     <div class="lok">
-                        <h3 class="green">Nama</h3>
-                        <p>Asal</p>
+                        <h2 class="bold green">{{$forum->user->firstName}} {{$forum->user->lastName}}</h2>
+                        <p>{{$forum->user->city}}, {{$forum->user->country}}</p>
                     </div>
-
-                    <!-- <button>
-                        Hapus ulasan
-                    </button> -->
                 </div>
 
                 <div class="uCb">
-                    <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, et. Laborum perspiciatis sed commodi pariatur veritatis voluptatem eius, placeat ex.</h2>
-                    <p>29 Maret 2023</p>
                     <br>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur odio nesciunt quidem rem, voluptatem tempora mollitia iure autem dolor hic, voluptatibus ullam consectetur nihil consequuntur adipisci possimus aliquid saepe culpa ad doloribus deleniti. Architecto porro voluptatem natus voluptate repellendus. Dolor assumenda recusandae tempore iste, ipsa corrupti quasi quo doloremque. Tempora cumque et, saepe in iure eaque dolores odit tempore modi veniam. Accusamus dolorem, impedit illo repellat corrupti, nesciunt rem tenetur autem explicabo nemo aperiam. Non, nisi sequi. Maxime, atque iste suscipit nisi incidunt voluptatem optio officia. Aperiam, ab nihil, repudiandae tempore recusandae optio inventore molestiae magnam debitis nesciunt labore dolores.</p>
+                    <h2 class="bold">{{$forum->title}}</h2>
+                    <p>{{\Carbon\Carbon::parse($forum->upload_date)->translatedFormat('d F Y')}}</p>
+                    <p>{{$forum->content}}</p>
                 </div>
 
             </div>
         </div>
-        @php $j = 20; @endphp
-        @for ($i = 1; $i <= $j; $i++)
+
+        <div class="uI">
             
+        </div>
+
+        @php  $i = 1 @endphp
+        @foreach ($replies as $reply)
         <div class="reply">
-            <h2>Balasan {{$i}} dari {{$j}}</h2>
+            <h2>Balasan #{{$i}}</h2>
             <br>
             <div class="uC">
                 <div class="uCa">
-                    <img src="./img/Tripadvisor_logoset_solid_green.svg" alt="" width="70px" height="70px">
+                    <img src="{{ asset ('img/' . $reply->user->profile_photo) }}" alt="" style="border-radius: 50%; border: 4px solid #00AA6C" width="70px" height="70px">
         
                     <div class="lok">
-                        <h3 class="green">Nama</h3>
-                        <p>Tanggal Balasan</p>
+                        <h3 class="bold green">{{$reply->user->firstName}} {{$reply->user->lastName}}</h3>
+                        <p class="bold">{{\Carbon\Carbon::parse($reply->upload_date)->translatedFormat('d F Y')}}</p>
                     </div>
                 </div>
 
                 <div class="uCb">
                     <br>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur odio nesciunt quidem rem, voluptatem tempora mollitia iure autem dolor hic, voluptatibus ullam consectetur nihil consequuntur adipisci possimus aliquid saepe culpa ad doloribus deleniti. Architecto porro voluptatem natus voluptate repellendus. Dolor assumenda recusandae tempore iste, ipsa corrupti quasi quo doloremque. Tempora cumque et, saepe in iure eaque dolores odit tempore modi veniam. Accusamus dolorem, impedit illo repellat corrupti, nesciunt rem tenetur autem explicabo nemo aperiam. Non, nisi sequi. Maxime, atque iste suscipit nisi incidunt voluptatem optio officia. Aperiam, ab nihil, repudiandae tempore recusandae optio inventore molestiae magnam debitis nesciunt labore dolores.</p>
+                    <p>{{$reply->content}}</p>
                 </div>
             </div>
         </div>
-        @endfor
+        @php  $i++ @endphp
+        @endforeach
 
     </section>
 </body>

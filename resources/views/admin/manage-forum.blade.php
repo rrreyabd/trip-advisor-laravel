@@ -36,40 +36,25 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Foto Profil</th>
-                                            <th>Nama Depan</th>
-                                            <th>Nama Belakang</th>
-                                            <th>Email</th>
-                                            <th>Username</th>
-                                            <th>Alamat</th>
-                                            <th>Negara</th>
-                                            <th>Website</th>
-                                            <th>About</th>
-                                            <th>Hapus</th>
+                                            <th>Judul</th>
+                                            <th>Konten</th>
+                                            <th>Balasan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($users as $user)               
+                                        @foreach ($forums as $forum)               
                                         <tr>
-                                            <td>{{$user->id}}</td>
-                                            <td><img src="{{asset('img/' . $user->profile_photo )}}" alt="" width="50px" height="50px"></td>
-                                            <td>{{$user->firstName}}</td>
-                                            <td>{{$user->lastName}}</td>
-                                            <td>{{$user->email}}</td>
-                                            <td>{{$user->username}}</td>
-                                            <td>{{$user->address}}</td>
-                                            <td>{{$user->country}}</td>
-                                            <td>{{$user->website}}</td>
-                                            <td>{{$user->about}}</td>
-                                            <td>
-                                                <form action="{{route('user-delete', $user->id)}}" method="POST">
+                                            <td>{{$forum->id}}</td>
+                                            <td>{{$forum->title}}</td>
+                                            <td>{{$forum->content}}</td>
+                                            <td> <a href="{{route('manage-forum-reply', ['id' => $forum->id])}}" class="text-green">Lihat</a> </td>
+                                                {{-- <form action="{{route('forum-delete', $forum->id)}}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger" onclick="return confirm('Konfirmasi penghapusan')">
                                                         Hapus
                                                     </button>
-                                                </form>
-                                            </td>
+                                                </form> --}}
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -81,6 +66,8 @@
                 @include('admin.footer')
             </div>
         </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="{{ asset('js/scripts.js')}}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>

@@ -22,8 +22,12 @@
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="p-4 boldfont">Daftar Destinasi</h1>
+                        <a href="#" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#editDestinasiModal">Tambah Destinasi</a>
                         @if(session('success'))
-                            <div class="alert alert-success">
+                            <div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                                 {{ session('success') }}
                             </div>
                         @endif
@@ -67,6 +71,130 @@
                 @include('admin.footer')
             </div>
         </div>
+
+
+                <!-- Modal Tambah Destinasi -->
+                <div class="modal fade" id="editDestinasiModal" tabindex="-1" aria-labelledby="editDestinasiModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editDestinasiModalLabel">Tambah Destinasi</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            
+                            <!-- Isi form tambah destinasi di sini -->
+                            <form action="{{route('destination-add')}}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="rating_id">
+                                <div class="mb-3">
+                                    <label for="destination_name" class="form-label">Nama Destinasi</label>
+                                    <input type="text" class="form-control @error('destination_name') is-invalid @enderror" id="destination_name" 
+                                        name="destination_name" value="{{old('destination_name')}}">
+                                    @error('destination_name')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
+                                </div>
+            
+                                <div class="mb-3">
+                                    <label for="destination_type" class="form-label">Tipe Destinasi (restoran, wisata, hotel)</label>
+                                    <input type="text" class="form-control @error('destination_type') is-invalid @enderror" id="destination_type" 
+                                        name="destination_type" value="{{old('destination_type')}}">
+                                    @error('destination_type')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
+                                </div>
+            
+                                <div class="mb-3">
+                                    <label for="category" class="form-label">Kategori</label>
+                                    <input type="text" class="form-control @error('category') is-invalid @enderror" id="category" 
+                                        name="category" value="{{old('category')}}">
+                                    @error('category')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
+                                </div>
+            
+                                <div class="mb-3">
+                                    <label for="address" class="form-label">Alamat</label>
+                                    <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" 
+                                        name="address" value="{{old('address')}}">
+                                    @error('address')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
+                                </div>
+            
+                                <div class="mb-3">
+                                    <label for="city" class="form-label">Kota</label>
+                                    <input type="text" class="form-control @error('city') is-invalid @enderror" id="city" 
+                                        name="city" value="{{old('city')}}">
+                                    @error('city')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
+                                </div>
+            
+                                <div class="mb-3">
+                                    <label for="country" class="form-label">Negara</label>
+                                    <input type="text" class="form-control @error('country') is-invalid @enderror" id="country" 
+                                        name="country" value="{{old('country')}}">
+                                    @error('country')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
+                                </div>
+            
+                                <div class="mb-3">
+                                    <label for="website" class="form-label">Website</label>
+                                    <input type="text" class="form-control @error('website') is-invalid @enderror" id="website" 
+                                        name="website" value="{{old('website')}}">
+                                    @error('website')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
+                                </div>
+            
+                                <div class="mb-3">
+                                    <label for="contact" class="form-label">Kontak</label>
+                                    <input type="text" class="form-control @error('contact') is-invalid @enderror" id="contact" 
+                                        name="contact" value="{{old('contact')}}">
+                                    @error('contact')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
+                                </div>
+            
+                                <div class="mb-3">
+                                    <label for="map" class="form-label">Map</label>
+                                    <input type="text" class="form-control @error('map') is-invalid @enderror" id="map" 
+                                        name="map" value="{{old('map')}}">
+                                    @error('map')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
+                                </div>
+            
+                                <div class="mb-3">
+                                    <label for="photo" class="form-label">Foto</label>
+                                    <input type="file" class="form-control @error('photo') is-invalid @enderror" id="photo" 
+                                        name="photo" value="{{old('photo')}}">
+                                    @error('photo')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
+                                </div>
+            
+            
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Tutup</button>
+                                    <button type="submit" class="btn btn-success">Simpan</button>
+                                </div>
+                            </form>
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                    </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="{{ asset('js/scripts.js')}}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>

@@ -8,7 +8,7 @@
         <meta name="author" content="" />
         <title>Admin Dashboard</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href="./css/styles.css" rel="stylesheet" />
+        <link href="{{asset('./css/styles.css')}}" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/e87c4faa10.js" crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/1fc4ea1c6a.js" crossorigin="anonymous"></script>
@@ -48,6 +48,21 @@
                               <i class="fa-solid fa-location-dot container-icon"></i>
                               <h1 class="boldfont">{{$count_tours}}</h1>
                               <p class="boldfont">Total Objek Wisata</p>
+                            </div>
+                            <div class="count">
+                              <i class="fa-solid fa-comments container-icon"></i>
+                              <h1 class="boldfont">{{$count_forums}}</h1>
+                              <p class="boldfont">Total Forum</p>
+                            </div>
+                            <div class="count">
+                              <i class="fa-solid fa-handshake container-icon"></i>
+                              <h1 class="boldfont">{{$count_admins}}</h1>
+                              <p class="boldfont">Total Admin</p>
+                            </div>
+                            <div class="count">
+                              <i class="fa-solid fa-handshake container-icon"></i>
+                              <h1 class="boldfont">{{$count_partners}}</h1>
+                              <p class="boldfont">Total Mitra</p>
                             </div>
                           </div>
                     </div>

@@ -13,4 +13,9 @@ class Trip_plan extends Model
     {
         return $this->hasMany(TripDetail::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

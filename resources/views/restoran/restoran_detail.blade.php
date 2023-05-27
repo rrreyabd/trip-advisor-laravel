@@ -198,7 +198,9 @@
 
                 <div class="detailContainer">
                     <h2>Lokasi</h2>
-                    <iframe src="{{ $restaurant->map }}" width="344" height="280" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                    
+                    <div class="map">
+                        {!!$restaurant->map!!}           
+                    </div>
                     
                     <div class="link">
                         <a href="">

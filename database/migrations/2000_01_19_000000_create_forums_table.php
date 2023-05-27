@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('forums', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('restrict');
+            $table->string('title');
             $table->longText('content');
             $table->dateTime('upload_date');
         });

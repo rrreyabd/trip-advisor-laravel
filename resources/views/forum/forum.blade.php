@@ -24,8 +24,9 @@
             </div>
 
             <div class="topRight">
-                <form action="{{route('forum_search')}}">
-                    <input type="text" placeholder="Wisata terbaik di kota Medan?">
+                <form action="{{route('forum_search')}}" method="GET">
+                    @csrf
+                    <input type="text" name="query" placeholder="Wisata terbaik di kota Medan?">
                     <button type="submit">Cari Forum</button>
                     <i class="fa-solid fa-magnifying-glass"></i>    
                 </form>

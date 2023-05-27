@@ -20,6 +20,11 @@ class Destination extends Model
         return $this->hasOne(Restaurant_type::class);
     }
 
+    public function restaurant_feature(){
+        return $this->hasOne(Restaurant_feature::class);
+    }
+
+
     public function hotel_feature()
     {
         return $this->hasMany(Hotel_feature::class, 'destination_id');

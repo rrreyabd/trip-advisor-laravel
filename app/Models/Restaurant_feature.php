@@ -13,7 +13,14 @@ class Restaurant_feature extends Model
         return $this->belongsTo(Restaurant::class);
     }
 
-    public function feature(){
-        return $this->belongsTo(Feature::class);
+    public function destination()
+    {
+        return $this->belongsTo(Destination::class, 'id', 'destination_id');
     }
+    public function feature()
+    {
+        return $this->belongsTo(Feature::class, 'id', 'feature_id');
+    }
+
+
 }

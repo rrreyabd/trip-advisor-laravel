@@ -8091,6 +8091,10 @@ textarea.form-control-lg {
   color: var(--bs-greentripadvisor);
 }
 
+.text-red {
+  color: red;
+}
+
 .text-dark {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
@@ -11382,3 +11386,92 @@ td {
 .action {
   display: flex;
 }
+
+.alert {
+  position: relative;
+  background-color: #d4edda;
+  color: #155724;
+  border-color: #c3e6cb;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+.alert-dismissible .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.75rem 1.25rem;
+  color: #155724;
+  background-color: transparent;
+  border: 0;
+  opacity: 0.8;
+}
+
+.alert-dismissible .close:hover {
+  opacity: 1;
+}
+
+/* reply forum */
+
+.uC {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.uCa {
+  display: flex;
+}
+
+.uCb {
+  line-height: 1.4;
+}
+
+.lok {
+  margin-left: 20px;
+  line-height: .5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.uC button {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-family: TripSansBold;
+  font-size: medium;
+  color: red;
+}
+
+.post {
+  width: 923px;
+  height: max-content;
+  margin: 0 0 10px 0;
+  /* border: 1px solid #000; */
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.reply {
+  width: 923px;
+  background-color: aquamarine;
+  height: max-content;
+  /* border: 1px solid #000; */
+  margin: 0 0 10px 0;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.green {
+  color: #00AA6C;
+}
+

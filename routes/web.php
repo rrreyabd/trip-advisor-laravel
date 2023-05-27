@@ -28,13 +28,13 @@ use App\Http\Controllers\PhotoController;
 //     return view('index');
 // });
 
-// Route::get('/', function () {
-//     return view('index');
-// })->name('index');
-
 Route::get('/', function () {
     return view('index');
-})->middleware(['auth', 'verified'])->name('index');
+})->name('index');
+
+// Route::get('/', function () {
+//     return view('index');
+// })->middleware(['auth', 'verified'])->name('index');
 
 Route::middleware('auth')->group(function () {
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -62,7 +62,7 @@ Route::get('/destinasi_detail/{id}', [WisataController::class, 'destinasi_detail
 // Forum
 Route::get('/forum', [ForumController::class, 'forum'])->name('forum');
 Route::get('/forum-search', [ForumController::class, 'show_forum'])->name('forum_search');
-Route::get('/forum-detail', [ForumController::class, 'forum_detail'])->name('forum_detail');
+Route::get('/forum-detail/{id}', [ForumController::class, 'forum_detail'])->name('forum_detail');
 
 // Trip
 Route::get('/trip/{id}', [TripController::class, 'show_trip_plans'])->middleware(['auth', 'verified'])->name('trip');
@@ -85,6 +85,23 @@ Route::get('/admin', [AdminController::class, 'count_all'])->name('admin');
 Route::get('/admin/manage-user', [AdminController::class, 'show_all_users'])->name('manage-user');
 Route::get('/admin/manage-destination', [AdminController::class, 'show_all_destinations'])->name('manage-destination');
 Route::get('/admin/manage-destination/{id}/detail', [AdminController::class, 'show_detail_destination'])->name('manage-destination-detail');
+Route::get('/admin/manage-forum', [AdminController::class, 'show_all_forums'])->name('manage-forum');
+Route::get('/admin/manage-forum/{id}/reply', [AdminController::class, 'show_all_replies'])->name('manage-forum-reply');
+Route::get('/admin/manage-partner', [AdminController::class, 'show_all_partners'])->name('manage-partner');
+Route::get('/admin/edit-partner/{id}', [AdminController::class, 'update_partner'])->name('edit-partner');
 
-// delete
+// Delete
 Route::delete('/admin/manage-postingan/{id}/delete', [AdminController::class, 'delete_destination'])->name('destination-delete');
+Route::delete('/admin/manage-user/{id}/delete', [AdminController::class, 'delete_user'])->name('user-delete');
+Route::delete('/admin/manage-forum/{id}/delete', [AdminController::class, 'delete_forum'])->name('forum-delete');
+Route::delete('/admin/manage-reply/{id}/delete', [AdminController::class, 'delete_reply'])->name('reply-delete');
+Route::delete('/admin/manage-partner/{id}/delete', [AdminController::class, 'delete_partner'])->name('partner-delete');
+Route::delete('/admin/feature/{id}/delete', [AdminController::class, 'delete_feature'])->name('feature-delete');
+
+// Update
+Route::put('/admin/destination/{id}/edit', [AdminController::class, 'edit_destination'])->name('destination-edit');
+Route::put('/admin/partner/{id}/edit', [AdminController::class, 'edit_partner'])->name('partner-edit');
+
+// Create
+Route::post('/admin/destination/add', [AdminController::class, 'add_destination'])->name('destination-add');
+Route::post('/admin/partner/add', [AdminController::class, 'add_partner'])->name('partner-add');

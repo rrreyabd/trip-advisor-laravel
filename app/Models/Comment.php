@@ -17,6 +17,7 @@ class Comment extends Model
     public function user(){
         return $this->belongsTo(User::class); //many to one
     }
+    
     public function rating(){
         return $this->belongsTo(Rating::class);//many to one
     }

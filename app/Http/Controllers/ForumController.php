@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Forum;
+use App\Models\Reply;
 
 class ForumController extends Controller
 {
@@ -16,16 +17,33 @@ class ForumController extends Controller
     // {
     //     return view('forum.forum_search');
     // }
-    public function forum_detail()
-    {
-        return view('forum.forum_detail');
-    }
 
-    public function show_forum()
+    public function show_forum(Request $request)
     {
-        $forums = Forum::all();
+        $query = $request->input('query');
+        $forums = Forum::where('title', 'LIKE', '%' . $query . '%')->get();
+        $replies = Reply::all();
+
         return view('forum.forum_search', [
-            'forums' => $forums
+            'forums'    => $forums,
+            'replies'   => $replies,
+            'query'   => $query
+            
         ]);
     }
+
+    
+    public function forum_detail($id)
+    {
+        $forum = Forum::find($id);
+        $replies = Reply::where('forum_id', $id)->get();
+
+
+        return view('forum.forum_detail', [
+            'forum'    => $forum,
+            'replies'   => $replies
+            
+        ]);
+    }
+
 }

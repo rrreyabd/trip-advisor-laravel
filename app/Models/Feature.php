@@ -12,4 +12,8 @@ class Feature extends Model
     public function destination(){
         return $this->belongsTo('Destination');
     }
+
+    public function restaurant_feature(){
+        return $this->hasOne(Restaurant_feature::class);
+    }
 }

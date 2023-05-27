@@ -70,7 +70,7 @@
                         </div>
                     </a>
 
-                    <a class="boldfont nav-link" href="#">
+                    <a class="boldfont nav-link" href="{{route('manage-forum')}}">
                         <div class="sb-nav-link-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-messages" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -83,7 +83,7 @@
                         </div>
                     </a>
 
-                    <a class="boldfont nav-link" href="#">
+                    <a class="boldfont nav-link" href="{{route('manage-partner')}}">
                         <div class="sb-nav-link-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-report-money" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -99,7 +99,18 @@
                     </a>
                 </nav>
             </div>
-
+            <a class="nav-link" href="{{route('index')}}">
+                <div class="sb-nav-link-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-back-up" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M9 14l-4 -4l4 -4"></path>
+                        <path d="M5 10h11a4 4 0 1 1 0 8h-1"></path>
+                     </svg>
+                </div>
+                <div class="boldfont">
+                    Back
+                </div>
+            </a>
         </div>
     </div>
 </nav>

@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Forum extends Model
 {
     use HasFactory;
+
+    public function reply()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
+    // Relasi One-to-Many dengan model User
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

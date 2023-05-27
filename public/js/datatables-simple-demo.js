@@ -4,6 +4,8 @@ window.addEventListener('DOMContentLoaded', event => {
 
     const datatablesSimple = document.getElementById('datatablesSimple');
     if (datatablesSimple) {
+        scrollX: true,
         new simpleDatatables.DataTable(datatablesSimple);
     }
+
 });

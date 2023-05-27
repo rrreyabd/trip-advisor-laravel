@@ -15,15 +15,16 @@
 <body>
     <section>
         <div class="searchTitle">
-            <h1>Forum Perjalanan Medan</h1>
+            <h1>Forum Perjalanan</h1>
             <br>
             <hr>
             <br>
         </div>
 
         <div class="searchContainer">
-            <form action="">
-                <input type="text" placeholder="Cari Forum">
+            <form action="{{route('forum_search')}}" method="GET">
+                @csrf
+                <input autocomplete="off" type="text" name="query" placeholder="Cari Forum">
                 <button type="submit">Search</button>
             </form>
         </div>
@@ -33,7 +34,7 @@
 
         <div class="searchList">
             <div class="listHeader">
-                <h1 class="green">Pembahasan teratas tentang Medan</h1>
+                <h1 class="green">Pembahasan teratas dari {{$query}}</h1>
 
                 <a href="">
                     Tanya sesuatu
@@ -48,16 +49,21 @@
                         <th class="lastDate">Tanggal Forum</th>
                     </tr>
 
-                    @foreach ($forums as $forum)
-                                         
-                    <tr>
-                        <td> <a href="{{ asset('forum_detail/' . $forum->id) }}" class="green">{{Str::limit($forum->title, 70)}}</a> </td>
-                        <td class="answer">1</td>
-                        <td class="green lastDate">{{\Carbon\Carbon::parse($forum->upload_date)->format('d F Y')}}</td>
-                    </tr>
+                    @if ($forums)
+                        @foreach ($forums as $forum)
+                        <tr>
+                            <td> <a href="{{ route('forum_detail', ['id' => $forum->id]) }}" class="green">{{Str::limit($forum->title, 70)}}</a> </td>          
 
-                    @endforeach
-
+                            @php 
+                            $reply_count = $replies->where('forum_id', $forum->id)->count(); 
+                            @endphp
+                            <td class="answer">{{$reply_count}}</td>
+                            <td class="green lastDate">{{\Carbon\Carbon::parse($forum->upload_date)->format('d F Y')}}</td>
+                        </tr>
+                        @endforeach
+                    @else
+                        <p>Sayang sekali, tidak ditemukan Forum apapun yang membahas {{$query}}.</p>
+                    @endif
                 </table>
             </div>
         </div>
