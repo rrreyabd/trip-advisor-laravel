@@ -90,6 +90,121 @@ section {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
+.addReply {
+    width: 923px;
+    background-color: aquamarine;
+    height: max-content;
+    margin: 0 0 10px 0;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: flex-start;
+}
+
+.userProfile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.userProfile img {
+    border-radius: 50%;
+    border: 2px solid #00AA6C;
+    margin-right: 10px;
+}
+
+textarea {
+    padding: 10px;
+}
+
+textarea::placeholder {
+    color: #000;
+
+}
+
+.btnReply {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+
+.btnReply button{
+    font-size: medium;
+    width: 80px;
+    cursor: pointer;
+    height: 30px;
+    font-weight: bold;
+    color: white;
+    border-radius: 20px;
+    background-color: #00AA6C;
+    padding: 3px 10px 3px 10px;
+}
+
 .green {
     color: #00AA6C;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.alert-dismissible {
+    position: relative;
+    padding-right: 35px;
+    margin-bottom: 0;
+}
+
+.close {
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.2;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.floatingBack {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 5px;
+    scale: 150%;
+    margin: 0 30px 30px 0;
+    border-radius: 50%;
+    background-color: #00AA6C;
+    transition: .2s ease;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.floatingBack:hover {
+    background-color: #029f65;
+}
+
+.floatingBack a {
+    color: white;
 }

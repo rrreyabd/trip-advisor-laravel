@@ -14,7 +14,7 @@
     
     <div class="tsection">
         <div class="theader">
-            <h1 class="bold">Trip</h1>
+            <h1 class="bold">Favorite</h1>
         </div>
 
         <div class="tbody">
@@ -25,38 +25,30 @@
                 <a href="{{ route('favorite', ['id' => Auth::user()->id ]) }}">Simpanan Saya</a>
             </div>
             <div class="tbodyTrip">
-                <button id="openModalBtn">
-                    <div class="tbodyAdd">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-rounded-plus-filled" width="17" height="17" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M12 2l.324 .001l.318 .004l.616 .017l.299 .013l.579 .034l.553 .046c4.785 .464 6.732 2.411 7.196 7.196l.046 .553l.034 .579c.005 .098 .01 .198 .013 .299l.017 .616l.005 .642l-.005 .642l-.017 .616l-.013 .299l-.034 .579l-.046 .553c-.464 4.785 -2.411 6.732 -7.196 7.196l-.553 .046l-.579 .034c-.098 .005 -.198 .01 -.299 .013l-.616 .017l-.642 .005l-.642 -.005l-.616 -.017l-.299 -.013l-.579 -.034l-.553 -.046c-4.785 -.464 -6.732 -2.411 -7.196 -7.196l-.046 -.553l-.034 -.579a28.058 28.058 0 0 1 -.013 -.299l-.017 -.616c-.003 -.21 -.005 -.424 -.005 -.642l.001 -.324l.004 -.318l.017 -.616l.013 -.299l.034 -.579l.046 -.553c.464 -4.785 2.411 -6.732 7.196 -7.196l.553 -.046l.579 -.034c.098 -.005 .198 -.01 .299 -.013l.616 -.017c.21 -.003 .424 -.005 .642 -.005zm0 6a1 1 0 0 0 -1 1v2h-2l-.117 .007a1 1 0 0 0 .117 1.993h2v2l.007 .117a1 1 0 0 0 1.993 -.117v-2h2l.117 -.007a1 1 0 0 0 -.117 -1.993h-2v-2l-.007 -.117a1 1 0 0 0 -.993 -.883z" fill="currentColor" stroke-width="0"></path>
-                        </svg>&nbsp;
-                        <b>Buat Perjalanan</b>
-                    </div>
-                </button>
-
-
-                @foreach($plans as $plan)
-                    
-                <a href="{{ route('detail_trip', ['id'=> '1']) }}">
-                    <div class="tbodyBorder">
-                        <div class="tbodyBorderImg">
-                            <img src="{{ asset ('https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/4d/47/82/jeju-island.jpg?w=1200&h=-1&s=1') }}" alt="">
-                        </div>
-                        
-                        <div class="tbodyBorderDetail">
-                            <br>
-                            <h3 class="bold"></h3>
-                            <p>oleh <span class="bold">{{ $plan->user->username }}</spon> </p>
-
-                            <p><span class="bold">{{ $plan->trip_name }}</span> </p>
-                            <p style="color:gray; margin-top:5px;">{{ $plan->trip_type }}</p>
-                        </div>
-
-                        <img src="{{ asset('img/' . $plan->user->profile_photo) }}" class="profilePhoto" alt="">
-                    </div>    
-                </a>
-
+         
+                @foreach($favorites as $favorite)
+                    @if($favorite->destination->destination_type == "restoran")
+                        <a href="{{ route('restoran_detail', ['id'=> $favorite->destination->id]) }}">
+                    @elseif($favorite->destination->destination_type == "hotel")
+                        <a href="{{ route('hotel_detail', ['id'=> $favorite->destination->id]) }}">
+                    @elseif($favorite->destination->destination_type == "wisata")
+                        <a href="{{ route('destinasi_detail', ['id'=> $favorite->destination->id]) }}">
+                    @endif
+                        <div class="tbodyBorder">
+                            <div class="tbodyBorderImg">
+                                <img src="{{ asset ('img/destinasi/' . $favorite->destination->photo) }}" 
+                                style="object-fit: cover; width:100%"
+                                alt="">
+                            </div>
+                            
+                            <div class="tbodyBorderDetail">
+                                <br>
+                                <h3 class="bold">{{ $favorite->destination->destination_name }}</h3>
+                                <p><span class="bold"></span></p>
+                                <p style="color:gray; margin-top:5px;">{{ $favorite->destination->category }}</p>
+                            </div>
+                        </div>    
+                    </a>
                 @endforeach
             </div>
         </div>
@@ -64,7 +56,6 @@
 
 
     @include('layout.footer')
-
     <div id="myModal" class="modal">
         <div class="modal-content">
             <div class="modal-top">

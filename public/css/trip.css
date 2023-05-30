@@ -245,7 +245,13 @@ input[type="text"] {
     padding: 8px;
     margin-bottom: 16px;
 }
-
+/* PERUBAHAN 24 MEI 2023 */
+input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+}
+/* PERUBAHAN END */
 .radio-group {
     margin-top: 16px;
     font-family: TripSansBold;

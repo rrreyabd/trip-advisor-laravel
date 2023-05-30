@@ -63,11 +63,14 @@ Route::get('/destinasi_detail/{id}', [WisataController::class, 'destinasi_detail
 Route::get('/forum', [ForumController::class, 'forum'])->name('forum');
 Route::get('/forum-search', [ForumController::class, 'show_forum'])->name('forum_search');
 Route::get('/forum-detail/{id}', [ForumController::class, 'forum_detail'])->name('forum_detail');
+Route::post('/reply/add', [ForumController::class, 'add_reply'])->name('add_reply');
+Route::get('/tanya-forum', [ForumController::class, 'tanya_forum'])->name('tanya_forum');
 
 // Trip
-Route::get('/trip/{id}', [TripController::class, 'show_trip_plans'])->middleware(['auth', 'verified'])->name('trip');
-// Route::get('/trip/{id}', [TripController::class, 'trip'])->name('trip');
-Route::get('/detail-trip', [TripController::class, 'detail_trip'])->name('detail_trip');
+Route::get('/trip/{id}', [TripController::class, 'trip'])->name('trip');
+Route::get('/detail_trip/{id}', [TripController::class, 'detail_trip'])->name('detail_trip');
+Route::get('/favorite/{id}', [TripController::class, 'favorite'])->name('favorite');
+Route::post('/favorite/{destinationId}', [TripController::class, 'toggleFavorite'])->name('addFav');
 
 // Layout
 // Route::get('/navbar', [UserController::class, 'navbar'])->name('navbar');
@@ -75,10 +78,12 @@ Route::get('/detail-trip', [TripController::class, 'detail_trip'])->name('detail
 // Ulasan
 Route::get('/ulasan/{id}', [UlasanController::class, 'ulasan'])->name('ulasan');
 Route::get('/tulis-ulasan', [UlasanController::class, 'tulis_ulasan'])->name('tulis_ulasan');
+Route::get('/images', [UlasanController::class, 'images'])->name('images');
 
 // Profile
 Route::get('/profile-detail/{id}', [PhotoController::class, 'show_photo'])->name('profile_detail');
 Route::get('/ulas/{id}', [UlasanController::class, 'show_ulasan'])->name('ulas');
+Route::put('/profile/{id}/edit', [ProfileController::class, 'edit_bio'])->name('edit_bio');
 
 //////////////// ADMIN //////////////////
 Route::get('/admin', [AdminController::class, 'count_all'])->name('admin');
@@ -97,6 +102,8 @@ Route::delete('/admin/manage-forum/{id}/delete', [AdminController::class, 'delet
 Route::delete('/admin/manage-reply/{id}/delete', [AdminController::class, 'delete_reply'])->name('reply-delete');
 Route::delete('/admin/manage-partner/{id}/delete', [AdminController::class, 'delete_partner'])->name('partner-delete');
 Route::delete('/admin/feature/{id}/delete', [AdminController::class, 'delete_feature'])->name('feature-delete');
+Route::delete('/ulasan/{id}/delete', [UlasanController::class, 'delete_ulasan'])->name('ulasan-delete');
+Route::delete('/photo/{id}/delete', [PhotoController::class, 'delete_photo'])->name('photo-delete');
 
 // Update
 Route::put('/admin/destination/{id}/edit', [AdminController::class, 'edit_destination'])->name('destination-edit');
@@ -105,3 +112,4 @@ Route::put('/admin/partner/{id}/edit', [AdminController::class, 'edit_partner'])
 // Create
 Route::post('/admin/destination/add', [AdminController::class, 'add_destination'])->name('destination-add');
 Route::post('/admin/partner/add', [AdminController::class, 'add_partner'])->name('partner-add');
+Route::post('/forum/add', [ForumController::class, 'add_forum'])->name('forum-add');

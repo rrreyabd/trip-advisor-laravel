@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -70,4 +71,51 @@ class ProfileController extends Controller
     public function profile_detail() {
         return view('profile.profile');
     }
+
+    public function edit_bio(Request $request, $id)
+    {
+        $users = User::find($id);
+
+        $validated = $request->validate([
+            'firstName'             => 'required|max:20',
+            'lastName'              => 'required|max:20',
+            'username'              => 'nullable|min:1|max:20',
+            'address'               => 'nullable|max:255',
+            'post_code'             => 'nullable|min:5|max:20',
+            'city'                  => 'nullable|max:255',
+            'province'              => 'nullable|max:255',
+            'country'               => 'nullable|max:255',
+            'website'               => 'nullable|max:255',
+            'about'                 => 'nullable',
+            'photo'                 => 'nullable|image|mimes:jpg,jpeg,png|max:10240',
+            // 'created_at'        => 'required'
+        ]);
+        
+        $users->firstName               = $request->firstName;
+        $users->lastName                = $request->lastName;
+        $users->username                = $request->username;
+        $users->address                 = $request->address;
+        $users->post_code               = $request->post_code;
+        $users->city                    = $request->city;
+        $users->province                = $request->province;
+        $users->country                 = $request->country;
+        $users->website                 = $request->website;
+        $users->about                   = $request->about;
+        // $users->created_at            = $request->created_at;
+
+        if ($request->hasFile('photo')) {
+            // define image location in local path
+            $location = public_path('/img/profile_photo');
+
+            // ambil file img dan simpan ke local server
+            $request->file('photo')->move($location, $request->file('photo')->getClientOriginalName());
+
+            // simpan nama file di database
+            $users->profile_photo = $request->file('photo')->getClientOriginalName();
+        }
+
+        $users->save();
+        return redirect()->route('profile_detail', ['id' => $users->id])->with('success', 'Bio berhasil diperbaharui');
+    }
+
 }

@@ -1,0 +1,40 @@
+@font-face {
+    font-family: TripSans;
+    src: url(../font/TripSans-Regular.ttf);
+ }
+
+ @font-face {
+    font-family: TripSansBold;
+    src: url(../font/TripSans-Bold.ttf);
+ }
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: TripSans;
+}
+
+.bold {
+    font-family: TripSansBold;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+section {
+    width: 90%;
+    height: 90%;
+}
+
+h1 {
+    font-size: 60px;
+}

@@ -22,17 +22,10 @@
             <p>Cerita seperti milik Anda akan membantu wisatawan menikmati trip yang lebih baik. Bagikan pengalaman Anda dan bantu sesama wisatawan!</p>
         </div>
 
-        <form action="">
-            <input type="text" placeholder="Apa yang ingin anda ulas?">
-            <button type="submit" class="searchBtn">
-                <i class="fa-solid fa-magnifying-glass"></i>    
-            </button>
-        </form>
-
         <div class="img">
-            <img src="./img/ulas/hero_image_1.png" alt="">
-            <img src="./img/ulas/hero_image_2.png" alt="">
-            <img src="./img/ulas/hero_image_3.png" alt="">
+            <img src="{{ asset ('./img/ulas/hero_image_1.png')}}" alt="">
+            <img src="{{ asset ('./img/ulas/hero_image_2.png')}}" alt="">
+            <img src="{{ asset ('./img/ulas/hero_image_3.png')}}" alt="">
         </div>
     </section>
 
@@ -41,10 +34,12 @@
             <div class="uA">
                 <h1>Ulasan Anda</h1>
             </div>
-            @if (empty($ulasans))
+            @if ($ulasans->isEmpty())
+
             <div class="uB">
                 <p>Anda belum memiliki ulasan. Setelah Anda menulis beberapa, ulasan tersebut akan ditampilkan di sini.</p>
             </div>
+        
             @else
 
             @foreach ($ulasans as $ulasan)
@@ -52,27 +47,32 @@
             <div class="uC">
                 <div class="uCa">
 
-                    <img src="./img/Tripadvisor_logoset_solid_green.svg" alt="" width="70px" height="70px">
+                    <img src="{{asset('img/destinasi/' . $ulasan->destination->photo )}}" alt="" width="80px" style="" height="80px">
                     
                     <div class="lok">
                         {{-- <h3>{{$ulasan->destination_id->destination_name}}</h3> --}}
-                        <p>{{$ulasan->destination->destination_name}}</p>
+                        <p class="bold large">{{$ulasan->destination->destination_name}}</p>
+                        <p>{{$ulasan->destination->city}}, {{$ulasan->destination->country}}</p>
                     </div>
                     
-                    <a href="">
-                        Hapus ulasan
-                    </a>
+                    <form action="{{ route('ulasan-delete', ['id' => $ulasan->id]) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Hapus ulasan</button>
+                    </form>
+                    
                 </div>
 
                 <div class="uCb">
-                    <h3>Rating : {{$ulasan->destination->rating_id}}/5</h3>
+                    <h3>Rating : {{$ulasan->rating_id}}/5</h3>
                     <h4>{{$ulasan->title}}</h4>
                     <p>{{\Carbon\Carbon::parse($ulasan->upload_date)->translatedFormat('d F Y')}}</p>
                     <p>{{$ulasan->content}}</p>
-                    <img src="./img/Tripadvisor_logoset_solid_green.svg" width="100px" height="100px" alt="">
+                    @if ($ulasan->comment_photo)
+                    <img src="{{asset('img/foto_ulas/' . $ulasan->comment_photo->comment_photo )}}" width="100px" height="100px" alt="">
+                    @endif
                 
-                    <br><br>
-
+        
                     <p class="small">Ditulis pada {{\Carbon\Carbon::parse($ulasan->upload_date)->translatedFormat('d F Y')}}</p>
                     <p class="small">Ulasan ini adalah opini subjektif dari anggota Tripadvisor, bukan dari Tripadvisor LLC. Tripadvisor melakukan pemeriksaan terhadap ulasan.</p>
                 </div>
@@ -80,6 +80,7 @@
             @endforeach
 
             @endif
+
         </div>
     </section>
 </body>

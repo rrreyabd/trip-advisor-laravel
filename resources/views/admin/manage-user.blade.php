@@ -62,6 +62,7 @@
                                             <td>{{$user->website}}</td>
                                             <td>{{$user->about}}</td>
                                             <td>
+                                                
                                                 <form action="{{route('user-delete', $user->id)}}" method="POST">
                                                     @csrf
                                                     @method('DELETE')

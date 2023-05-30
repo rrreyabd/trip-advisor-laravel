@@ -96,6 +96,19 @@
       </div>
   </div>
     {{-- KATEGORI END --}}
+    <div class="container">
+    @if(session('update_favorite'))
+    <div class="alert alert-warning alert-dismissible fade show w-100" style="margin-top:10px;margin-bottom:0px;" role="alert">
+        <strong>Berhasil Ditambahkan ke Favorit!</strong>
+        <button type="button" class="bi bi-x-circle btn alert-close" style="font-size:30px; margin-bottom:20px;" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    @elseif(session('delete_favorite'))
+    <div class="alert alert-warning alert-dismissible fade show w-100" style="margin-top:10px;margin-bottom:0px;" role="alert">
+        <strong>Berhasil Dihapus dari Favorit!</strong>
+        <button type="button" class="bi bi-x-circle btn alert-close" style="font-size:30px; margin-bottom:20px;" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    @endif
+    </div>
 
     <!-- HEADER START -->
     <section class="headerSection">
@@ -115,7 +128,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                               <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"></path>
-                              <path d="M13.5 6.5l4 4"></path>
+                              <path d="M13.5 6.5l4 4"></paheartth>
                           </svg>
                           <span class="bold d-flex align-items-center">Ulas </span> 
                         </a>
@@ -123,14 +136,20 @@
 
                   <div class="d-inline-flex ms-2 me-2 fs-3 adj-link"> |</div>
                     
+
                   <div class="trip center mt-2">
-                      <a href="" class="rounded-pill d-inline-flex"  style="color:black; text-decoration:none">
+                    <form action="{{ route('addFav', ['destinationId'=>$wisata->id])}}" method="POST">
+                      @csrf <!-- Laravel CSRF protection -->
+                      <input type="hidden" name="destination_id" value="{{ $wisata->id }}">
+                      <button type="submit" href="{{ route('favorite', ['id'=>3])}}" class="transparent-button rounded-pill d-inline-flex" style="margin-top:8px; color:black;text-decoration:none">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heart d-inline-flex align-items-center" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"></path>
                           </svg>
+                            {{-- <button type="submit">Favorite</button> --}}
                           <span class="bold d-flex align-items-center">Simpan</span>
-                      </a>
+                      </button>
+                    </form>
                     </div>
                 </div>
             </div>

@@ -119,7 +119,7 @@
                             <div class="profileImage">
                                 @if (Auth::check())
                                     @if (Auth::user()->profile_photo)
-                                        <img src="{{ asset('img/' . Auth::user()->profile_photo) }}">
+                                        <img src="{{ asset('img/profile_photo/' . Auth::user()->profile_photo) }}">
                                     @else 
                                         <img src="https://media-cdn.tripadvisor.com/media/photo-l/1a/f6/ea/2e/default-avatar-2020-67.jpg" alt="">
                                     @endif

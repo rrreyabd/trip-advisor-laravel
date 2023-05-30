@@ -9,11 +9,6 @@ class Trip_plan extends Model
 {
     use HasFactory;
 
-    public function trip_detail()
-    {
-        return $this->hasMany(TripDetail::class);
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

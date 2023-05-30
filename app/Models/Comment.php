@@ -23,6 +23,6 @@ class Comment extends Model
     }
 
     public function comment_photo(){
-        return $this->hasMany(Comment_photo::class); //one to many
+        return $this->hasOne(Comment_photo::class); //one to many
     }
 }

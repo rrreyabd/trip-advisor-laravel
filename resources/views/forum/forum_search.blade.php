@@ -36,7 +36,7 @@
             <div class="listHeader">
                 <h1 class="green">Pembahasan teratas dari {{$query}}</h1>
 
-                <a href="">
+                <a href="{{route('tanya_forum')}}">
                     Tanya sesuatu
                 </a>
             </div>

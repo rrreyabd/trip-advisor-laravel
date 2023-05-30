@@ -18,55 +18,6 @@
 
     </head>
 <body>
-
-    {{-- <!-- AD START -->
-    <div class="container">
-        <div class="ad row">
-            <div class="d-flex justify-content-end">
-                <img class="" src="img/ads.jpg" width="1200"alt="ads">
-            </div>
-        </div>
-    </div>
-    <!-- AD END -->
-    <!-- NAVBAR START -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container">
-          <img src="img/TripAdvisor_Logo.svg.png" width="20%" class="me-3" alt="tripadvisor">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse row" id="navbarSupportedContent">
-            <form class="d-flex col-12 col-lg-6 mt-2" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-            <ul class="navIcon navbar-nav me-auto col-lg-6 align-items-center justify-content-end order-lg-2">
-              <li class="nav-item mt-1">
-                <a class="btn btn-sm bi bi-pen text-black rounded-pill" aria-current="ulas" href="#"> Ulas</a>
-              </li>
-              <li class="nav-item mt-1">
-                <a class="btn btn-sm bi bi-heart text-black rounded-pill" aria-current="trip" href="#"> Trip</a>
-              </li>
-              <li class="nav-item mt-1">
-                <a class="btn btn-sm bi bi-bell text-black rounded-pill" aria-current="notice" href="#"> Pemberitahuan</a>
-              </li>
-              <li class="nav-item mt-1">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src="{{ asset('img/profile.png') }}" class="rounded-pill" width="40" height="40" alt="">
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end text-start">
-                  <li><a class="dropdown-item" href="#">Lihat Profil</a></li>
-                  <li><a class="dropdown-item" href="#">Info Akun</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Keluar</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    <!-- NAVBAR END --> --}}
-
     {{-- NAVBAR START --}}
     <div class="nav center">
             <div class="nA">
@@ -289,13 +240,13 @@
                             <img src="{{ asset('img/wisata/' . $wisata->photo) }}" class="card-img-top" alt="...">
                         </div>
                 </a>
-                    <div>
+                    {{-- <div>
                         <input type="checkbox" id="heartCheckbox{{ $h }}" class="hidden-checkbox">
                         <label for="heartCheckbox{{ $h }}" class="btn btn-light btn-sm inline-flex rounded-pill">
                           <i class="bi bi-heart-fill hRed"></i>
                         </label>
                         @php $h++ @endphp
-                    </div>
+                    </div> --}}
                     <a class="text-black no-underline" href="{{ route('destinasi_detail', ['id' => $wisata->id ]) }}">
                         <div class="card-body">
                             <h5 class="fw-bold">{{ $wisata->destination_name }}</h5>

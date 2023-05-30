@@ -8,7 +8,7 @@
     <title>Profile</title>
 
     <link rel="stylesheet" href="{{asset('css/profile.css')}}">
-    <link rel="icon" href="./img/Tripadvisor_logoset_solid_green.svg">
+    <link rel="icon" href="{{asset('/img/Tripadvisor_logoset_solid_green.svg')}}">
 
 </head>
 
@@ -18,12 +18,21 @@
         @include('layout.kategori')
     </nav>
 
+    
     <div class="ProfileContainer">
+        @if(session('success'))
+            <div id="alertDiv" class="alert alert-success alert-dismissible">
+                <button id="closeBtn" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ session('success') }}
+            </div>
+        @endif
         <div class="ProfileMainContainer">
             <div class="TopProfile">
                 <div class="TopProfileImage">
                     @if (Auth::check())
-                        <img src="{{ asset('img/' . Auth::user()->profile_photo) }}" alt="Profile Photo">
+                        <img src="{{ asset('img/profile_photo/' . Auth::user()->profile_photo) }}" alt="Profile Photo">
                     @endif
                 </div>
                 <div class="TopProfileDetail">
@@ -42,8 +51,63 @@
                         <div id="editProfileModal" class="modal">
                             <div class="modal-content">
                                 <span class="close">&times;</span>
-                                
-                                
+                                <h3 class="bold">Edit Profil</h3>
+                                <form action="{{route('edit_bio', ['id' => $user->id])}}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="modalContainer">
+                                        <div class="imageModal">
+                                            <img id="profile-image" src="{{asset('img/profile_photo/' . Auth::user()->profile_photo )}}" style="margin-bottom: 10px;width: 120px; border-radius: 50%" height="120px" alt="Foto Profil">
+                                            <input type="file" name="photo">
+                                        </div>
+                                        <div class="inputModal">
+                                            <div class="inputMain">
+                                                <label for="firstName" class="bold">Nama Depan</label>
+                                                <input type="text" value="{{$user->firstName}}" name="firstName">
+                                            </div>
+                                                <div class="inputMain">
+                                                <label for="lastName" class="bold">Nama Belakang</label>
+                                                <input type="text" value="{{$user->lastName}}" name="lastName">
+                                            </div>
+                                                <div class="inputMain">
+                                                <label for="username" class="bold">Nama Pengguna</label>
+                                                <input type="text" value="{{$user->username}}" name="username">
+                                            </div>
+                                                <div class="inputMain">
+                                                <label for="address" class="bold">Alamat (opsional)</label>
+                                                <input type="text" value="{{$user->address}}" name="address">
+                                            </div>
+                                                <div class="inputMain">
+                                                <label for="post_code" class="bold">Kode Pos (opsional)</label>
+                                                <input type="text" value="{{$user->post_code}}" name="post_code">
+                                            </div>
+                                                <div class="inputMain">
+                                                <label for="city" class="bold">Kota</label>
+                                                <input type="text" value="{{$user->city}}" name="city">
+                                            </div>
+                                            <div class="inputMain">
+                                                <label for="province" class="bold">Provinsi</label>
+                                                <input type="text" value="{{$user->province}}" name="province">
+                                            </div>
+                                                <div class="inputMain">
+                                                <label for="country" class="bold">Negara</label>
+                                                <input type="text" value="{{$user->country}}" name="country">
+                                            </div>
+                                                <div class="inputMain">
+                                                <label for="website" class="bold">Website (https://)</label>
+                                                <input type="text" value="{{$user->website}}" name="website">
+                                            </div>
+                                        
+                                            <div class="descInput">
+                                                <label for="about" class="bold">Tentang</label>
+                                                <input type="text" value="{{$user->about}}" name="about">
+                                            </div> 
+                                            
+                                            <button class="bold" type="submit">Simpan</button>
+                                        </div>
+
+                                    </div>
+                                </form>
                             </div>
                         </div>
 
@@ -52,8 +116,7 @@
 
                     <div class="BottomTopProfileDetail">
                         {{-- <center> --}}
-                            <h3>Kontribusi</h3>
-                            <h2>1</h2>
+                            <h3>{{$contribution}} Kontribusi</h3>
                         {{-- </center> --}}
                     </div>
                 </div>
@@ -70,7 +133,11 @@
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                 <path d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z" stroke-width="0" fill="currentColor"></path>
                              </svg>
+                             @if (Auth::user()->city)
                              <span>{{Auth::user()->city}}, &nbsp;</span>
+                             @else
+                             <span>Tambahkan lokasi</span>
+                             @endif
                              <span> {{Auth::user()->country}}</span>
                             </div>
 
@@ -102,9 +169,7 @@
                                 <b>{{ parse_url(Auth::user()->website)['host'] }}</b>    
                             </a>
                             @else 
-                            <a href="">
-                                <p>Tambahkan situs web</p>
-                            </a>
+                            <p>Tambahkan situs web</p>
                             @endif
                         </div>
 
@@ -112,7 +177,7 @@
                             @if (Auth::user()->about)
                             <p>{{Auth::user()->about}}</p>
                             @else
-                            <p>Description here</p>
+                            <p>Tambahkan deskripsi</p>
                             @endif
                         </div>
                     </div>
@@ -158,14 +223,14 @@
                 <div class="BottomRightProfile">
                     <div class="carousel">
                         
+                        @foreach ($photos as $photo)
                         <div class="carousel-slide">
                             <div class="TopCarousel">
                                 <div class="LeftTopCarousel">
                                     <div class="TopCarouselImage">
-                                        <img src="{{ asset('img/' . Auth::user()->profile_photo) }}" alt="">
+                                        <img src="{{ asset('img/profile_photo/' . Auth::user()->profile_photo) }}" alt="">
                                     </div>
                                     
-                                    @foreach ($photos as $photo)
                                     <div class="TopCarouselDetail">
                                         <b>{{Auth::user()->firstName}} {{Auth::user()->lastName}} </b>
                                         <p class="small">{{\Carbon\Carbon::parse($photo->upload_date)->translatedFormat('d F Y')}}</p>
@@ -173,14 +238,20 @@
                                 </div>
 
                                 <div class="DeleteCarousel">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                        <path d="M4 7l16 0"></path>
-                                        <path d="M10 11l0 6"></path>
-                                        <path d="M14 11l0 6"></path>
-                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
-                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
-                                     </svg>
+                                    <form action="{{ route('photo-delete', ['id' => $photo->id]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M4 7l16 0"></path>
+                                                <path d="M10 11l0 6"></path>
+                                                <path d="M14 11l0 6"></path>
+                                                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                                                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                                            </svg>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
 
@@ -192,12 +263,12 @@
 
                             <div class="carousel-details">
                                 <p>{{$photo->content}}</p>
-                                <a href="{{route('destinasi_detail' , ['destination_id' => $photo->destination->id] )}}">
+                                <a href="{{route('destinasi_detail' , ['id' => $photo->destination->id] )}}">
                                     <b>{{$photo->destination->destination_name}}</b>
                                 </a>
-                                @endforeach
                             </div>
                         </div>
+                        @endforeach
                         
                     </div>
                 </div>
@@ -264,7 +335,7 @@
         });
     </script>
 
-    <script src="./js/profile.js"></script>
+    <script src="{{asset('/js/profile.js')}}"></script>
 </body>
 
 </html>

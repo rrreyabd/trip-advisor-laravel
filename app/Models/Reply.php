@@ -9,6 +9,7 @@ class Reply extends Model
 {
     use HasFactory;
     
+    public $timestamps = false; // Menonaktifkan timestamps
     public function forum()
     {
         return $this->belongsTo(Forum::class);

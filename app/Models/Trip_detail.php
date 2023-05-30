@@ -8,9 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Trip_detail extends Model
 {
     use HasFactory;
+    
+    public function trip_plan(){
+        return $this->belongsTo(Trip_plan::class);
+    }
 
-    public function tripPlans()
-    {
-        return $this->belongsTo(TripPlan::class);
+    public function trip_destination_detail(){
+        return $this->hasMany(Trip_destination_detail::class);
     }
 }
