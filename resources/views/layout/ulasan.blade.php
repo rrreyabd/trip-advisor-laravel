@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ulasan</title>
+    <link rel="icon" href="{{asset('img/Tripadvisor_logoset_solid_green.svg')}}">
+    <title>Ulasan</title>
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/destinasi.css') }}" >
@@ -19,17 +20,17 @@
               <h3 class="mt-3">Ulasan</h3>
             </div>
             <div class="col-md-4 col-6 d-flex justify-content-end d-flex align-items-center">
-              <a href="{{ route('tulis_ulasan') }}"class="btn-sm btn btn-dark d-flex align-items-center" style="height: 40px">Tulis Ulasan</a>
+              <a href="{{ route('tulis_ulasan', ['id' => $id]) }}"class="btn-sm btn btn-dark d-flex align-items-center" style="height: 40px">Tulis Ulasan</a>
               <div class="dropdown ms-2 d-flex align-items-center">
-                <button class="bt-sm btn btn-dark dropdown-toggle" style="height: 40px" type="button" data-bs-toggle="dropdown" data-bs-target="#dropdown-menu" aria-expanded="false"></button>
+                {{-- <button class="bt-sm btn btn-dark dropdown-toggle" style="height: 40px" type="button" data-bs-toggle="dropdown" data-bs-target="#dropdown-menu" aria-expanded="false"></button>
                 <ul class="dropdown-menu" id="dropdown-menu">
-                  <li><a class="dropdown-item bi bi-pencil-square" style="font-weight: 500" href="{{ route('tulis_ulasan') }}">&nbsp;Tulis Ulasan</a></li>
+                  <li><a class="dropdown-item bi bi-pencil-square" style="font-weight: 500" href="{{ route('tulis_ulasan', ['id' => $id]) }}">&nbsp;Tulis Ulasan</a></li>
                   <hr style="margin: 0; padding: 0" />
                   <li><a class="dropdown-item bi bi-camera" style="font-weight: 500" href="#">&nbsp;Upload Foto</a></li>
                   <hr style="margin: 0; padding: 0" />
                   <li><a class="dropdown-item bi bi-chat-left-text" style="font-weight: 500" href="#">&nbsp;Ajukan Pertanyaan</a></li>
                   <hr style="margin: 0; padding: 0" />
-                </ul>
+                </ul> --}}
               </div>
             </div>
           </div>
@@ -234,7 +235,7 @@
 
         <div class="ms-2 mt-3">
           @foreach($comment->comment_photo as $photo)
-          <img src="{{ asset('img/foto_ulas/' . $photo->comment_photo) }}" alt="" style="object-fit: cover; height:150px; width: 150px">
+          <img src="{{ asset('img/ulasan/' . $photo->comment_photo) }}" alt="" style="object-fit: cover; height:150px; width: 150px">
           @endforeach
         </div>
         <hr class="mt-4" />

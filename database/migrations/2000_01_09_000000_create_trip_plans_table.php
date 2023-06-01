@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('trip_name');
             $table->string('trip_info');
             $table->integer('days');
+            $table->timestamps();
         });
     }
 

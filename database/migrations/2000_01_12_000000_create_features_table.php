@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('features', function (Blueprint $table) {
             $table->id();
             $table->string('feature_detail');
+            $table->enum("category", ["restoran", "hotel", "wisata", "semua kategori"]);
         });
     }
 

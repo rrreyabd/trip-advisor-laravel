@@ -7279,9 +7279,18 @@ textarea.form-control-lg {
   width: 25% !important;
 }
 
+.w-40 {
+  width: 40% !important;
+}
+
 .w-50 {
   width: 50% !important;
 }
+
+.w-58 {
+  width: 58% !important;
+}
+
 
 .w-75 {
   width: 75% !important;
@@ -11355,6 +11364,8 @@ body {
 
 .right img {
   width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 4px 13px rgba(0, 0, 0, 0.5);
 }
 
 table {

@@ -9,6 +9,7 @@ class Comment_photo extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     public function comment(){
         return $this->belongsTo(Comment::class);
     }

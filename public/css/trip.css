@@ -260,3 +260,20 @@ input[type="number"] {
 input[type="radio"] {
     margin-right: 8px;
 }
+
+.del-button{
+    display:flex;
+    justify-content: end;
+    margin-right: 0px; 
+    position: absolute;
+    bottom:0;
+    right:0; 
+}
+.del-button button{
+    width:100px;
+    margin: 10px 10px;
+    color:white;
+    background-color:red;
+    padding:10px;
+    border-width: 0;
+}

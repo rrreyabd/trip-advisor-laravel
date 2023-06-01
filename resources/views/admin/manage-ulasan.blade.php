@@ -21,7 +21,7 @@
             <div id="layoutSidenav_content" class="bg-light">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="p-4 boldfont">Daftar Pengguna</h1>
+                        <h1 class="p-4 boldfont">Ulasan</h1>
                         @if(session('success'))
                             <div class="alert alert-success alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -35,50 +35,33 @@
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>Foto Profil</th>
-                                            <th>Nama Depan</th>
-                                            <th>Nama Belakang</th>
-                                            <th>Email</th>
-                                            <th>Username</th>
-                                            <th>Alamat</th>
-                                            <th>Negara</th>
-                                            <th>Website</th>
-                                            <th>About</th>
-                                            <th>Hapus</th>
+                                            <th>ID</th>                              
+                                            <th>DESTINASI</th>                              
+                                            <th>JUDUL</th>                              
+                                            <th>KONTEN</th> 
+                                            <th>FOTO</th>                              
+                                            <th>HAPUS</th>                              
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($users as $user)               
+                                        @foreach ($comments as $comment)
                                         <tr>
-                                            <td>{{$user->id}}</td>
+                                            <td>{{$comment->id}}</td>
+                                            <td>{{$comment->destination->destination_name}}</td>
+                                            <td>{{$comment->title}}</td>
+                                            <td>{!! chunk_split($comment->content, 50, "<br>") !!}</td>
                                             <td>
-                                                @if ($user->profile_photo)
-                                                    <img src="{{asset('img/profile_photo/' . $user->profile_photo )}}" alt="" width="80px" height="80px">
-                                                @else
-                                                    <img src="https://media-cdn.tripadvisor.com/media/photo-l/1a/f6/ea/2e/default-avatar-2020-67.jpg" alt="" width="80px" height="80px">
-                                                @endif
+                                                <img src="{{optional($comment->comment_photo)->comment_photo ? asset('/img/ulasan/' . $comment->comment_photo->comment_photo) : ''}}" style="max-width:400px;" alt="">
                                             </td>
-                                            <td>{{$user->firstName}}</td>
-                                            <td>{{$user->lastName}}</td>
-                                            <td>{{$user->email}}</td>
-                                            <td>{{$user->username}}</td>
-                                            <td>{{$user->address}}</td>
-                                            <td>{{$user->country}}</td>
-                                            <td>{{$user->website}}</td>
-                                            <td>{{$user->about}}</td>
                                             <td>
-                                                
-                                                <form action="{{route('user-delete', $user->id)}}" method="POST">
+                                                <form action="{{route('ulasan-delete', ['id' => $comment->id])}}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Konfirmasi penghapusan')">
-                                                        Hapus
-                                                    </button>
+                                                    <button class="btn btn-danger">Hapus</button>
                                                 </form>
                                             </td>
                                         </tr>
-                                        @endforeach
+                                        @endforeach        
                                     </tbody>
                                 </table>
                             </div>
@@ -88,6 +71,8 @@
                 @include('admin.footer')
             </div>
         </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="{{ asset('js/scripts.js')}}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>

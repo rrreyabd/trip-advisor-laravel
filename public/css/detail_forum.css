@@ -41,7 +41,7 @@ section {
     position: relative;
 }
 
-.uCa {
+.uCa, .uCc {
     display: flex;
 }
 

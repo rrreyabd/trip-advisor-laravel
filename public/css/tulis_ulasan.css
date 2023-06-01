@@ -43,7 +43,8 @@
 .borderUlasan {
     height: 293px;
     width: 213px;
-    border: 1px solid  #E0E0E0;
+    border: 1px solid  #cfcfcf;
+    margin-top: 20px;
     padding: 16px 16px 16px 16px;
 }
 

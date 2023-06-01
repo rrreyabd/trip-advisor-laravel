@@ -35,13 +35,13 @@ class WisataController extends Controller
     public function wisata(){
         $attractions = Destination::with(['rating'])
         // ->select('id','destination_name', 'address','website', 'contact', 'category', 'rating_id', 'city', 'country', 'photo')
-        ->where('destination_type', '=', 'restoran')
+        ->where('destination_type', '=', 'wisata')
         ->orderBy('id', 'asc')
         ->get();
         // dd($attractions);
 
         $comments = Comment::with(['destination', 'rating','user', 'comment_photo'])
-        ->where('destination_type', '=', 'restoran')
+        ->where('destination_type', '=', 'wisata')
         ->orderBy('id', 'asc')
         ->get();
         // dd($comments);

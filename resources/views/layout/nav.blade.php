@@ -12,8 +12,9 @@
                 <img width="190px" height="54px" src="{{asset('/img/Logo.svg')}}" alt="">
             </a>
 
-            <form action="" class="center">
-                <input type="text">
+            <form action="{{route('search-result')}}" class="center" method="GET">
+                @csrf
+                <input type="text" name="query">
                 <button type="submit">
                     <i class="fa fa-search"></i>
                 </button>
@@ -35,7 +36,7 @@
                 </div>
             </a>
             
-            <a href="{{ url('/trip', ['id' => $user->id] ) }}">
+            <a href="{{route('trip', ['id' => $user->id, 'type' => 'all'])}}">
                 <div class="trip center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heart" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>

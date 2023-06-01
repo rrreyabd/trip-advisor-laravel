@@ -33,8 +33,49 @@ body {
 section {
     width: 90%;
     height: 90%;
+    display: flex;
 }
 
 h1 {
     font-size: 60px;
+}
+
+.left img {
+    margin-top: 30px;
+    width: 30vw;
+    border-radius: 35px;
+    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.5);
+}
+
+.right {
+    margin: 15vh 0 0 5vw;
+    height: fit-content;
+}
+
+.right input {
+    height: 30px;
+    width: 795px;
+    padding-left: 10px;
+}
+
+textarea {
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.right button {
+    padding: 7px 20px;
+    color: white;
+    background-color: black;
+    font-family: TripSansBold;
+    margin-top: 20px;
+}
+
+p {
+    margin-top: 30px;
+}
+
+span {
+    color: red;
+    font-size: 20px;
 }

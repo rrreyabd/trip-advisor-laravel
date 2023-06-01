@@ -10,7 +10,7 @@ class Destination extends Model
     use HasFactory;
 
     public function rating(){
-        return $this->belongsTo(Rating::class);
+        return $this->belongsTo(Rating::class, 'rating_id');
     }
     public function feature(){
         return $this->hasMany(Feature::class);
@@ -20,15 +20,11 @@ class Destination extends Model
         return $this->hasOne(Restaurant_type::class);
     }
 
-    public function restaurant_feature(){
-        return $this->hasOne(Restaurant_feature::class);
-    }
-
-
-    public function hotel_feature()
+    public function destination_feature()
     {
-        return $this->hasMany(Hotel_feature::class, 'destination_id');
+        return $this->hasMany(Destination_feature::class, 'destination_id');
     }
+
     public function photo()
     {
         return $this->hasMany(Photo::class, 'destination_id');

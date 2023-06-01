@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Forum;
 use App\Models\Reply;
+use Carbon\Carbon;
 
 class ForumController extends Controller
 {
@@ -24,11 +25,11 @@ class ForumController extends Controller
         $forums = Forum::where('title', 'LIKE', '%' . $query . '%')->get();
         $replies = Reply::all();
 
+
         return view('forum.forum_search', [
             'forums'    => $forums,
             'replies'   => $replies,
-            'query'   => $query
-            
+            'query'   => $query   
         ]);
     }
 
@@ -83,6 +84,13 @@ class ForumController extends Controller
         $new_forum->save();
         
         return redirect()->route('forum_detail', ['id' => $new_forum->id])->with('success', 'Forum berhasil ditambahkan');
+    }
+
+    public function delete_forum($id) {
+        $replies = Reply::where('forum_id', $id)->delete();
+        $forum  = Forum::find($id)->delete();
+
+        return redirect('forum')->with('success', ' Forum berhasil dihapus');
     }
 
 }

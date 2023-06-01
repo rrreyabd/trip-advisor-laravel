@@ -102,3 +102,127 @@ a {
 .green {
     color: #00AA6C;
 }
+
+.tbodyTrip {
+    height: max-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tbodyTrip button {
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.tbodyAdd {
+    height: 40px;
+    width: 200px;
+    background-color: black;
+    border: 1px solid black;
+    border-radius:20px;
+    color: white;
+    margin: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 0 48px 48px;
+    border: 1px solid #888;
+    width: 404px;
+}
+
+.modal-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0;
+}
+
+.love-icon {
+    font-size: 24px;
+    margin-right: 8px;
+}
+
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-content-inner {
+    margin-top: 24px;
+}
+
+.modal-content-inner button{
+    background-color: #000;
+    color: white;
+    font-family: TripSansBold;
+    font-size: 15px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-top: 10px;
+    
+}
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+}
+/* PERUBAHAN 24 MEI 2023 */
+input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+}
+/* PERUBAHAN END */
+.radio-group {
+    margin-top: 16px;
+    font-family: TripSansBold;
+}
+
+input[type="radio"] {
+    margin-right: 8px;
+}
+
+
+.del-button{
+    display:flex;
+    justify-content: end;
+    bottom:0;
+    right:0;
+    margin-right: 0px;
+}
+.del-button button{
+    width:100px;
+    margin-bottom:20px;
+    color:white;
+    background-color:red;
+    padding:10px;
+    border-width: 0;
+}

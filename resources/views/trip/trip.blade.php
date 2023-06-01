@@ -19,10 +19,10 @@
 
         <div class="tbody">
             <div class="tbodyButton">
-                <a href="{{ route('trip', ['id' => Auth::user()->id ]) }}">Semua Perjalanan</a>
-                <a href="">Perjalanan Pribadi</a>
-                <a href="">Perjalanan Publik</a>
-                <a href="{{ route('favorite', ['id' => Auth::user()->id ]) }}">Simpanan Saya</a>
+                <a href="{{ route('trip', ['id' => Auth::user()->id, 'type' => 'all']) }}">Semua Perjalanan</a>
+                <a href="{{ route('trip', ['id' => Auth::user()->id, 'type' => 'private']) }}">Perjalanan Pribadi</a>
+                <a href="{{ route('trip', ['id' => Auth::user()->id, 'type' => 'public']) }}">Perjalanan Publik</a>
+                <a href="{{ route('favorite', ['id' => Auth::user()->id]) }}">Simpanan Saya</a>
             </div>
             <div class="tbodyTrip">
                 <button id="openModalBtn">
@@ -37,8 +37,7 @@
 
 
                 @foreach($plans as $plan)
-                    
-                <a href="{{ route('detail_trip', ['id'=> '1']) }}">
+                <a href="{{ route('detail_trip', ['id'=> $plan->id]) }}">
                     <div class="tbodyBorder">
                         <div class="tbodyBorderImg">
                             <img src="{{ asset ('https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/4d/47/82/jeju-island.jpg?w=1200&h=-1&s=1') }}" alt="">
@@ -53,10 +52,16 @@
                             <p style="color:gray; margin-top:5px;">{{ $plan->trip_type }}</p>
                         </div>
 
-                        <img src="{{ asset('img/' . $plan->user->profile_photo) }}" class="profilePhoto" alt="">
+                        <img src="{{ asset('img/profile_photo/' . $plan->user->profile_photo) }}" class="profilePhoto" alt="">
+                        <form action="{{ route('delete_plan', ['id' => $plan->id]) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <div class="del-button">    
+                                <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                            </div>
+                        </form>
                     </div>    
                 </a>
-
                 @endforeach
             </div>
         </div>
@@ -76,17 +81,21 @@
                 <span class="close">&times;</span>
             </div>
             <div class="modal-content-inner">
-                <form action="">
-                    <label for="trip-name">Nama Perjalanan</label>
-                    <input type="text" id="trip-name">
+                <form action="{{ route('trip_plan') }}" method="POST">
+                    @csrf
+                    <label for="trip_name">Nama Perjalanan</label>
+                    <input type="text" id="trip_name" required name="trip_name">
+
+                    <label for="trip_info">Keterangan</label>
+                    <input type="text" id="trip_info" required name="trip_info">
 
                     <label for="trip-day">Jumlah Hari</label>
-                    <input type="number" id="trip-day">
+                    <input type="number" id="trip_day" required name="days">
 
                     <div class="radio-group">
                         <p class="bold">Pilih siapa yang dapat melihat Trip Anda</p>
-                        <input type="radio" id="option1" name="trip-type" value="option1">Pribadi
-                        <input type="radio" id="option2" name="trip-type" value="option2">Publik
+                        <input type="radio" id="option1" required name="trip_type" value="pribadi">Pribadi
+                        <input type="radio" id="option2" required name="trip_type" value="publik">Publik
                     </div>
                     <button type="submit">Buat</button>
                 </form>

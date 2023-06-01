@@ -10,6 +10,49 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="{{asset('./css/styles.css')}}" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+        <style>
+            input[type="checkbox"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #34c759;
+            outline: none;
+            transition: border-color 0.3s ease-in-out;
+            cursor: pointer;
+            position: relative;
+            }
+
+            /* Untuk mengubah tampilan checkbox menjadi hijau saat dicentang */
+            input[type="checkbox"]:checked {
+            background-color: #fff;
+            }
+
+            /* Untuk menambahkan lingkaran di dalam checkbox */
+            input[type="checkbox"]::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #34c759;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+            }
+
+            /* Untuk mengubah opacity lingkaran menjadi 1 saat checkbox dicentang */
+            input[type="checkbox"]:checked::before {
+            opacity: 1;
+            }
+
+        </style>
     </head>
     <body class="sb-nav-fixed">
         @include('admin.navbar')
@@ -104,44 +147,103 @@
                                 </div>
                                 
                                 <div class="right">
-                                    <img src="{{asset('img/' . $destination->photo )}}" alt="">
+                                    <img src="{{asset('img/destinasi/' . $destination->photo )}}">
                                 </div> 
                             </div>
 
                         </div>
-                            <div class="d-flex flex-row card">
+                        <div class="d-flex flex-row">
+
+                            <div class="d-flex flex-row card w-full">
                                 <div class="m-4">
-                                    <div class="d-flex flex-row mb-4">
+                                    <div class="d-flex flex-row mb-4 justify-content-between">
                                         <h4 class="boldfont">Fasilitas</h4>
                                         <a href="#" class="d-flex flex-row text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ms-2 icon icon-tabler icon-tabler-plus text-green" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <path d="M12 5l0 14"></path>
-                                                <path d="M5 12l14 0"></path>
+                                              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                              <path d="M12 5l0 14"></path>
+                                              <path d="M5 12l14 0"></path>
                                             </svg>
                                             <p class="text-green">Tambah Fasilitas</p>
                                         </a>
                                     </div>
                                     
-                                    <div class="d-flex flex-row flex-wrap" style="line-height: .3">
-                                        @foreach ($restaurant_features as $feature)
-                                        <p class="boldfont me-5 justify-center" style="display: flex; align-items: center;">
-                                            • {{$feature->features->feature_detail}} &nbsp;
-                                            <a href="{{route('feature-delete', ['id', $feature->restaurant_feature->id])}}">
-                                              <svg xmlns="http://www.w3.org/2000/svg" class="text-red icon icon-tabler icon-tabler-trash" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <path d="M4 7l16 0"></path>
-                                                <path d="M10 11l0 6"></path>
-                                                <path d="M14 11l0 6"></path>
-                                                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
-                                                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
-                                              </svg>
-                                            </a>
-                                        </p>
+                                    <!-- Modal Tambah -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Tambah Fasilitas</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+
+                                            <form action="{{ route('feature-add')}}" method="POST">
+                                                @csrf
+                                                
+                                                <div class="modal-body">
+                                                    @if ($destination->destination_type == "restoran")
+                                                        @foreach ($restaurant_features as $not_feature)
+                                                        <div class="">
+                                                            <input type="hidden" name="destination_id" value="{{$destination->id}}">
+                                                            <input type="checkbox" name="checkbox[]" value="{{$not_feature->id}}"> {{$not_feature->feature_detail}}
+                                                        </div>
+                                                        @endforeach
+                                                    @endif
+                                                    @if ($destination->destination_type == "hotel")
+                                                        @foreach ($hotel_features as $not_feature)
+                                                        <div class="">
+                                                            <input type="hidden" name="destination_id" value="{{$destination->id}}">
+                                                            <input type="checkbox" name="checkbox[]" value="{{$not_feature->id}}"> {{$not_feature->feature_detail}}
+                                                        </div>
+                                                        @endforeach
+                                                    @endif
+                                                    @if ($destination->destination_type == "wisata")
+                                                        @foreach ($wisata_features as $not_feature)
+                                                        <div class="">
+                                                            <input type="hidden" name="destination_id" value="{{$destination->id}}">
+                                                            <input type="checkbox" name="checkbox[]" value="{{$not_feature->id}}"> {{$not_feature->feature_detail}}
+                                                        </div>
+                                                        @endforeach
+                                                    @endif
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+                                                    <button type="submit" class="btn btn-success">Simpan</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row">
+                                        @foreach ($features as $feature)
+                                        <div class="d-flex flex-row" style="line-height: .3">
+                                            {{-- @foreach ($restaurant_features as $feature) --}}
+    
+                                            <form action="{{ route('feature-delete', ['id' => $feature->destination_feature->id]) }}" 
+                                                class="d-flex flex-row boldfont align-items-center" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+        
+                                            <button class="border-0 bg-transparent">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="text-red icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                    <path d="M18 6l-12 12"></path>
+                                                    <path d="M6 6l12 12"></path>
+                                                </svg>
+                                            </button>
+                                            <p class="m-auto" style="display: flex; align-items: center;"> {{ $feature->feature_detail }}</p>
+                                            
+                                            </form>
+                                        </div>
                                         @endforeach
                                     </div>
+
                                 </div>
                             </div>
+                            
+                        </div>
                               
                     </div>
                 </main>

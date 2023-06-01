@@ -74,7 +74,7 @@
                         <div class="card-body">
                             <div class="uC">
                                 <div class="uCa">
-                                    <img src="{{ asset ('img/' . $reply->user->profile_photo) }}" alt="" style="border-radius: 50%" width="70px"
+                                    <img src="{{ asset ('img/profile_photo/' . $reply->user->profile_photo) }}" alt="" style="border-radius: 50%" width="70px"
                                         height="70px">
                                     <div class="lok">
                                         <p class="boldfont green">{{$reply->user->firstName}} {{$reply->user->lastName}}</p>

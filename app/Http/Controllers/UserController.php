@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Destination;
 
 class UserController extends Controller
 {
@@ -25,4 +26,26 @@ class UserController extends Controller
     // {
     //     return view('layout.navbar');
     // }
+     
+    public function search_result(Request $request)
+    {
+        $query = $request->input('query');
+        
+        // Proses pencarian data berdasarkan search term
+        // Misalnya, menggunakan model atau logika lainnya untuk mendapatkan data yang relevan
+        
+        // Contoh penggunaan model User untuk mencari data
+        $datas = Destination::where('destination_name', 'like', '%'.$query.'%')
+                    ->orWhere('city', 'like', '%'.$query.'%')
+                    ->orWhere('country', 'like', '%'.$query.'%')
+                    ->orWhere('address', 'like', '%'.$query.'%')
+                    ->get();
+    
+        return view('search-result', [
+            'datas' => $datas,
+            'query' => $query
+        ]);
+                    
+    }
+    
 }

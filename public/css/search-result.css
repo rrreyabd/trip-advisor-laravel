@@ -1,0 +1,87 @@
+@font-face {
+    font-family: TripSans;
+    src: url(../font/TripSans-Regular.ttf);
+ }
+
+ @font-face {
+    font-family: TripSansBold;
+    src: url(../font/TripSans-Bold.ttf);
+ }
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: TripSans;
+}
+
+.bold {
+    font-family: TripSansBold;
+}
+
+body {
+    background-color: #f2f2f2;
+}
+
+nav {
+    background-color: #fff;
+}
+
+section {
+    background-color: #f2f2f2;
+    height: 100vh;
+    width: 100%;
+}
+
+.SearchContainer {
+    width: 916.4px;
+    height: max-content;
+    
+    
+    margin-left: 10vw;
+}
+
+.ContentContainer {
+    margin-top: 2vh;
+    border: 1px solid #cecece;
+    background-color: #fff;
+    padding: 20px;
+}
+
+.ContentContainer a {
+    color: #000;
+    text-decoration: none;
+}
+
+.SearchTitle {
+    margin-bottom: 30px;
+}
+
+.ForeachDestinasi {
+    display: flex;
+}
+
+.Img {
+    margin-right: 20px;
+    position: relative;
+}
+
+.CategoryContent p {
+    color: #fff;
+    text-transform: capitalize;
+    position: absolute;
+    bottom: 5px;
+    left: 10px;
+}
+
+.shadow {
+    position: absolute;
+    bottom: 3px;
+    left: 0;
+    width: 177px;
+    height: 40px;
+    background: linear-gradient(to bottom, transparent, #000);
+}

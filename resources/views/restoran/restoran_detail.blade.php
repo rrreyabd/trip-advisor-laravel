@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restoran</title>
 
-    <link rel="stylesheet" href="{{ asset('./css/detail_restoran.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/detail_restoran.css') }}">
     <link rel="icon" href="{{ asset('./img/Tripadvisor_logoset_solid_green.svg') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
@@ -53,6 +53,7 @@
                         <div class="trip center">
                             <form action="{{ route('addFav', ['destinationId'=>$restaurant->id])}}" method="POST">
                                 @csrf <!-- Laravel CSRF protection -->
+                                <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                                 <input type="hidden" name="destination_id" value="{{ $restaurant->id }}">
                                 <button type="submit" href="{{ route('favorite', ['id'=>3])}}" class="transparent-button rounded-pill" style="display:inline-flex; align-items:center;color:black;text-decoration:none">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heart d-inline-flex align-items-center" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -60,21 +61,9 @@
                                       <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"></path>
                                     </svg>
                                       {{-- <button type="submit">Favorite</button> --}}
-                                    <p class="bold" style="display:inline-flex; align-items:center">Simpan &nbsp; | &nbsp;</p>
+                                    <p class="bold" style="display:inline-flex; align-items:center">Simpan</p>
                                 </button>
                               </form>
-                        </div>
-                    </a>
-    
-                    <a href="">
-                        <div class="pemberitahuan center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-share-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M8 9h-1a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-8a2 2 0 0 0 -2 -2h-1"></path>
-                                <path d="M12 14v-11"></path>
-                                <path d="M9 6l3 -3l3 3"></path>
-                             </svg>
-                            <p class="bold">Bagikan</p>
                         </div>
                     </a>
                 </div>
@@ -84,10 +73,10 @@
                 <a href="#ulasan">
                     {{-- function untuk rating --}}
                     @for($i=0; $i < $restaurant->rating->value; $i++)
-                        <i class="bi bi-circle-fill text-success" style="margin-right:2px; color:#28a745"></i>
+                        <i class="bi bi-circle-fill text-success" style="margin-right:2px; color:#00aa6c"></i>
                     @endfor
                     @for($i=0; $i < 5 - $restaurant->rating->value; $i++)
-                        <i class="bi bi-circle me-1" style="margin-right:2px"></i>
+                        <i class="bi bi-circle me-1" style="margin-right:2px; color:#00aa6c"></i>
                     @endfor
                     {{-- function untuk menghitung ulasan --}}
                     @php $i=0 @endphp 
@@ -124,16 +113,16 @@
                     <path d="M3 19l18 0"></path>
                     <path d="M5 6m0 1a1 1 0 0 1 1 -1h12a1 1 0 0 1 1 1v8a1 1 0 0 1 -1 1h-12a1 1 0 0 1 -1 -1z"></path>
                  </svg>
-                 <a href="">{{ $restaurant->website }}</a>
-                 <p>&nbsp; | &nbsp;</p>
+                 <a href="{{ $restaurant->website }}" target="_blank">Situs Web</a>
+                 {{-- <p>&nbsp; | &nbsp;</p> --}}
 
-                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock-hour-4" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                 {{-- <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock-hour-4" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
                     <path d="M12 12l3 2"></path>
                     <path d="M12 7v5"></path>
-                 </svg>
-                 <a href="">Jam Operasional</a>
+                 </svg> --}}
+                 {{-- <a href="">Jam Operasional</a> --}}
             </div>
         </header>
     </section>
@@ -142,16 +131,13 @@
         <div class="contentContainer">
             <div class="image">
                 <a href="">
-                        <img src="{{ asset('/img/restoran/imageRestoran/' . $restaurant->photo) }}"
-                        style="width:600px; height:400px"
-                        alt="foto_hotel">
-                    @foreach($comments as $comment)
-                    @foreach($comment->comment_photo as $photo)
-                        <img src="{{ asset('img/restoran/imageRestoran/' . $photo->comment_photo) }}" 
-                        style="width:600px; height:400px"
-                        alt="">
-                    @endforeach
-                    @endforeach
+                        <img src="{{ asset('/img/destinasi/' . $restaurant->photo) }}"
+                        style="width:600px; height:400px">
+                        @if ($comment_photos->isNotEmpty())
+                            @foreach($comment_photos as $comment)
+                                <img src="{{asset('img/ulasan/' . $comment->photo)}}" alt="">
+                            @endforeach
+                        @endif
                     <div class="click">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hand-click" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -172,18 +158,18 @@
             <div class="detail">
                 <div class="detailContainer">
                     <div class="ulasan">
-                        <a href="ulasan">
+                        <a href="{{route('ulasan', ['id' => $restaurant->id])}}">
                             <h2>Penilaian dan ulasan</h2>
 
                             <div class="rating"  style="align-items:center">
-                                <h3>4.0</h3>
+                                <h3>{{ number_format($restaurant->rating->value, 1) }}</h3>
 
                                 <div style="display:inline-flex">
                                 @for($i=0; $i < $restaurant->rating->value; $i++)
-                                    <i class="bi bi-circle-fill text-success" style="margin-right:2px; color:#28a745; display:inline-flex"></i>
+                                    <i class="bi bi-circle-fill text-success" style="margin-right:2px; color:#00aa6c; display:inline-flex"></i>
                                 @endfor
                                 @for($i=0; $i < 5 - $restaurant->rating->value; $i++)
-                                    <i class="bi bi-circle me-1" style="margin-right:2px;display: inline-flex"></i>
+                                    <i class="bi bi-circle me-1" style="margin-right:2px;display: inline-flex; color:#00aa6c"></i>
                                 @endfor
                                 </div>
 
@@ -194,7 +180,7 @@
                                     @endif
                                 @endforeach 
                                 <h3>&nbsp; 
-                                    {{ $i }} ulasan
+                                    {{ $i }}  Ulasan
                                 </h3>
                             </div>
                         </a>
@@ -202,24 +188,16 @@
                 </div>
 
                 <div class="detailContainer">
-                    <h2>Rincian</h2>
-                    @foreach($type as $tipe)
-                    <b>MASAKAN</b>
-                    <p>{{ $tipe->cuisine_type }}</p>
-                    
-                    <b>DIET KHUSUS</b>
-                    <p>{{ $tipe->diet }}</p>
-                    
-                    <b>MAKANAN</b>
-                    <p>{{ $tipe->cuisine_hour }}</p>
+                    <h2>Fasilitas</h2>
+                    @foreach ($features as $feature)
+                        <b class="bold">{{$feature->feature_detail}}</b> <br>
                     @endforeach
-
                 </div>
 
                 <div class="detailContainer">
                     <h2>Lokasi</h2>
-                    <iframe src="{{ $restaurant->map }}" width="344" height="280" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                    
-                    
+                    {!! $restaurant->map !!}
+
                     <div class="link">
                         <a href="">
                             

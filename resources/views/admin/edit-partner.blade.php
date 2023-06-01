@@ -45,7 +45,7 @@
                               <div class="mb-3">
                                 <label for="inputPhoto" class="form-label">Logo</label>
                                 <input type="file" class="form-control @error('photo') is-invalid @enderror" id="photo" 
-                                name="photo" value="{{$partner->photo}}">
+                                name="photo" value="{{ old('photo', $partner->photo) }}">            
                               </div>
                               <div class="mb-3">
                                 <button type="submit" class="btn btn-primary">Save</button>

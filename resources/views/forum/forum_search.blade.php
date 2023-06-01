@@ -14,6 +14,14 @@
 </head>
 <body>
     <section>
+        <div class="floatingBack">
+            <a href="{{route('index') }}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-back" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M9 11l-4 4l4 4m-4 -4h11a4 4 0 0 0 0 -8h-1"></path>
+                 </svg>
+            </a>
+        </div>
         <div class="searchTitle">
             <h1>Forum Perjalanan</h1>
             <br>
@@ -37,7 +45,7 @@
                 <h1 class="green">Pembahasan teratas dari {{$query}}</h1>
 
                 <a href="{{route('tanya_forum')}}">
-                    Tanya sesuatu
+                    Bahas sesuatu
                 </a>
             </div>
 
@@ -58,7 +66,7 @@
                             $reply_count = $replies->where('forum_id', $forum->id)->count(); 
                             @endphp
                             <td class="answer">{{$reply_count}}</td>
-                            <td class="green lastDate">{{\Carbon\Carbon::parse($forum->upload_date)->format('d F Y')}}</td>
+                            <td class="green lastDate">{{\Carbon\Carbon::parse($forum->created_at)->format('d F Y')}}</td>
                         </tr>
                         @endforeach
                     @else

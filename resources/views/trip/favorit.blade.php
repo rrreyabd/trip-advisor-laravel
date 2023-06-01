@@ -19,10 +19,10 @@
 
         <div class="tbody">
             <div class="tbodyButton">
-                <a href="{{ route('trip', ['id' => Auth::user()->id ]) }}">Semua Perjalanan</a>
-                <a href="">Perjalanan Pribadi</a>
-                <a href="">Perjalanan Publik</a>
-                <a href="{{ route('favorite', ['id' => Auth::user()->id ]) }}">Simpanan Saya</a>
+                <a href="{{ route('trip', ['id' => Auth::user()->id, 'type' => 'all']) }}">Semua Perjalanan</a>
+                <a href="{{ route('trip', ['id' => Auth::user()->id, 'type' => 'private']) }}">Perjalanan Pribadi</a>
+                <a href="{{ route('trip', ['id' => Auth::user()->id, 'type' => 'public']) }}">Perjalanan Publik</a>
+                <a href="{{ route('favorite', ['id' => Auth::user()->id]) }}">Simpanan Saya</a>
             </div>
             <div class="tbodyTrip">
          

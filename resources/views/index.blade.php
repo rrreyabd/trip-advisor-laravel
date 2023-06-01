@@ -7,7 +7,7 @@
     <title>TripAdvisor: Lebih dari 1 miliar ulasan & kontribusi untuk Hotel, Objek Wisata, Restoran, dan lainnya</title>
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="icon" href="./img/Tripadvisor_logoset_solid_green.svg">
+    <link rel="icon" href="{{asset('img/Tripadvisor_logoset_solid_green.svg')}}">
 
     <script src="https://kit.fontawesome.com/e87c4faa10.js" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/1fc4ea1c6a.js" crossorigin="anonymous"></script>
@@ -63,7 +63,7 @@
                     </div>
                 </a>
                 
-                <a href="{{route('trip', ['id' => $user->id])}}">
+                <a href="{{route('trip', ['id' => $user->id, 'type' => 'all'])}}">
                     <div class="trip center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heart" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -184,11 +184,12 @@
 
         <!-- SEARCH SECTION START -->
         <div class="searchContainer center">
-            <form method="GET">
+            <form action="{{route('search-result')}}" method="GET">
+                @csrf
                     <button name="search" class="btnSearch center"> 
                         <i class="fas fa-search"></i>
                     </button>
-                    <input type="text" name="search" class="inputBox" placeholder="Ke mana?" autocomplete="off">
+                    <input type="text" name="query" class="inputBox" placeholder="Mau kemana?" autocomplete="off">
             </form>
         </div>
         <!-- SEARCH SECTION END -->

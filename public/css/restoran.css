@@ -97,18 +97,18 @@ a {
 
 .rBa {
     width: 314px;
-    height: 1000px;
+    height: fit-content;
 }
 
 .rBaA {
-    height: max-content;
+    height: fit-content;
     width: 314px;
     padding: 12px 12px 12px 12px;
 }
 
 .rBaAa {
     background-color: white;
-    height: 800px;
+    height: fit-content;
     width: 248.4px;
     border: 1px solid  #E0E0E0;
     margin: 10px 0 0 0;
@@ -156,3 +156,52 @@ a {
     margin-right: 10px;
     margin-bottom: 15px;
 }
+
+.rBaAa button {
+    background-color: #000;
+    color: white;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-top: 15px;
+}
+
+.rBaAa {
+    line-height: 2;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    position: relative;
+  }
+  
+  input[type="checkbox"]::before {
+    content: '';
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: transparent;
+    border: 2px solid #00AA6C;
+    transition: .2s ease-in-out;
+  }
+  
+  input[type="checkbox"]:checked::before {
+    background-color: #00AA6C;
+  }
+  
+

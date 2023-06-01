@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('trip_destination_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('trip_plan_id')->constrained('trip_plans')->onDelete('restrict');
+            $table->foreignId('trip_plan_id')->constrained('trip_plans')->onDelete('cascade');
             $table->foreignId('destination_id')->constrained('destinations')->onDelete('restrict');
             $table->foreignId('trip_detail_id')->constrained('trip_details')->onDelete('restrict');
+            $table->timestamps();
         });
     }
 

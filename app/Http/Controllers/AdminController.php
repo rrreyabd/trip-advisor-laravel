@@ -6,19 +6,18 @@ use Illuminate\Http\Request;
 use App\Models\Destination;
 use App\Models\Forum;
 use App\Models\User;
-use App\Models\Hotel_feature;
 use App\Models\Photo;
 use App\Models\Price;
 use App\Models\Comment_photo;
 use App\Models\Trip_destination_detail;
-use App\Models\Restaurant_type;
 use App\Models\Comment;
 use App\Models\Favorite;
-use App\Models\Restaurant_feature;
 use App\Models\Partner;
 use App\Models\Reply;
 use App\Models\Trip_plan;
 use App\Models\Feature;
+use App\Models\Destination_feature;
+
 class AdminController extends Controller
 {
 
@@ -68,14 +67,28 @@ class AdminController extends Controller
 
     public function show_detail_destination($id) {
         $destination = Destination::find($id);
-        $restaurant_features = Restaurant_feature::where('destination_id', $id)->get(); 
+        $destination_features = Destination_feature::where('destination_id', $id)->get(); 
+        $features = Feature::whereIn('id', $destination_features->pluck('feature_id'))->get();
 
-        // $features = Feature::whereIn('id', $restaurant_features->pluck('id'))->get();
+        $restaurant_features = Feature::whereNotIn('id', $destination_features->pluck('feature_id'))
+        ->whereIn('category', ['restoran', 'semua kategori'])
+        ->get();
+        
+        $hotel_features = Feature::whereNotIn('id', $destination_features->pluck('feature_id'))
+        ->whereIn('category', ['hotel', 'semua kategori'])
+        ->get();
+
+        $wisata_features = Feature::whereNotIn('id', $destination_features->pluck('feature_id'))
+        ->whereIn('category', ['wisata', 'semua kategori'])
+        ->get();
 
         return view('admin.manage-destination-detail', [
             'destination' => $destination,
-            // 'features' => $features,
-            'restaurant_features' => $restaurant_features
+            'features' => $features,
+            'restaurant_features' => $restaurant_features,
+            'hotel_features' => $hotel_features,
+            'wisata_features' => $wisata_features,
+            'destination_features' => $destination_features
         ]);
     }
 
@@ -95,18 +108,23 @@ class AdminController extends Controller
         ]);
     }
 
+    public function show_all_comments() {
+        $comments = Comment::all();
+        return view('admin.manage-ulasan', [
+            'comments' => $comments
+        ]);
+    }
+
     // DELETE
     public function delete_destination($id) {
             $destination                = Destination::find($id);
-            $hotel_features             = Hotel_feature::where('destination_id', $id)->delete();
+            $destination_features       = Destination_feature::where('destination_id', $id)->delete();
             $photos                     = Photo::where('destination_id', $id)->delete();
             $prices                     = Price::where('destination_id', $id)->delete();
             $comment_photos             = Comment_photo::where('destination_id', $id)->delete();
             $trip_destination_details   = Trip_destination_detail::where('destination_id', $id)->delete();
-            $restaurant_types           = Restaurant_type::where('destination_id', $id)->delete();
             $comments                   = Comment::where('destination_id', $id)->delete();
             $favorites                  = Favorite::where('destination_id', $id)->delete();
-            $restaurant_features        = Restaurant_feature::where('destination_id', $id)->delete();
 
             $destination->delete();
             return redirect('admin/manage-destination')->with('success', ' Destinasi berhasil dihapus');
@@ -146,9 +164,15 @@ class AdminController extends Controller
     }
 
     public function delete_feature($id) {
-        $feature = Restaurant_feature::find($id)->delete();
+        $feature = Destination_feature::find($id)->delete();
+        
+        return redirect()->back()->with('success', 'Fasilitas berhasil dihapus')->header('Refresh', '1');
+    }
 
-        return redirect('/admin/manage-destination/{id}/detail')->with('success', ' Fasilitas berhasil dihapus');
+    public function delete_ulasan($id) {
+        $comment_photo = Comment_photo::where('comment_id', $id)->delete();
+        $comment = Comment::find($id)->delete();
+        return redirect()->back()->with('success', 'Ulasan berhasil dihapus')->header('Refresh', '1');
     }
 
     // UPDATE
@@ -184,7 +208,7 @@ class AdminController extends Controller
 
         if ($request->hasFile('photo')) {
             // define image location in local path
-            $location = public_path('/img');
+            $location = public_path('/img/destinasi');
 
             // ambil file img dan simpan ke local server
             $request->file('photo')->move($location, $request->file('photo')->getClientOriginalName());
@@ -216,9 +240,9 @@ class AdminController extends Controller
             'photo'             => 'image|mimes:jpg,jpeg,png|max:10240',
         ]);
 
-        $partner->partner      = $request->partner;
-        $partner->website      = $request->website;
-        $partner->created_at      = $request->created_at;
+        $partner->partner       = $request->partner;
+        $partner->website       = $request->website;
+        $partner->created_at    = $request->created_at;
 
 
         if ($request->hasFile('photo')) {
@@ -231,6 +255,8 @@ class AdminController extends Controller
 
             // simpan nama file di database
             $partner->photo = $request->file('photo')->getClientOriginalName();
+        } else {
+            $partner->photo;
         }
 
         $partner->save();
@@ -270,7 +296,7 @@ class AdminController extends Controller
 
         if ($request->hasFile('photo')) {
             // define image location in local path
-            $location = public_path('/img');
+            $location = public_path('/img/destinasi');
 
             // ambil file img dan simpan ke local server
             $request->file('photo')->move($location, $request->file('photo')->getClientOriginalName());
@@ -312,5 +338,22 @@ class AdminController extends Controller
         $new_partner->save();
         return redirect('/admin/manage-partner',)->with('success', 'Mitra berhasil ditambahkan');
     }
+
+    public function add_feature(Request $request)
+    {
+        $checkboxes = $request->input('checkbox');
+        $destination_id = $request->input('destination_id');
+        
+        if (!empty($checkboxes)) {
+            foreach ($checkboxes as $checkbox) {
+                Destination_feature::create([
+                    'feature_id' => $checkbox,
+                    'destination_id' => $destination_id
+                ]);
+            }
+        }
+        return redirect()->back()->with('success', 'Fasilitas berhasil ditambahkan')->header('Refresh', '1');
+    }
+
 
 }

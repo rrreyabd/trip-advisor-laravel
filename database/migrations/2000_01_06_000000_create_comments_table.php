@@ -18,8 +18,10 @@ return new class extends Migration
             $table->foreignId('rating_id')->constrained('ratings')->onDelete('restrict');//one to one
             $table->string('title');
             $table->enum("destination_type", ["wisata", "hotel","restoran"]);
-            $table->dateTime('upload_date');
             $table->longText('content');
+            $table->date('date');
+            $table->string('visit_type');
+            $table->timestamps();
         });
     }
 

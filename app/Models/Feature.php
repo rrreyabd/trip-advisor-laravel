@@ -13,7 +13,7 @@ class Feature extends Model
         return $this->belongsTo('Destination');
     }
 
-    public function restaurant_feature(){
-        return $this->hasOne(Restaurant_feature::class);
+    public function destination_feature(){
+        return $this->hasOne(Destination_feature::class);
     }
 }
