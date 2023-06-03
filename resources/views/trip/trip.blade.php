@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Trip</title>
-
+    <link rel="icon" href="{{asset('img/Tripadvisor_logoset_solid_green.svg')}}">
     <link rel="stylesheet" href="{{ asset('./css/trip.css')}}">
 </head>
 <body>
@@ -83,6 +83,7 @@
             <div class="modal-content-inner">
                 <form action="{{ route('trip_plan') }}" method="POST">
                     @csrf
+                    <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                     <label for="trip_name">Nama Perjalanan</label>
                     <input type="text" id="trip_name" required name="trip_name">
 

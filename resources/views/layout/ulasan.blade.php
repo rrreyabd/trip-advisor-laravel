@@ -12,6 +12,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
   </head>
   <body>
+      <a href="{{route('index')}}" class="text-dark no-underline">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M5 12l14 0"></path>
+          <path d="M5 12l6 6"></path>
+          <path d="M5 12l6 -6"></path>
+        </svg>
+      </a>
+  
        <!-- FILTER START -->
        <section class="filter">
         <div class="container mt-3 shadow" style="border-radius: 10px">
@@ -36,54 +45,54 @@
           </div>
           <hr class="mt-1" />
   
-          <form action="" method="POST">
+          <form action="{{route('ulasan-filter', ['id' => $id ])}}" method="GET">
             <div class="row">
               <div class="col-md-4 col-lg-3 col-12">
                 <p class="mt-2" style="font-size: medium; font-weight: 500; margin-bottom: 10px">Peringkat dari wisatawan</p>
                 <table class="">
                   <tr>
                     <td class="d-flex align-items-center">
-                      <input type="checkbox" style="height: 17px; width: 17px" name="luarbiasa" id="luarbiasa" />
+                      <input type="checkbox" style="height: 17px; width: 17px" name="rating_id[]" id="luarbiasa" value="5" />
                       <label for="luarbiasa" class="ms-2">Luar Biasa</label>
                     </td>
                     <td>
-                      <span class="text-secondary ms-2">(20)</span>
+                      <span class="text-secondary ms-2">({{$lima}})</span>
                     </td>
                   </tr>
                   <tr>
                     <td class="d-flex align-items-center">
-                      <input type="checkbox" style="height: 17px; width: 17px" name="sangatbagus" id="sangatbagus" />
+                      <input type="checkbox" style="height: 17px; width: 17px" name="rating_id[]" id="sangatbagus" value="4" />
                       <label for="sangatbagus" class="ms-2">Sangat Bagus</label>
                     </td>
                     <td>
-                      <span class="text-secondary ms-2">(20)</span>
+                      <span class="text-secondary ms-2">({{$empat}})</span>
                     </td>
                   </tr>
                   <tr>
                     <td class="d-flex align-items-center">
-                      <input type="checkbox" style="height: 17px; width: 17px" name="ratarata" id="ratarata" />
+                      <input type="checkbox" style="height: 17px; width: 17px" name="rating_id[]" id="ratarata" value="3" />
                       <label for="ratarata" class="ms-2">Rata-rata</label>
                     </td>
                     <td>
-                      <span class="text-secondary ms-2">(20)</span>
+                      <span class="text-secondary ms-2">({{$tiga}})</span>
                     </td>
                   </tr>
                   <tr>
                     <td class="d-flex align-items-center">
-                      <input type="checkbox" style="height: 17px; width: 17px" name="buruk" id="buruk" />
+                      <input type="checkbox" style="height: 17px; width: 17px" name="rating_id[]" id="buruk" value="2" />
                       <label for="buruk" class="ms-2">Buruk</label>
                     </td>
                     <td>
-                      <span class="text-secondary ms-2">(20)</span>
+                      <span class="text-secondary ms-2">({{$dua}})</span>
                     </td>
                   </tr>
                   <tr>
                     <td class="d-flex align-items-center">
-                      <input type="checkbox" style="height: 17px; width: 17px" name="sangatburuk" id="sangatburuk" />
+                      <input type="checkbox" style="height: 17px; width: 17px" name="rating_id[]" id="sangatburuk" value="1" />
                       <label for="sangatburuk" class="ms-2">Sangat Buruk</label>
                     </td>
                     <td>
-                      <span class="text-secondary ms-2">(20)</span>
+                      <span class="text-secondary ms-2">({{$satu}})</span>
                     </td>
                   </tr>
                 </table>
@@ -91,30 +100,21 @@
               <div class="hidefilter col-2">
                 <p class="mt-2" style="font-size: medium; font-weight: 500; margin-bottom: 10px">Bulan Tertentu</p>
                 <table>
-                  <tr>
-                    <td class="d-flex align-items-center">
-                      <input type="checkbox" style="height: 17px; width: 17px" name="mar_mei" id="mar_mei" />
-                      <label for="mar_mei" class="ms-2">Mar-Mei</label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="d-flex align-items-center">
-                      <input type="checkbox" style="height: 17px; width: 17px" name="jun_agu" id="jun_agu" />
-                      <label for="jun_agu" class="ms-2">Jun-Agu</label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="d-flex align-items-center">
-                      <input type="checkbox" style="height: 17px; width: 17px" name="sep_nov" id="sep_nov" />
-                      <label for="sep_nov" class="ms-2">Sep-Nov</label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="d-flex align-items-center">
-                      <input type="checkbox" style="height: 17px; width: 17px" name="des_feb" id="des_feb" />
-                      <label for="des_feb" class="ms-2">Des-Feb</label>
-                    </td>
-                  </tr>
+                  
+                    @php
+                        $months = [
+                            'January', 'February', 'March', 'April', 'May', 'June',
+                            'July', 'August', 'September', 'October', 'November', 'December'
+                        ];
+                    @endphp
+                      @foreach ($months as $month)
+                        <tr>
+                          <td class="d-flex flex align-items-center">
+                                <input type="checkbox" name="month[]" value="{{ $month }}">
+                                <label>{{ $month }}</label>
+                          <td>
+                        </tr>
+                    @endforeach  
                 </table>
               </div>
               <div class="hidefilter col-2">
@@ -122,59 +122,41 @@
                 <table>
                   <tr>
                     <td class="d-flex align-items-center">
-                      <input type="checkbox" style="height: 17px; width: 17px" name="keluarga" id="keluarga" />
+                      <input type="checkbox" style="height: 17px; width: 17px" name="visit_type[]" value="Keluarga" />
                       <label for="keluarga" class="ms-2">Keluarga</label>
                     </td>
                   </tr>
                   <tr>
                     <td class="d-flex align-items-center">
-                      <input type="checkbox" style="height: 17px; width: 17px" name="pasangan" id="pasangan" />
+                      <input type="checkbox" style="height: 17px; width: 17px" name="visit_type[]" value="Pasangan" />
                       <label for="pasangan" class="ms-2">Pasangan</label>
                     </td>
                   </tr>
                   <tr>
                     <td class="d-flex align-items-center">
-                      <input type="checkbox" style="height: 17px; width: 17px" name="sendiri" id="sendiri" />
+                      <input type="checkbox" style="height: 17px; width: 17px" name="visit_type[]" value="Sendirian" />
                       <label for="sendiri" class="ms-2">Sendiri</label>
                     </td>
                   </tr>
                   <tr>
                     <td class="d-flex align-items-center">
-                      <input type="checkbox" style="height: 17px; width: 17px" name="bisnis" id="bisnis" />
+                      <input type="checkbox" style="height: 17px; width: 17px" name="visit_type[]" value="Bisnis" />
                       <label for="bisnis" class="ms-2">Bisnis</label>
                     </td>
                   </tr>
                   <tr>
                     <td class="d-flex align-items-center mb-3">
-                      <input type="checkbox" style="height: 17px; width: 17px" name="teman" id="teman" />
+                      <input type="checkbox" style="height: 17px; width: 17px" name="visit_type[]" value="Teman" />
                       <label for="teman" class="ms-2">Teman</label>
                     </td>
                   </tr>
                 </table>
               </div>
-              <div class="hidefilter col-3">
-                <p class="mt-2" style="font-size: medium; font-weight: 500; margin-bottom: 10px">Bahasa</p>
-                <table>
-                  <tr>
-                    <td class="d-flex align-items-center">
-                      <input type="radio" style="height: 17px; width: 17px" name="bahasa" id="indonesia" />
-                      <label for="indonesia" class="ms-2">Indonesia</label>
-                    </td>
-                    <td>
-                      <span class="text-secondary ms-2">(500)</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="d-flex align-items-center">
-                      <input type="radio" style="height: 17px; width: 17px" name="bahasa" id="inggris" />
-                      <label for="inggris" class="ms-2">Inggris</label>
-                    </td>
-                    <td>
-                      <span class="text-secondary ms-2">(20)</span>
-                    </td>
-                  </tr>
-                </table>
-              </div>
+            </div>
+            <div class="w-25 pb-4">
+              <button class="btn btn-dark">
+                Filter
+              </button>
             </div>
           </form>
         </div>
@@ -197,12 +179,13 @@
       <div class="container shadow" style="margin-top: 20px; border-radius: 10px">
       <div class="row">
         <div class="col-md-auto ms-2 mt-2 mb-2 d-inline-flex">
-          <img class="rounded-pill" src="{{ asset('img/profile.png') }}" alt="profile" style="width: 50px" />
+          <img class="rounded-pill" src="{{ asset('/img/profile_photo/' . $comment->user->profile_photo ) }}" alt="profile" width="50px" height="50px" />
         </div>
-        <div class="col-auto mt-2 mb-2 d-flex align-items-center flex-wrap" style="font-size">
-          <span for="name" style="font-weight: 500">{{ $comment->user->username }}</span>&nbsp; <span for="date">&nbsp;({{ date('M Y',strtotime($comment->upload_date)) }})</span>
+        <div class="col-auto mt-2 mb-2 d-flex flex-col align-items-center" style="font-size">
+            <p for="name" style="font-weight: 500">{{ $comment->user->firstName }} {{ $comment->user->lastName }}</p>       
           {{-- <div class="text-secondary d-block flex-basis-100 w-100">1 kontribusi</div> --}}
         </div>
+
         {{-- <div class="dropdown col-xl-8 col-lg-6 col-md-4 col-sm-3 col-2 d-inline-flex justify-content-end">
           <button class="btn btn-transparent bi bi-three-dots fs-2" style="border-width: 0" type="button" data-bs-toggle="dropdown" data-bs-target="#dropdown-menu" aria-expanded="false"></button>
           <ul class="dropdown-menu" id="dropdown-menu">
@@ -214,6 +197,8 @@
       <div class="row">
         <div class="col-md-12 me-2 ms-2 mt-2">
           <div style="margin: 0">
+            <p for="date">&nbsp;{{ \Carbon\Carbon::parse($comment->date)->formatLocalized('%d %B %Y') }}</p>
+            <p>Bersama {{$comment->visit_type}}</p>
             @for($i=0; $i < $comment->rating->value; $i++)
             <i class="bi bi-circle-fill text-success"></i>
             @endfor
@@ -231,12 +216,15 @@
           </p>
           <button class="rounded-pill bg-transparent" style="border-width: 0; text-decoration: underline" onclick="toggleCardTo(this)">Selengkapnya</button>
         </div>
-        <div class="col me-2 ms-2 mb-3"><span style="font-weight: 800;">Ditulis: </span>{{ date('d M Y',strtotime($comment->upload_date)) }}</div>
+        <div class="col me-2 ms-2 mb-3"><span style="font-weight: 800;">Ditulis: </span>{{ date('d M Y',strtotime($comment->created_at)) }}</div>
 
         <div class="ms-2 mt-3">
-          @foreach($comment->comment_photo as $photo)
-          <img src="{{ asset('img/ulasan/' . $photo->comment_photo) }}" alt="" style="object-fit: cover; height:150px; width: 150px">
+          @foreach ($comment->comment_photo as $comment_photo)
+              @if (!empty($comment_photo->photo))
+                  <img src="{{ asset('img/ulasan/' . $comment_photo->photo) }}" alt="" style="object-fit: cover; height:150px; width: 150px">
+              @endif
           @endforeach
+      
         </div>
         <hr class="mt-4" />
 

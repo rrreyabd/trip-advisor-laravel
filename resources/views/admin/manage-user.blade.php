@@ -7,6 +7,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Manage users</title>
+        <link rel="icon" href="{{asset('img/Tripadvisor_logoset_solid_green.svg')}}">
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="{{asset('./css/styles.css')}}" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>    >
@@ -35,7 +36,7 @@
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th>No</th>
                                             <th>Foto Profil</th>
                                             <th>Nama Depan</th>
                                             <th>Nama Belakang</th>
@@ -49,9 +50,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @php $i=1; @endphp
                                         @foreach ($users as $user)               
                                         <tr>
-                                            <td>{{$user->id}}</td>
+                                            <td>{{$i}}</td>
                                             <td>
                                                 @if ($user->profile_photo)
                                                     <img src="{{asset('img/profile_photo/' . $user->profile_photo )}}" alt="" width="80px" height="80px">
@@ -78,6 +80,7 @@
                                                 </form>
                                             </td>
                                         </tr>
+                                        @php $i++; @endphp
                                         @endforeach
                                     </tbody>
                                 </table>

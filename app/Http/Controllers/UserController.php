@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Destination;
+use App\Models\Comment;
 
 class UserController extends Controller
 {
@@ -40,10 +41,19 @@ class UserController extends Controller
                     ->orWhere('country', 'like', '%'.$query.'%')
                     ->orWhere('address', 'like', '%'.$query.'%')
                     ->get();
-    
+        
+        $comments = Comment::with(['destination', 'rating','user', 'comment_photo'])
+        ->orderBy('id', 'asc')
+        ->get();
+
+        $avgRating = $comments->avg('rating.value');
+        $roundedRating = floor($avgRating);
+
         return view('search-result', [
             'datas' => $datas,
-            'query' => $query
+            'query' => $query,
+            'roundedRating' => $roundedRating,
+            'avgRating' => $avgRating
         ]);
                     
     }

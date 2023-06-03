@@ -25,7 +25,6 @@ class ForumController extends Controller
         $forums = Forum::where('title', 'LIKE', '%' . $query . '%')->get();
         $replies = Reply::all();
 
-
         return view('forum.forum_search', [
             'forums'    => $forums,
             'replies'   => $replies,
@@ -36,8 +35,7 @@ class ForumController extends Controller
     public function forum_detail($id)
     {
         $forum = Forum::find($id);
-        $replies = Reply::where('forum_id', $id)->get();
-
+        $replies = Reply::where('forum_id', $id)->orderBy('id', 'desc')->get();
 
         return view('forum.forum_detail', [
             'forum'    => $forum,
@@ -91,6 +89,12 @@ class ForumController extends Controller
         $forum  = Forum::find($id)->delete();
 
         return redirect('forum')->with('success', ' Forum berhasil dihapus');
+    }
+
+    public function delete_reply($id) {
+        $reply      = Reply::find($id)->delete();
+
+        return redirect('/forum-search')->with('success', ' Reply berhasil dihapus');
     }
 
 }

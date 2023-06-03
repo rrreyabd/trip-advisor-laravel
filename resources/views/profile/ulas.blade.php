@@ -7,7 +7,7 @@
     <title>Tulis ulasan - Tripadvisor</title>
 
     <link rel="stylesheet" href="{{ asset('/css/ulas.css') }}">
-    <link rel="icon" href="./img/Tripadvisor_logoset_solid_green.svg">
+    <link rel="icon" href="{{('/img/Tripadvisor_logoset_solid_green.svg')}}">
 
     <script src="https://kit.fontawesome.com/e87c4faa10.js" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/1fc4ea1c6a.js" crossorigin="anonymous"></script>
@@ -68,9 +68,11 @@
                     <h4>{{$ulasan->title}}</h4>
                     <p>{{\Carbon\Carbon::parse($ulasan->upload_date)->translatedFormat('d F Y')}}</p>
                     <p>{{$ulasan->content}}</p>
-                    @if ($ulasan->comment_photo)
-                    <img src="{{asset('img/foto_ulas/' . $ulasan->comment_photo->comment_photo )}}" width="100px" height="100px" alt="">
-                    @endif
+                    @foreach ($ulasan->comment_photo as $comment_photo)
+                        @if (!empty($comment_photo->photo))
+                            <img src="{{ asset('img/ulasan/' . $comment_photo->photo) }}" width="100px" height="100px" alt="">
+                        @endif
+                    @endforeach
                 
         
                     <p class="small">Ditulis pada {{\Carbon\Carbon::parse($ulasan->upload_date)->translatedFormat('d F Y')}}</p>

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('destination_id')->constrained('destinations')->onDelete('restrict');
             $table->foreignId('partner_id')->constrained('partners')->onDelete('restrict');
             $table->integer('price');
+            $table->timestamps();
         });
     }
 

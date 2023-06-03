@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\User;
+use App\Models\Photo;
+
 
 class ProfileController extends Controller
 {
@@ -116,6 +118,43 @@ class ProfileController extends Controller
 
         $users->save();
         return redirect()->route('profile_detail', ['id' => $users->id])->with('success', 'Bio berhasil diperbaharui');
+    }
+
+    public function store_photo(Request $request){
+        // $photo = $request->validate([
+        //     'user_id'       =>  'required|integer|min:1',
+        //     'destinationId' => 'required|integer|min:1',
+        //     'content'       => 'required|string|max:500',
+        //     'image'         => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        // ]);
+
+        $user_id = $request->input('user_id');
+        // dd($user_id);
+        $destination_id = $request->input('destinationId');
+        // dd($destination_id);
+        $content = $request->input('content');
+        // dd($content);
+        $photo = null;
+        
+            if ($request->hasFile('image')) {
+                // define image location in local path
+                $location = public_path('/img/upload_photo');
+    
+                // ambil file img dan simpan ke local server
+                $request->file('image')->move($location, $request->file('image')->getClientOriginalName());
+    
+                // simpan nama file di database
+                $photo = $request->file('image')->getClientOriginalName();
+            }
+            // dd($photo);
+        $store = new Photo();
+        $store->user_id = $user_id;
+        $store->destination_id = $destination_id;
+        $store->content = $content;
+        $store->photo = $photo;
+        
+        $store->save();
+         return redirect()->back()->with('success', 'Data berhasil disimpan.');
     }
 
 }

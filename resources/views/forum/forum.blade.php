@@ -35,42 +35,39 @@
 
         <div class="recomendation">
             <div class="leftRec">
-                <p>Apa Kabar, Rey</p>
+                <p>Apa kabar {{Auth::user()->firstName}}</p>
             </div>
             
             <div class="rightRec">
                 <div class="recKota">
                     <h3>Cari berdasarkan kota</h3>
-                    <a href="">
+                    <a href="{{route('forum_search', ['query' => 'Medan'])}}">
                         Medan
                     </a>
-                    <a href="">
-                        Binjai
+                    <a href="{{route('forum_search', ['query' => 'Bandung'])}}">
+                        Bandung
                     </a>
-                    <a href="">
-                        Tanjung Balai
+                    <a href="{{route('forum_search', ['query' => 'Jakarta'])}}">
+                        Jakarta
                     </a>
-                    <a href="">
-                        Pematang Siantar
+                    <a href="{{route('forum_search', ['query' => 'Jogja'])}}">
+                        Jogja
                     </a>
-                    <a href="">
-                        Lubuk Pakam
+                    <a href="{{route('forum_search', ['query' => 'Surabaya'])}}">
+                        Surabaya
                     </a>
                 </div>
 
                 <div class="recKategori">
                     <h3>Cari berdasarkan kategori</h3>
-                    <a href="">
+                    <a href="{{route('forum_search', ['query' => 'Wisata'])}}">
                         Objek Wisata
                     </a>
-                    <a href="">
+                    <a href="{{route('forum_search', ['query' => 'Restoran'])}}">
                         Restoran
                     </a>
-                    <a href="">
+                    <a href="{{route('forum_search', ['query' => 'Hotel'])}}">
                         Hotel
-                    </a>
-                    <a href="">
-                        Penerbangan
                     </a>
                 </div>
             </div>

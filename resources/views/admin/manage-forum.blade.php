@@ -6,7 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Manage users</title>
+        <title>Manage Forum</title>
+        <link rel="icon" href="{{asset('img/Tripadvisor_logoset_solid_green.svg')}}">
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="{{asset('./css/styles.css')}}" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>    >
@@ -21,7 +22,7 @@
             <div id="layoutSidenav_content" class="bg-light">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="p-4 boldfont">Daftar Pengguna</h1>
+                        <h1 class="p-4 boldfont">Daftar Forum</h1>
                         @if(session('success'))
                             <div class="alert alert-success alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -35,16 +36,17 @@
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th>No</th>
                                             <th>Judul</th>
                                             <th>Konten</th>
                                             <th>Balasan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @php $i=1; @endphp
                                         @foreach ($forums as $forum)               
                                         <tr>
-                                            <td>{{$forum->id}}</td>
+                                            <td>{{$i}}</td>
                                             <td>{{$forum->title}}</td>
                                             <td>{{$forum->content}}</td>
                                             <td> <a href="{{route('manage-forum-reply', ['id' => $forum->id])}}" class="text-green">Lihat</a> </td>
@@ -56,6 +58,7 @@
                                                     </button>
                                                 </form> --}}
                                         </tr>
+                                        @php $i++; @endphp
                                         @endforeach
                                     </tbody>
                                 </table>

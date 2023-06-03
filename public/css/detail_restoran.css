@@ -157,6 +157,7 @@ header {
     margin: 2px;
     transition: .2s ease;
     filter: brightness(1);
+    height: 400px;
 }
 
 .image a img:hover {

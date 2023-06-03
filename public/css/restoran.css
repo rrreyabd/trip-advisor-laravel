@@ -133,7 +133,7 @@ a {
 }
 
 .restoranCard {
-    height: 48px;
+    height: max-content;
     width: 192.312px;
     padding: 8px 14px 14px 14px;
     background-color: white;

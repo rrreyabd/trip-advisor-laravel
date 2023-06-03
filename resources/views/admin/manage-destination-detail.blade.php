@@ -7,6 +7,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>{{$destination->destination_name}}</title>
+        <link rel="icon" href="{{asset('img/Tripadvisor_logoset_solid_green.svg')}}">
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="{{asset('./css/styles.css')}}" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -216,7 +217,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="d-flex flex-row">
+                                    <div class="d-flex flex-row flex-wrap">
                                         @foreach ($features as $feature)
                                         <div class="d-flex flex-row" style="line-height: .3">
                                             {{-- @foreach ($restaurant_features as $feature) --}}
@@ -244,7 +245,80 @@
                             </div>
                             
                         </div>
-                              
+                        @if ($destination->destination_type == "hotel")
+                        <div class="mt-4 card d-inline-block">
+                            <div class="m-4 w-full">
+                                <div class="d-flex flex-row mb-4 justify-content-between">
+                                    <h4 class="boldfont">Partner</h4>
+                                    <a href="#" class="d-flex flex-row text-decoration-none" data-bs-toggle="modal" data-bs-target="#partnerModal">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="ms-2 icon icon-tabler icon-tabler-plus text-green" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M12 5l0 14"></path>
+                                        <path d="M5 12l14 0"></path>
+                                        </svg>
+                                        <p class="text-green">Tambah Partner</p>
+                                    </a>
+                                </div>
+                                @foreach ($partner as $price)
+                                    <div class="d-flex flex-row justify-content-between align-items-center">
+                                        <img src="{{asset('img/partner/' . $price->partner->photo )}}" alt="" width="200px" class="me-4">
+                                        @php
+                                            $formattedPrice = "Rp " . number_format($price->price, 0, ',', '.');
+                                        @endphp
+                                        <b class="boldfont text-center">{{$formattedPrice}}</b>
+
+                                        <form action="{{route('price-delete', ['id' => $price->id])}}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" name="price_id" value="{{$price->id}}">
+                                            <button type="submit" class="border-0 bg-transparent">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="text-red icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                    <path d="M4 7l16 0"></path>
+                                                    <path d="M10 11l0 6"></path>
+                                                    <path d="M14 11l0 6"></path>
+                                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                                                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                                                </svg>
+                                            </button>
+                                        </form>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        @endif
+                        
+                        <!-- Modal Tambah Partner -->
+                        <div class="modal fade" id="partnerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Tambah Partner</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+
+                                <form action="{{ route('price-add')}}" method="POST">
+                                    @csrf
+                                    
+                                    @foreach ($partners as $partner)
+                                        <div class="modal-body">
+                                            <input type="hidden" name="destination_id" value="{{$destination->id}}">
+                                            <input type="checkbox" name="checkbox[]" value="{{$partner->id}}"> 
+                                            <img src="{{asset('img/partner/' . $partner->photo)}}" width="100px" alt="">
+                                            <label for="price" class="boldfont">= Tarif</label>
+                                            <input type="number" name="price[]">
+                                        </div>
+                                        @endforeach
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+                                        <button type="submit" class="btn btn-success">Simpan</button>
+                                    </div>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+
                     </div>
                 </main>
                 @include('admin.footer')

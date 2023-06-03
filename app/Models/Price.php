@@ -9,6 +9,7 @@ class Price extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['partner_id', 'destination_id', 'price'];
     public function destination()
     {
         return $this->belongsTo(Destination::class, 'destination_id');

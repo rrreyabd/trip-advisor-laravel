@@ -33,4 +33,9 @@ class Destination extends Model
     {
         return $this->hasMany(Price::class, 'destination_id');
     }
+
+    public function comment()
+    {
+        return $this->hasMany(Comment::class, 'destination_id');
+    }
 }

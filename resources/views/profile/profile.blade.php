@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="{{asset('css/profile.css')}}">
     <link rel="icon" href="{{asset('/img/Tripadvisor_logoset_solid_green.svg')}}">
 
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 </head>
 
 <body class="BodyContainer">
@@ -191,9 +195,9 @@
                                 <path d="M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2"></path>
                                 <path d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
                              </svg>
-                             <a href="">
+                             <button id="openModalBtn">
                                 <p>Posting Foto</p>
-                             </a>
+                             </button>
                         </div>
 
                         <div class="TulisUlasan">
@@ -207,9 +211,9 @@
                                  $user = Auth::user();
                             @endphp
                             <a href="{{ url('/ulas', ['id' => $user->id] ) }}">
-                                <p>Tulis Ulasan</p>
+                                <p>Lihat Ulasan</p>
                             </a>
-                        </div>
+                        </div><link rel="icon" href="{{asset('img/Tripadvisor_logoset_solid_green.svg')}}">
                     </div>
 
                     <div class="keluar">
@@ -257,14 +261,14 @@
 
                             <div class="carousel-image">
                                 
-                                    <img src="{{ asset('img/' . $photo->photo) }}" alt="Profile Photo">
+                                    <img src="{{ asset('img/upload_photo/' . $photo->photo) }}" alt="Profile Photo">
                                 
                             </div>
 
                             <div class="carousel-details">
-                                <p>{{$photo->content}}</p>
+                                <p style="margin-bottom: 10px;">{{$photo->content}}</p>
                                 <a href="{{route('destinasi_detail' , ['id' => $photo->destination->id] )}}">
-                                    <b>{{$photo->destination->destination_name}}</b>
+                                    <b ">{{$photo->destination->destination_name}}</b>
                                 </a>
                             </div>
                         </div>
@@ -308,6 +312,31 @@
             </div>
         </div>
     </div> --}}
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="closeModalBtn" class="close">&times;</span>
+            <h2>Upload Image</h2>
+            <form action="{{ route('upload_photo') }}" method="POST" enctype="multipart/form-data" id="searchForm" style="margin-top:20px">
+            @csrf
+            <input type="file" id="imageInput" name="image" accept="image/*">
+            <div id="imageInfo" class="image-info">
+                <input type="hidden" id="user_id" name="user_id" value="{{ Auth::user()->id }}">
+                <textarea type="text" 
+                style="display:block; margin-top:20px; width:100%; height: 100px; padding-top:5px; padding-left:5px;"
+                id="captionInput" required name="content" value=""
+                placeholder="Beri tahu sesuatu tentang foto Anda">
+                </textarea>
+                <input type="text" 
+                style="display:block; margin-top:20px; width:200px; height: 30px; padding-left: 5px;" 
+                id="locationInput" 
+                required name="destination"
+                placeholder="Tambahkan Tag Lokasi" class="bi bi-search">
+                <input type="hidden" id="destinationId" required name="destinationId" value="">
+            </div>
+            <button type="submit" style="display:block; margin-top:20px" class="submitBtn">Submit</button>
+            </form>
+        </div>
+        </div>
 
     <script>
         // Mengambil referensi ke elemen tombol dan modal
@@ -334,6 +363,74 @@
             }
         });
     </script>
+
+<script>
+    document.getElementById("openModalBtn").addEventListener("click", function() {
+    document.getElementById("modal").style.display = "block";
+    });
+
+    document.getElementById("closeModalBtn").addEventListener("click", function() {
+    document.getElementById("modal").style.display = "none";
+    });
+
+    document.getElementById("imageInput").addEventListener("change", function() {
+    const imageInfo = document.getElementById("imageInfo");
+    if (this.files && this.files[0]) {
+        imageInfo.classList.add("active");
+    } else {
+        imageInfo.classList.remove("active");
+    }
+    });
+
+    document.querySelector("form").addEventListener("submit", function(event) {
+    event.preventDefault();
+    const imageFile = document.getElementById("imageInput").files[0];
+    const caption = document.getElementById("captionInput").value;
+    const location = document.getElementById("locationInput").value;
+
+    // Lakukan pengolahan data gambar, keterangan, dan lokasi sesuai kebutuhan
+
+    // Setelah selesai, tutup modal
+    document.getElementById("modal").style.display = "none";
+    });
+</script>
+
+<script>
+$(document).ready(function() {
+$('#locationInput').autocomplete({ //id input destinasi
+    source: function(request, response) {
+        $.ajax({
+            url: '{{ route('search') }}', //url untuk controller pencari destinasi
+            method: 'GET',
+            data: {
+                _token: '{{ csrf_token() }}',
+                query: request.term
+            },
+            dataType: 'json',
+            success: function(data) {
+                response(data);
+            }
+        });
+    },
+    minLength: 1, // Atur jumlah karakter minimal sebelum live search dimulai
+    select: function(event, ui) {
+        $('#locationInput').val(ui.item.destination_name); // id input destinasi
+        $('#destinationId').val(ui.item.id); // Menyimpan id destinasi yang dipilih pada input tersembunyi
+        return false;
+    }
+}).data("ui-autocomplete")._renderItem = function(ul, item) {
+    return $("<li>")
+        .append("<div>" + item.destination_name + "</div>")
+        .appendTo(ul);
+}.bind(this);
+
+    $('#searchForm').on('submit', function() {
+    var selectedDestinationId = $('#destinationId').val();
+    $('#destinationId').val(selectedDestinationId);
+});
+});
+
+</script>
 
     <script src="{{asset('/js/profile.js')}}"></script>
 </body>

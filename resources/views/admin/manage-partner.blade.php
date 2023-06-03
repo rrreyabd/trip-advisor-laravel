@@ -6,7 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Manage users</title>
+        <title>Manage Mitra</title>
+        <link rel="icon" href="{{asset('img/Tripadvisor_logoset_solid_green.svg')}}">
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="{{asset('./css/styles.css')}}" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>    >
@@ -36,7 +37,7 @@
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th>No</th>
                                             <th>Logo</th>
                                             <th>Partner</th>
                                             <th>Website</th>
@@ -45,9 +46,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @php $i=1; @endphp
                                         @foreach ($partners as $partner)               
                                         <tr>
-                                            <td>{{$partner->id}}</td>
+                                            <td>{{$i}}</td>
                                             <td> <img src="{{asset ('img/partner/' . $partner->photo )}}" width="300px" alt=""> </td>
                                             <td>{{$partner->partner}}</td>
                                             <td>{{$partner->website}}</td>
@@ -64,6 +66,7 @@
                                                 </form>
                                             </td>
                                         </tr>
+                                        @php $i++; @endphp
                                         @endforeach
                                     </tbody>
                                 </table>

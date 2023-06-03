@@ -72,11 +72,11 @@
             <div class="midHeader">
                 <a href="#ulasan">
                     {{-- function untuk rating --}}
-                    @for($i=0; $i < $restaurant->rating->value; $i++)
-                        <i class="bi bi-circle-fill text-success" style="margin-right:2px; color:#00aa6c"></i>
+                    @for($i=0; $i < $roundedRating; $i++)
+                    <i class="bi bi-circle-fill text-success" style="margin-right:2px; color:#00AA6C; display:inline-flex"></i>
                     @endfor
-                    @for($i=0; $i < 5 - $restaurant->rating->value; $i++)
-                        <i class="bi bi-circle me-1" style="margin-right:2px; color:#00aa6c"></i>
+                    @for($i=0; $i < 5 - $roundedRating; $i++)
+                        <i class="bi bi-circle me-1" style="margin-right:2px;display: inline-flex"></i>
                     @endfor
                     {{-- function untuk menghitung ulasan --}}
                     @php $i=0 @endphp 
@@ -85,11 +85,13 @@
                             @php $i++ @endphp 
                         @endif
                     @endforeach 
-                    <p class="bold">&nbsp; 
+                    <p>&nbsp; 
                         {{ $i }} Ulasan
                     </p>
                     <p>&nbsp; | </p>
-                    <p> &nbsp; <b>#1</b> dari 40 Restoran di Sumatera Utara</p>
+                    @foreach ($destinationCount as $count)
+                    <p> &nbsp;  Restoran di {{ $count->city }}</p>
+                    @endforeach
                 </a>
             </div>
 
@@ -98,7 +100,7 @@
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M18.364 4.636a9 9 0 0 1 .203 12.519l-.203 .21l-4.243 4.242a3 3 0 0 1 -4.097 .135l-.144 -.135l-4.244 -4.243a9 9 0 0 1 12.728 -12.728zm-6.364 3.364a3 3 0 1 0 0 6a3 3 0 0 0 0 -6z" stroke-width="0" fill="currentColor"></path>
                  </svg>
-                 <a href="">{{ $restaurant->address }}</a>
+                 <a href="">{!! wordwrap($restaurant->address, 110, "<br>", true) !!}</a>
                  <p>&nbsp; | &nbsp;</p>
 
                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-phone" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -130,7 +132,7 @@
     <section class="contentSection">
         <div class="contentContainer">
             <div class="image">
-                <a href="">
+                <a href="{{ route('images', ['id' => $restaurant->id]) }}">
                         <img src="{{ asset('/img/destinasi/' . $restaurant->photo) }}"
                         style="width:600px; height:400px">
                         @if ($comment_photos->isNotEmpty())
@@ -162,15 +164,15 @@
                             <h2>Penilaian dan ulasan</h2>
 
                             <div class="rating"  style="align-items:center">
-                                <h3>{{ number_format($restaurant->rating->value, 1) }}</h3>
+                                <h3>{{$avgRating}}</h3>
 
                                 <div style="display:inline-flex">
-                                @for($i=0; $i < $restaurant->rating->value; $i++)
-                                    <i class="bi bi-circle-fill text-success" style="margin-right:2px; color:#00aa6c; display:inline-flex"></i>
-                                @endfor
-                                @for($i=0; $i < 5 - $restaurant->rating->value; $i++)
-                                    <i class="bi bi-circle me-1" style="margin-right:2px;display: inline-flex; color:#00aa6c"></i>
-                                @endfor
+                                    @for($i=0; $i < $roundedRating; $i++)
+                                    <i class="bi bi-circle-fill text-success" style="margin-right:2px; color:#00AA6C; display:inline-flex"></i>
+                                    @endfor
+                                    @for($i=0; $i < 5 - $roundedRating; $i++)
+                                        <i class="bi bi-circle me-1" style="margin-right:2px;display: inline-flex"></i>
+                                    @endfor
                                 </div>
 
                                 @php $i=0 @endphp 
@@ -188,7 +190,7 @@
                 </div>
 
                 <div class="detailContainer">
-                    <h2>Fasilitas</h2>
+                    <h2>Rincian</h2>
                     @foreach ($features as $feature)
                         <b class="bold">{{$feature->feature_detail}}</b> <br>
                     @endforeach

@@ -72,7 +72,7 @@ class TripController extends Controller
            'trip_type'  => 'required',
            'user_id'    => 'required'
         ]);
-
+        
         $trip_plan = new Trip_plan($plan);
         $trip_plan->user_id = $request->user_id;
         
@@ -168,7 +168,12 @@ class TripController extends Controller
 
     public function destroy($id){
         $data = Trip_destination_detail::find($id);
-        // $data = Trip_plan::find($id);
+        $data->delete();
+
+        return redirect()->back()->with('success', 'Data berhasil dihapus.');
+    }
+    public function dPlan($id){
+        $data = Trip_plan::find($id);
         $data->delete();
 
         return redirect()->back()->with('success', 'Data berhasil dihapus.');

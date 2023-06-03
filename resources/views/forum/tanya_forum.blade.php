@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tanya forum</title>
+    <link rel="icon" href="{{asset('img/Tripadvisor_logoset_solid_green.svg')}}">
     <link rel="stylesheet" href="{{asset('/css/tanya_forum.css')}}">
 </head>
 <body>

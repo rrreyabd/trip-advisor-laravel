@@ -91,16 +91,34 @@
         @php  $i = 1 @endphp
         @foreach ($replies as $reply)
         <div class="reply">
-            <h2>Balasan #{{$i}}</h2>
+            <h2>Komentar #{{$i}}</h2>
             <br>
             <div class="uC">
-                <div class="uCa">
-                    <img src="{{ asset ('img/profile_photo/' . $reply->user->profile_photo) }}" alt="" style="border-radius: 50%; border: 3px solid #00AA6C" width="50px" height="50px">
-        
-                    <div class="lok">
-                        <h3 class="bold green">{{$reply->user->firstName}} {{$reply->user->lastName}}</h3>
-                        <p class="bold">{{\Carbon\Carbon::parse($reply->created_at)->translatedFormat('d F Y')}}</p>
+                <div class="uCa" style="justify-content: space-between">
+                    <div style="display: flex">
+                        <img src="{{ asset ('img/profile_photo/' . $reply->user->profile_photo) }}" alt="" style="border-radius: 50%; border: 3px solid #00AA6C" width="50px" height="50px">
+                        @if ($reply->user->id == Auth::user()->id)
+                        <form action="{{route('user-reply-delete', ['id' => $reply->id])}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="hapusData()">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M4 7l16 0"></path>
+                                    <path d="M10 11l0 6"></path>
+                                    <path d="M14 11l0 6"></path>
+                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                                 </svg>
+                            </button>
+                        </form>
+                        @endif
+                        <div class="lok">
+                            <h3 class="bold green">{{$reply->user->firstName}} {{$reply->user->lastName}}</h3>
+                            <p class="bold">{{\Carbon\Carbon::parse($reply->created_at)->translatedFormat('d F Y')}}</p>
+                        </div>
                     </div>
+
                 </div>
 
                 <div class="uCb">
@@ -121,5 +139,17 @@
             alertDiv.style.display = 'none';
         });
     </script>
+    <script>
+        function hapusData() {
+          if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+            // Tindakan yang dijalankan jika pengguna menekan tombol "OK" pada konfirmasi
+            // Misalnya, panggil fungsi untuk menghapus data atau lakukan permintaan AJAX ke server
+            console.log("Data dihapus");
+          } else {
+            // Tindakan yang dijalankan jika pengguna menekan tombol "Batal" pada konfirmasi
+            console.log("Penghapusan dibatalkan");
+          }
+        }
+        </script>
 </body>
 </html>

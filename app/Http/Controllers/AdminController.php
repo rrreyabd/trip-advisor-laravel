@@ -69,6 +69,9 @@ class AdminController extends Controller
         $destination = Destination::find($id);
         $destination_features = Destination_feature::where('destination_id', $id)->get(); 
         $features = Feature::whereIn('id', $destination_features->pluck('feature_id'))->get();
+        $partner = Price::where('destination_id', $id)->get();
+        $partners = Partner::whereNotIn('id', $partner->pluck('partner_id'))
+        ->get();
 
         $restaurant_features = Feature::whereNotIn('id', $destination_features->pluck('feature_id'))
         ->whereIn('category', ['restoran', 'semua kategori'])
@@ -88,7 +91,9 @@ class AdminController extends Controller
             'restaurant_features' => $restaurant_features,
             'hotel_features' => $hotel_features,
             'wisata_features' => $wisata_features,
-            'destination_features' => $destination_features
+            'destination_features' => $destination_features,
+            'partner' => $partner,
+            'partners' => $partners
         ]);
     }
 
@@ -158,6 +163,7 @@ class AdminController extends Controller
     }
 
     public function delete_partner($id) {
+        $price = Price::where('partner_id', $id)->delete();
         $partner = Partner::find($id)->delete();
 
         return redirect('/admin/manage-partner')->with('success', ' Mitra berhasil dihapus');
@@ -173,6 +179,12 @@ class AdminController extends Controller
         $comment_photo = Comment_photo::where('comment_id', $id)->delete();
         $comment = Comment::find($id)->delete();
         return redirect()->back()->with('success', 'Ulasan berhasil dihapus')->header('Refresh', '1');
+    }
+
+    public function delete_price($id) {
+        $price = Price::find($id)->delete();
+        
+        return redirect()->back()->with('success', 'Partner berhasil dihapus')->header('Refresh', '1');
     }
 
     // UPDATE
@@ -267,22 +279,21 @@ class AdminController extends Controller
     public function add_destination(Request $request)
     {
 
-        $validated = $request->validate([
-            'rating_id'         => 'nullable|exists:ratings,id',
-            'destination_name'  => 'required|min:5|max:50',
-            'destination_type'  => 'required|in:wisata,hotel,restoran',
-            'address'           => 'required|max:255',
-            'city'              => 'required|max:255',
-            'country'           => 'required|max:255',
-            'website'           => 'required|max:255',
-            'contact'           => 'required|max:255',
-            'category'          => 'required|max:255',
-            'map'               => 'required|max:65535',
-            'photo'             => 'image|mimes:jpg,jpeg,png|max:10240'
-        ]);
+        // $validated = $request->validate([
+        //     'rating_id'         => 'nullable|exists:ratings,id',
+        //     'destination_name'  => 'required|min:5|max:50',
+        //     'destination_type'  => 'required|in:wisata,hotel,restoran',
+        //     'address'           => 'required|max:255',
+        //     'city'              => 'required|max:255',
+        //     'country'           => 'required|max:255',
+        //     'website'           => 'required|max:255',
+        //     'contact'           => 'required|max:255',
+        //     'category'          => 'required|max:255',
+        //     'map'               => 'required|max:65535',
+        //     'photo'             => 'image|mimes:jpg,jpeg,png|max:10240'
+        // ]);
         
         $new_destination = new Destination;
-        $new_destination->rating_id             = $request->rating_id;
         $new_destination->destination_name      = $request->destination_name;
         $new_destination->destination_type      = $request->destination_type;
         $new_destination->category              = $request->category;
@@ -355,5 +366,28 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Fasilitas berhasil ditambahkan')->header('Refresh', '1');
     }
 
+    public function add_price(Request $request) {
+        $checkboxes = $request->input('checkbox');
+        $destination_id = $request->input('destination_id');
+        $price = $request->input('price');
+        
+        if (!empty($checkboxes)) {
+            foreach ($checkboxes as $index => $checkbox) {
+                // Mendapatkan nilai 'partner_id' dari setiap checkbox yang dipilih
+                $partner_id = $checkbox; // Ganti ini dengan logika yang sesuai
+                
+                // Mendapatkan harga yang sesuai menggunakan indeks dalam array $price
+                $partner_price = $price[$index]; // Ganti ini dengan logika yang sesuai
+        
+                Price::create([
+                    'partner_id' => $partner_id,
+                    'destination_id' => $destination_id,
+                    'price' => $partner_price
+                ]);
+            }
+        }
+        
+        return redirect()->back()->with('success', 'Partner berhasil ditambahkan')->header('Refresh', '1');
+    }        
 
 }

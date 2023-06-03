@@ -10,6 +10,7 @@
     {{-- <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">  --}}
     <link rel="stylesheet" href="{{ asset('./css/detail_hotel.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('css/destinasi.css') }}"> --}}
+    <link rel="icon" href="{{asset('img/Tripadvisor_logoset_solid_green.svg')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"> 
 
 
@@ -56,6 +57,7 @@
                         <div class="trip center">
                             <form action="{{ route('addFav', ['destinationId'=>$hotel->id])}}" method="POST">
                                 @csrf <!-- Laravel CSRF protection -->
+                                <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                                 <input type="hidden" name="destination_id" value="{{ $hotel->id }}">
                                 <button type="submit" href="{{ route('favorite', ['id'=>3])}}" class="transparent-button rounded-pill" style="display:inline-flex; align-items:center;color:black;text-decoration:none">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heart d-inline-flex align-items-center" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -74,11 +76,11 @@
             <div class="midHeader">
                 <a href="#ulasan">
                     {{-- function untuk rating --}}
-                    @for($i=0; $i < $hotel->rating->value; $i++)
-                        <i class="bi bi-circle-fill text-success" style="margin-right:2px; color:#28a745"></i>
+                    @for($i=0; $i < $roundedRating; $i++)
+                    <i class="bi bi-circle-fill text-success" style="margin-right:2px; color:#00AA6C; display:inline-flex"></i>
                     @endfor
-                    @for($i=0; $i < 5 - $hotel->rating->value; $i++)
-                        <i class="bi bi-circle me-1" style="margin-right:2px"></i>
+                    @for($i=0; $i < 5 - $roundedRating; $i++)
+                        <i class="bi bi-circle me-1" style="margin-right:2px;display: inline-flex"></i>
                     @endfor
                     {{-- function untuk menghitung ulasan --}}
                     @php $i=0 @endphp 
@@ -91,7 +93,10 @@
                         {{ $i }} ulasan
                     </p>
                     <p>&nbsp; | </p>
-                    <p> &nbsp; <b>#1</b> dari 40 Hotel di Sumatera Utara</p>
+
+                    @foreach ($destinationCount as $count)
+                    <p> &nbsp;  Hotel di {{ $count->city }}</p>
+                    @endforeach
                 </a>
             </div>
 
@@ -115,7 +120,7 @@
                     <path d="M3 19l18 0"></path>
                     <path d="M5 6m0 1a1 1 0 0 1 1 -1h12a1 1 0 0 1 1 1v8a1 1 0 0 1 -1 1h-12a1 1 0 0 1 -1 -1z"></path>
                  </svg>
-                 <a href="">{{ $hotel->website }}</a>
+                 <a href="{{ $hotel->website }}" target="_blank">Situs Web</a>
                  <p>&nbsp; | &nbsp;</p>
             </div>
         </header>
@@ -131,25 +136,27 @@
 
                         @foreach($prices as $price)
                         <div class="mitra">
-                            <img src="{{asset('/img/partner/'. $price->partner->photo) }}" height= "43.9875px" width= "97.65px" style="object-fit:contain;" alt="">
-                            <p class="bold">{{ $price->price }}</p>
+                            <a href="{{$price->partner->website}}" target="_blank">
+                                <img src="{{asset('/img/partner/'. $price->partner->photo) }}" height= "43.9875px" width= "97.65px" style="object-fit:contain;" alt="">
+                                @php
+                                    $formattedPrice = "Rp " . number_format($price->price, 0, ',', '.');
+                                @endphp
+                                <p class="bold">{{ $formattedPrice }}</p>
+                            </a>
                         </div>
-                        @endforeach
-                        <a href="">
-                            <div class="linkMitra">
-                                <p class="large bold">Lihat Penawaran</p>
-                            </div>
-                        </a>
+                        @endforeach 
+                        <p class="bold" style="margin-top: -10px; color: red;">*Harga yang tertera adalah tarif per kamar per hari. Harap diperhatikan bahwa harga dapat berbeda 
+                            tergantung pada jenis kamar, fasilitas tambahan, dan beberapa kebijakan hotel.</p>
                     </div>
                 </div>
                 
                 <div class="image">
-                    <a href="">
-                        <img src="{{ asset('/img/hotel/' . $hotel->photo) }}" alt="foto_hotel">
+                    <a href="{{ route('images', ['id' => $hotel->id]) }}">
+                        <img src="{{ asset('/img/destinasi/' . $hotel->photo) }}" alt="foto_hotel">
                         @foreach($comments as $comment)
-                        @foreach($comment->comment_photo as $photo)
-                        <img src="{{ asset('img/foto_ulas/' . $photo->comment_photo) }}" alt="">
-                        @endforeach
+                                @if (!empty($comment->comment_photo->photo))
+                                <img src="{{ asset('img/ulasan/' . $comment->comment_photo->photo) }}" alt="">
+                                @endif
                         @endforeach
                         <div class="click">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hand-click" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -172,16 +179,16 @@
             <div class="detail">
                 <div class="detailContainer">
                     <div class="ulasan">
-                        <a href="ulasan">
+                        <a href="{{ route('ulasan', ['id' => $hotel->id])}}">
                             <h2>Penilaian dan ulasan</h2>
                             <div class="rating"  style="align-items:center">
-                                <h3>4.0</h3>
+                                <h3>{{ $avgRating}}</h3>
 
                                 <div style="display:inline-flex">
-                                @for($i=0; $i < $hotel->rating->value; $i++)
-                                    <i class="bi bi-circle-fill text-success" style="margin-right:2px; color:#28a745; display:inline-flex"></i>
+                                @for($i=0; $i < $roundedRating; $i++)
+                                    <i class="bi bi-circle-fill text-success" style="margin-right:2px; color:#00AA6C; display:inline-flex"></i>
                                 @endfor
-                                @for($i=0; $i < 5 - $hotel->rating->value; $i++)
+                                @for($i=0; $i < 5 - $roundedRating; $i++)
                                     <i class="bi bi-circle me-1" style="margin-right:2px;display: inline-flex"></i>
                                 @endfor
                                 </div>
@@ -204,14 +211,14 @@
                     <h2>Fasilitas</h2>
                     @foreach($features as $feature)
                     {{-- @dd($feature) --}}
-                    <p class="bold">{{ $feature->feature->feature_detail}}</p>
+                    <p class="bold">{{ $feature->feature_detail}}</p>
                     @endforeach
                     
                 </div>
 
                 <div class="detailContainer">
                     <h2>Lokasi</h2>
-                    <iframe src="{{ $hotel->map }}" width="344" height="280" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                    
+                    {!! $hotel->map !!}         
                     
                     <div class="link">
                         <a href="">

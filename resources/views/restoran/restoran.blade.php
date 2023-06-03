@@ -17,14 +17,10 @@
         @include('layout.kategori')
     {{-- navbar end --}}
 
-    <div class="rA">
-        <h1>Restoran di Medan</h1>
-    </div>
-
     <div class="rB">
         <div class="rBa">
             <div class="rBaA">
-                <div class="rBaAa">
+                <div class="rBaAa"> 
                     <form action="{{ route('resto-filter') }}" method="GET">
                         @csrf
                         @foreach ($features as $feature)
@@ -35,7 +31,6 @@
                         @endforeach
                         <button class="bold">Filter</button>
                     </form>
-                    
                 </div>
             </div>
         </div>
@@ -52,12 +47,19 @@
                         
                         <div class="restoranCard">
                             <p class="bold">{{ $restaurant->destination_name }}</p>
-                            @for($i=0; $i < $restaurant->rating->value; $i++)
+                            <p>{{ $restaurant->city }}</p>
+                            @php
+                            $i = $comments->where('destination_id', $restaurant->id)->count();
+                            $avgRating = $comments->where('destination_id', $restaurant->id)->avg('rating.value');
+                            $roundedRating = floor($avgRating);
+                            @endphp
+                            @for($i=0; $i < $roundedRating; $i++)
                                 <i class="bi bi-circle-fill text-success" style="margin-right:1px; color:#00aa6c"></i>
                             @endfor
-                            @for($i=0; $i < 5 - $restaurant->rating->value; $i++)
+                            @for($i=0; $i < 5 - $roundedRating; $i++)
                                 <i class="bi bi-circle me-1" style="margin-right:1px; color:#00aa6c;"></i>
                             @endfor
+                            <br>
                             <br> 
                             <b class="small">
                                 @php $i=0 @endphp 

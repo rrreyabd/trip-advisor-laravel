@@ -28,6 +28,8 @@
             
 
                 @foreach ($filteredData as $data)
+                @if ($data->destination->destination_type == 'hotel')
+
                 @if ($data->destination->destination_type == 'restoran')
                 <a href="{{ route('restoran_detail', ['id' => $data->destination->id]) }}">
                 @elseif ($data->destination->destination_type == 'hotel')
@@ -35,6 +37,7 @@
                 @else 
                 <a href="{{ route('destinasi_detail', ['id' => $data->destination->id]) }}">
                 @endif
+                
                     <div class="ForeachDestinasi">
                         <div class="Img">
                             <img src="{{asset('/img/destinasi/' . $data->destination->photo)}}" width="177px" height="140px" alt="">
@@ -48,26 +51,32 @@
                             <h3 class="bold">{{$data->destination->destination_name}}</h3>
                             <p>{{$data->destination->city}}, {{$data->destination->country}}</p>
                             <br>
-                            @for($i=0; $i < $data->destination->rating->value; $i++)
+                            @php
+                            $i = $comments->where('destination_id', $data->destination->id)->count();
+                            $avgRating = $comments->where('destination_id', $data->destination->id)->avg('rating.value');
+                            $roundedRating = floor($avgRating);
+                            @endphp
+                            @for($i=0; $i < $roundedRating; $i++)
                                 <i class="bi bi-circle-fill text-success" style="margin-right:1px; color:#00aa6c"></i>
                             @endfor
-                            @for($i=0; $i < 5 - $data->destination->rating->value; $i++)
+                            @for($i=0; $i < 5 - $roundedRating; $i++)
                                 <i class="bi bi-circle me-1" style="margin-right:1px; color:#00aa6c;"></i>
-                            @endfor            
+                            @endfor         
                             <br> <br>              
                             <p>{{$data->destination->address}}</p>
                             
                         </div>
                     </div>
                 </a>
+                @endif
                 @endforeach
             </div>
         </div>
+        <footer>
+            @include('layout.footer')
+        </footer>
     </section>
 
-    <footer>
-        @include('layout.footer')
-    </footer>
 
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.js') }}"></script>

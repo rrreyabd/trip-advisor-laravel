@@ -27,7 +27,7 @@
                 @elseif ($data->destination_type == 'hotel')
                 <a href="{{ route('hotel_detail', ['id' => $data->id]) }}">
                 @else 
-                <a href="{{ route('destinasi_detail', ['id' => $data->id]) }}">
+                <a href="{{ route('destinasi_detail', ['id' => $data->id, 'avgRating' => $avgRating, 'roundedRating' => $roundedRating]) }}">
                 @endif
                     <div class="ForeachDestinasi">
                         <div class="Img">
@@ -42,11 +42,11 @@
                             <h3 class="bold">{{$data->destination_name}}</h3>
                             <p>{{$data->city}}, {{$data->country}}</p>
                             <br>
-                            @for($i=0; $i < $data->rating->value; $i++)
-                                <i class="bi bi-circle-fill text-success" style="margin-right:1px; color:#00aa6c"></i>
+                            @for($i=0; $i < $roundedRating; $i++)
+                                <i class="bi bi-circle-fill text-success" style="margin-right:2px; color:#00AA6C; display:inline-flex"></i>
                             @endfor
-                            @for($i=0; $i < 5 - $data->rating->value; $i++)
-                                <i class="bi bi-circle me-1" style="margin-right:1px; color:#00aa6c;"></i>
+                            @for($i=0; $i < 5 - $roundedRating; $i++)
+                                <i class="bi bi-circle me-1" style="margin-right:2px;display: inline-flex"></i>
                             @endfor
                             <br> <br>
                             <p>{{$data->address}}</p>

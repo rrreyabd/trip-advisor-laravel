@@ -49,7 +49,7 @@
                                 <input type="radio" name="visit_type" value="Keluarga">    <b>Keluarga</b>
                                 <input type="radio" name="visit_type" value="Teman">    <b>Teman</b>
                                 <input type="radio" name="visit_type" value="Bisnis">    <b>Bisnis</b>
-                                <input type="radio" name="visit_type" value="Sendiri">    <b>Sendirian</b>
+                                <input type="radio" name="visit_type" value="Sendirian">    <b>Sendirian</b>
                             <br><br><br>
                             
                             <h2 class="bold">Beri Judul Ulasan Anda</h2>
@@ -62,7 +62,7 @@
                             
                             <h2 class="bold">Tambahkan Foto</h2>
                             <p>Opsional</p>
-                                <input type="file" id="photo" name="photo" style="margin-top: 20px;">
+                                <input type="file" id="photo" name="photo[]" multiple style="margin-top: 20px;">
                             <br><br><br>
                             
                             <button type="submit" class="ulasanSubmit bold">Kirim Ulasan</button>
