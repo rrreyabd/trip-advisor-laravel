@@ -17,8 +17,8 @@ class Destination_feature extends Model
     }
     public function feature()
     {
-        return $this->belongsTo(Feature::class, 'id', 'feature_id');
+        return $this->belongsTo(Feature::class, 'feature_id');
     }
-
+    
 
 }

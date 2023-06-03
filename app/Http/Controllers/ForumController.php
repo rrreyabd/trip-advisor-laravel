@@ -77,7 +77,6 @@ class ForumController extends Controller
         $new_forum->user_id    =   $request->user_id;
         $new_forum->title      =   $request->title;
         $new_forum->content    =   $request->content;
-        $new_forum->created_at =   $request->created_at;
         
         $new_forum->save();
         

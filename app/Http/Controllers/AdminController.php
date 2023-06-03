@@ -67,8 +67,8 @@ class AdminController extends Controller
 
     public function show_detail_destination($id) {
         $destination = Destination::find($id);
-        $destination_features = Destination_feature::where('destination_id', $id)->get(); 
-        $features = Feature::whereIn('id', $destination_features->pluck('feature_id'))->get();
+        $destination_features = Destination_feature::where('destination_id', $id)->get();
+        $features = Feature::whereIn('id', $destination_features->pluck('id'))->get();
         $partner = Price::where('destination_id', $id)->get();
         $partners = Partner::whereNotIn('id', $partner->pluck('partner_id'))
         ->get();

@@ -42,11 +42,16 @@
                             <h3 class="bold">{{$data->destination_name}}</h3>
                             <p>{{$data->city}}, {{$data->country}}</p>
                             <br>
+                            @php
+                            $i = $comments->where('destination_id', $data->id)->count();
+                            $avgRating = $comments->where('destination_id', $data->id)->avg('rating.value');
+                            $roundedRating = floor($avgRating);
+                            @endphp
                             @for($i=0; $i < $roundedRating; $i++)
-                                <i class="bi bi-circle-fill text-success" style="margin-right:2px; color:#00AA6C; display:inline-flex"></i>
+                                <i class="bi bi-circle-fill text-success" style="margin-right:1px; color:#00aa6c"></i>
                             @endfor
                             @for($i=0; $i < 5 - $roundedRating; $i++)
-                                <i class="bi bi-circle me-1" style="margin-right:2px;display: inline-flex"></i>
+                                <i class="bi bi-circle me-1" style="margin-right:1px; color:#00aa6c;"></i>
                             @endfor
                             <br> <br>
                             <p>{{$data->address}}</p>
@@ -57,11 +62,11 @@
                 @endforeach
             </div>
         </div>
+        <footer>
+            @include('layout.footer')
+        </footer>
     </section>
 
-    <footer>
-        @include('layout.footer')
-    </footer>
 
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.js') }}"></script>

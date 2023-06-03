@@ -46,12 +46,17 @@ class UserController extends Controller
         ->orderBy('id', 'asc')
         ->get();
 
+
+        $avgRating = $comments->avg('rating.value');
+        $roundedRating = floor($avgRating);
+
         $avgRating = $comments->avg('rating.value');
         $roundedRating = floor($avgRating);
 
         return view('search-result', [
             'datas' => $datas,
             'query' => $query,
+            'comments' => $comments,
             'roundedRating' => $roundedRating,
             'avgRating' => $avgRating
         ]);

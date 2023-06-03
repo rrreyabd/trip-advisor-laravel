@@ -218,25 +218,24 @@
                                     </div>
 
                                     <div class="d-flex flex-row flex-wrap">
-                                        @foreach ($features as $feature)
+                                        @foreach ($destination_features as $feature)
                                         <div class="d-flex flex-row" style="line-height: .3">
                                             {{-- @foreach ($restaurant_features as $feature) --}}
     
-                                            <form action="{{ route('feature-delete', ['id' => $feature->destination_feature->id]) }}" 
+                                            <form action="{{ route('feature-delete', ['id' => $feature->id]) }}"
                                                 class="d-flex flex-row boldfont align-items-center" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-        
-                                            <button class="border-0 bg-transparent">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="text-red icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                    <path d="M18 6l-12 12"></path>
-                                                    <path d="M6 6l12 12"></path>
-                                                </svg>
-                                            </button>
-                                            <p class="m-auto" style="display: flex; align-items: center;"> {{ $feature->feature_detail }}</p>
-                                            
+                                                <button class="border-0 bg-transparent">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-red icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                        <path d="M18 6l-12 12"></path>
+                                                        <path d="M6 6l12 12"></path>
+                                                    </svg>
+                                                </button>
+                                                <p class="m-auto" style="display: flex; align-items: center;"> {{ $feature->feature->feature_detail }}</p>
                                             </form>
+                                            
                                         </div>
                                         @endforeach
                                     </div>
