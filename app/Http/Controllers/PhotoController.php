@@ -17,6 +17,14 @@ class PhotoController extends Controller
         ->where("user_id", "=", $id)
         ->orderBy('id', 'asc')
         ->get();
+        /*
+        SELECT *
+        FROM photos
+        JOIN users ON photos.user_id = users.id
+        JOIN destinations ON photos.destination_id = destinations.id
+        WHERE users.id = $id
+        ORDER BY photos.id ASC;
+        */
         return view('profile.profile', [
             'photos' => $photos,
             'user' => $user,

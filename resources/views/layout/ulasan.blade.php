@@ -197,7 +197,7 @@
       <div class="row">
         <div class="col-md-12 me-2 ms-2 mt-2">
           <div style="margin: 0">
-            <p for="date">&nbsp;{{ \Carbon\Carbon::parse($comment->date)->formatLocalized('%d %B %Y') }}</p>
+            <p for="date">Tanggal pergi : {{ \Carbon\Carbon::parse($comment->date)->formatLocalized('%d %B %Y') }}</p>
             <p>Bersama {{$comment->visit_type}}</p>
             @for($i=0; $i < $comment->rating->value; $i++)
             <i class="bi bi-circle-fill text-success"></i>
@@ -205,7 +205,7 @@
             @for($i=0; $i < 5 - $comment->rating->value; $i++)
             <i class="bi bi-circle"></i>
             @endfor
-            <div for="judul" class="mt-2" style="font-weight: 450">{{ $comment->title }}</div>
+            <div for="judul" class="mt-2" style="font-weight: 450"><h4> {{ $comment->title }} </h4></div>
           </div>
         </div>
       </div>

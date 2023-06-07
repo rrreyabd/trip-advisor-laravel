@@ -304,7 +304,7 @@
                                             <input type="hidden" name="destination_id" value="{{$destination->id}}">
                                             <input type="checkbox" name="checkbox[]" value="{{$partner->id}}"> 
                                             <img src="{{asset('img/partner/' . $partner->photo)}}" width="100px" alt="">
-                                            <label for="price" class="boldfont">= Tarif</label>
+                                            <label for="price" class="boldfont">&nbsp; Tarif</label>
                                             <input type="number" name="price[]">
                                         </div>
                                         @endforeach

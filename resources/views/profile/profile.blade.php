@@ -36,7 +36,11 @@
             <div class="TopProfile">
                 <div class="TopProfileImage">
                     @if (Auth::check())
-                        <img src="{{ asset('img/profile_photo/' . Auth::user()->profile_photo) }}" alt="Profile Photo">
+                        @if (Auth::user()->profile_photo) 
+                            <img src="{{ asset('img/profile_photo/' . Auth::user()->profile_photo) }}">
+                        @else 
+                            <img src="https://media-cdn.tripadvisor.com/media/photo-l/1a/f6/ea/2e/default-avatar-2020-67.jpg" alt="">
+                        @endif
                     @endif
                 </div>
                 <div class="TopProfileDetail">
@@ -232,7 +236,13 @@
                             <div class="TopCarousel">
                                 <div class="LeftTopCarousel">
                                     <div class="TopCarouselImage">
-                                        <img src="{{ asset('img/profile_photo/' . Auth::user()->profile_photo) }}" alt="">
+                                        @if (Auth::check())
+                                            @if (Auth::user()->profile_photo) 
+                                                <img src="{{ asset('img/profile_photo/' . Auth::user()->profile_photo) }}">
+                                            @else 
+                                                <img src="https://media-cdn.tripadvisor.com/media/photo-l/1a/f6/ea/2e/default-avatar-2020-67.jpg" alt="">
+                                            @endif
+                                        @endif
                                     </div>
                                     
                                     <div class="TopCarouselDetail">

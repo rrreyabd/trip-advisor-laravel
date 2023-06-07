@@ -18,37 +18,31 @@ class UserController extends Controller
     public function showProfile($userId)
     {
         $user = User::find($userId);
+        // SELECT * FROM users WHERE id = $userId;
+
         $name = $user->firstName . ' ' . $user->lastName;
         return view('profile', compact('nama'));
     }
 
-    // Navbar
-    // public function navbar()
-    // {
-    //     return view('layout.navbar');
-    // }
-     
     public function search_result(Request $request)
     {
         $query = $request->input('query');
-        
-        // Proses pencarian data berdasarkan search term
-        // Misalnya, menggunakan model atau logika lainnya untuk mendapatkan data yang relevan
-        
-        // Contoh penggunaan model User untuk mencari data
         $datas = Destination::where('destination_name', 'like', '%'.$query.'%')
                     ->orWhere('city', 'like', '%'.$query.'%')
                     ->orWhere('country', 'like', '%'.$query.'%')
                     ->orWhere('address', 'like', '%'.$query.'%')
-                    ->get();
+                    ->get();  
+        /*
+        SELECT * FROM destinations 
+        WHERE destination_name LIKE '%$query%' 
+        OR city LIKE '%$query%' 
+        OR country LIKE '%$query%' 
+        OR address LIKE '%$query%';
+        */
         
         $comments = Comment::with(['destination', 'rating','user', 'comment_photo'])
         ->orderBy('id', 'asc')
         ->get();
-
-
-        $avgRating = $comments->avg('rating.value');
-        $roundedRating = floor($avgRating);
 
         $avgRating = $comments->avg('rating.value');
         $roundedRating = floor($avgRating);

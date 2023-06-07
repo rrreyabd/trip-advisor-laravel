@@ -77,7 +77,6 @@ class ProfileController extends Controller
     public function edit_bio(Request $request, $id)
     {
         $users = User::find($id);
-
         $validated = $request->validate([
             'firstName'             => 'required|max:20',
             'lastName'              => 'required|max:20',
@@ -90,7 +89,6 @@ class ProfileController extends Controller
             'website'               => 'nullable|max:255',
             'about'                 => 'nullable',
             'photo'                 => 'nullable|image|mimes:jpg,jpeg,png|max:10240',
-            // 'created_at'        => 'required'
         ]);
         
         $users->firstName               = $request->firstName;
@@ -103,7 +101,17 @@ class ProfileController extends Controller
         $users->country                 = $request->country;
         $users->website                 = $request->website;
         $users->about                   = $request->about;
-        // $users->created_at            = $request->created_at;
+
+        /* 
+        UPDATE users
+        SET firstName = $validated->firstName, lastName = $validated->lastName,
+            username = $validated->username, address = $validated->address,
+            post_code = $validated->post_code, city = $validated->city,
+            province = $validated->province, country = $validated->country,
+            website = $validated->website, about = $validated->about,
+            profile_photo = $validated->profile_photo, updated_at = NOW()
+        WHERE id = $id;
+        */
 
         if ($request->hasFile('photo')) {
             // define image location in local path
@@ -147,12 +155,18 @@ class ProfileController extends Controller
                 $photo = $request->file('image')->getClientOriginalName();
             }
             // dd($photo);
+            
         $store = new Photo();
         $store->user_id = $user_id;
         $store->destination_id = $destination_id;
         $store->content = $content;
         $store->photo = $photo;
         
+        /* 
+        INSERT INTO photos (user_id, destination_id, content, photo)
+        VALUES ($user_id, $destination_id, $content, $photo);
+        */
+
         $store->save();
          return redirect()->back()->with('success', 'Data berhasil disimpan.');
     }

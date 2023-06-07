@@ -22,19 +22,15 @@ use App\Http\Controllers\PhotoController;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
-*/
-
-// Route::get('/', function () {
-//     return view('index');
-// });
-
-// Route::get('/', function () {
-//     return view('index');
-// })->name('index');
+*/  
 
 Route::get('/', function () {
     return view('index');
-})->middleware(['auth', 'verified'])->name('index');
+})->name('index');
+
+// Route::get('/', function () {
+//     return view('index');
+// })->middleware(['auth', 'verified'])->name('index');
 
 Route::middleware('auth')->group(function () {
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -46,7 +42,7 @@ require __DIR__.'/auth.php';
 
 // Index
 // Route::get('/', [UserController::class, 'index'])->name('index');
-
+    Route::middleware('auth')->group(function () {
 // Hotel
 Route::get('/hotel', [HotelController::class, 'hotel'])->name('hotel');
 Route::get('/hotel-detail/{id}', [HotelController::class, 'hotel_detail'])->name('hotel_detail');
@@ -76,7 +72,7 @@ Route::delete('/trip_plan/{id}', [TripController::class, 'dPlan'])->name('delete
 Route::post('/trip_detail', [TripController::class, 'store_trip_detail'])->name('simpan_detail');
 Route::delete('/trip_detail/{id}', [TripController::class, 'destroy'])->name('delete_detail');
 Route::get('/search', [TripController::class, 'search'])->name('search');
-
+    });
 // Layout
 // Route::get('/navbar', [UserController::class, 'navbar'])->name('navbar');
 

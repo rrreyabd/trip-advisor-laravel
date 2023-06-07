@@ -16,9 +16,21 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('restrict');
             $table->string('title');
             $table->longText('content');
-            $table->dateTime('upload_date');
+            $table->timestamps();
         });
     }
+    /* 
+    CREATE TABLE forums (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        user_id INT,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE RESTRICT
+        title VARCHAR(255),
+        content LONGTEXT,
+        created_at DATETIME,
+        updated_at DATETIME,
+    );
+    */
+
 
     /**
      * Reverse the migrations.

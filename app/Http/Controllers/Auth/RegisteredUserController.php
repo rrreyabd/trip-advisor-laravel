@@ -44,6 +44,11 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        /*
+        INSERT INTO users (firstName, lastName, email, password)
+        VALUES ($request->firstName, $request->lastName, $request->email, $request->password);
+        */
+
         event(new Registered($user));
 
         Auth::login($user);

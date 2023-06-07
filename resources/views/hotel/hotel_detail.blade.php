@@ -153,11 +153,11 @@
                 <div class="image">
                     <a href="{{ route('images', ['id' => $hotel->id]) }}">
                         <img src="{{ asset('/img/destinasi/' . $hotel->photo) }}" alt="foto_hotel">
-                        @foreach($comments as $comment)
-                                @if (!empty($comment->comment_photo->photo))
-                                <img src="{{ asset('img/ulasan/' . $comment->comment_photo->photo) }}" alt="">
-                                @endif
-                        @endforeach
+                        @foreach ($comments as $comment)
+                            @foreach ($comment->comment_photo as $foto)
+                                <img src="{{ asset('img/ulasan/' . $foto->photo) }}" alt="">
+                            @endforeach
+                        @endforeach   
                         <div class="click">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hand-click" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
