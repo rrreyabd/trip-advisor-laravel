@@ -83,7 +83,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="editDestinasiModalLabel">Tambah Destinasi</h5>
+                                    <h5 class="modal-title" id="editDestinasiModalLabel">Tambah Mitra</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
@@ -93,7 +93,7 @@
                                         @csrf
 
                                         <div class="mb-3">
-                                            <label for="partner" class="form-label">Nama Destinasi</label>
+                                            <label for="partner" class="form-label">Nama Mitra</label>
                                             <input type="text" class="form-control @error('partner') is-invalid @enderror" id="partner" 
                                                 name="partner" value="{{old('partner')}}">
                                             @error('partner')
